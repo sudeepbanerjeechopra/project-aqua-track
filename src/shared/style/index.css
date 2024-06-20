@@ -1,0 +1,55 @@
+@import url('node_modules/modern-normalize/modern-normalize.css');
+@import url('./_variables.css');
+@import url('./_colors.css');
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./font/Poppins-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./font/Poppins-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+
+  color: var(--dark-blue);
+  background-color: var(--white);
+}
+
+button {
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}

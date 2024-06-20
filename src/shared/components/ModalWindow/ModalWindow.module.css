@@ -1,0 +1,56 @@
+.closeButton {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+
+}
+
+@media screen and (min-width: 768px) {
+    .closeButton {
+        right: 20px;
+    }
+}
+
+.iconClose {
+    width: 24px;
+    height: 24px;
+}
+
+@media screen and (min-width: 768px) {
+    .iconClose {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+.iconCloseModal {
+    stroke: var(--dark);
+    transition: stroke var(--animation);
+}
+
+.iconCloseModal:active,
+.iconCloseModal:focus {
+    stroke: var(--accent);
+}
+
+.modalContent {
+    position: relative;
+
+    opacity: 0;
+    background-color: var(--white);
+    border-radius: 15px;
+
+    z-index: 15;
+    transition: opacity var(--animation), transform var(--animation);
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modalContentOpen {
+    opacity: 1;
+}
+
+.modalContent.beforeClose {
+    opacity: 0;
+}
