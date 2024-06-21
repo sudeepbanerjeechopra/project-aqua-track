@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  gap: 5px;
+  width: 100%;
+}
+.button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: black;
+  width: 18px;
+  height: 18px;
+}
+.button:focus {
+  outline: none;
+}
+.currentMonth {
+  color: rgb(50, 63, 71);
+  width: 115px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  text-wrap: nowrap;
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .wrapper {
+    gap: 20px;
+  }
+  .currentMonth {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
