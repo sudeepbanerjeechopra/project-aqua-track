@@ -5,9 +5,10 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 // import { Provider } from 'react-redux';
 // import { PersistGate } from 'redux-persist/integration/react';
+// import { persistor, store } from './redux/store.js';
 
 import './shared/style/index.css';
-// import { persistor, store } from './redux/store.js';
+import 'modern-normalize';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
