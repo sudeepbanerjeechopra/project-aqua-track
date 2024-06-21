@@ -1,5 +1,10 @@
+import MonthInfo from './MonthInfo/MonthInfo';
 const WaterDetailedInfo = () => {
-  return <></>;
+  return (
+    <>
+      <MonthInfo />
+    </>
+  );
 };
 
 export default WaterDetailedInfo;
