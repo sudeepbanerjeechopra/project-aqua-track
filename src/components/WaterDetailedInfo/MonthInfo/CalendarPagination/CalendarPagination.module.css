@@ -11,15 +11,22 @@
   padding: 0;
   border: none;
   background-color: transparent;
-  color: black;
+  color: var(--dark-blue);
   width: 18px;
   height: 18px;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+.button:active {
+  color: #f0eff4;
+  background-color: var(--dark-blue);
 }
 .button:focus {
   outline: none;
+  border: 1px solid var(--dark-blue);
 }
 .currentMonth {
-  color: rgb(50, 63, 71);
+  color: var(--dark-blue);
   width: 115px;
   text-align: center;
   font-size: 14px;
@@ -27,7 +34,6 @@
   line-height: 18px;
   text-align: center;
   text-wrap: nowrap;
-  margin: 0;
 }
 @media (min-width: 768px) {
   .wrapper {
@@ -36,5 +42,6 @@
   .currentMonth {
     font-size: 16px;
     line-height: 24px;
+    width: 130px;
   }
 }

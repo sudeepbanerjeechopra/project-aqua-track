@@ -1,14 +1,27 @@
 import Calendar from './Calendar/Calendar';
 import CalendarPagination from './CalendarPagination/CalendarPagination';
 import { icons as sprite } from '../../../shared/icons/index';
-// import Schedule from './Schedule/Schedule';
-import { useState } from 'react';
+import Loader from './Loader/Loader';
+import Schedule from './Schedule/Schedule';
+
+import clsx from 'clsx';
+import { useState, useEffect } from 'react';
 
 import css from './MonthInfo.module.css';
 
 const MonthInfo = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [toggleStaticstic, setToggleStaticstic] = useState(true);
+  const [loadingSimulation, setLoadingSimulation] = useState(false);
+
+  useEffect(() => {
+    setLoadingSimulation(true);
+    const timer = setTimeout(() => {
+      setLoadingSimulation(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [toggleStaticstic]);
 
   const startOfMonth = (date) =>
     new Date(date.getFullYear(), date.getMonth(), 1);
@@ -52,23 +65,25 @@ const MonthInfo = () => {
               onPrevMonth={handlePrevMonth}
               currentDate={currentDate}
             />
-            <div
-              className={css.iconDiv}
+            <button
+              className={clsx(css.iconBtn, {
+                [css.active]: !toggleStaticstic,
+              })}
               onClick={() => setToggleStaticstic((prev) => !prev)}
             >
               <svg width="20" height="20">
                 <use xlinkHref={`${sprite}#pie-chart-02-1`} />
               </svg>
-            </div>
+            </button>
           </div>
         </div>
-        {
-          toggleStaticstic ? (
-            <Calendar month={days} />
-          ) : (
-            <p>Schedule</p>
-          ) /*<Schedule />*/
-        }
+        {loadingSimulation ? (
+          <Loader />
+        ) : toggleStaticstic ? (
+          <Calendar month={days} />
+        ) : (
+          <Schedule />
+        )}
       </div>
     </div>
   );

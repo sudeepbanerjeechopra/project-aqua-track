@@ -3,7 +3,7 @@
   max-width: 304px;
   margin: 0 auto;
   background-color: #f0eff4;
-  color: #323f47;
+  color: var(--dark-blue);
 }
 .thead {
   width: 100%;
@@ -27,12 +27,15 @@
   font-weight: 700;
   line-height: 24px;
 }
-.iconDiv {
+.iconBtn {
   display: grid;
   place-items: center;
   transition: all 0.3s;
+  background-color: transparent;
+  border: none;
+  padding: 0;
 }
-.iconDiv.active {
+.iconBtn.active {
   opacity: 0.6;
 }
 
