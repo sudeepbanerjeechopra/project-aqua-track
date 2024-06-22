@@ -1,0 +1,44 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  gap: 5px;
+  width: 100%;
+}
+.button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: var(--dark-blue);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+.button:active {
+  color: #f0eff4;
+  background-color: var(--dark-blue);
+}
+.button:focus {
+  outline: none;
+  border: 1px solid var(--dark-blue);
+}
+.currentMonth {
+  color: var(--dark-blue);
+  width: 121.5px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  text-wrap: nowrap;
+}
+@media (min-width: 768px) {
+  .currentMonth {
+    font-size: 16px;
+    line-height: 24px;
+    width: 140px;
+  }
+}
