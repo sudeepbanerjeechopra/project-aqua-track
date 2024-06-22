@@ -36,8 +36,6 @@
   text-wrap: nowrap;
 }
 @media (min-width: 768px) {
-  .wrapper {
-  }
   .currentMonth {
     font-size: 16px;
     line-height: 24px;
