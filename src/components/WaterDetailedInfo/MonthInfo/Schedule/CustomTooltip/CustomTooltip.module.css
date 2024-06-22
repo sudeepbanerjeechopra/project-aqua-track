@@ -16,6 +16,7 @@
   box-sizing: border-box;
   transform: translateX(-50%);
   text-wrap: nowrap;
+  transition: all 0.3s ease-in-out;
 }
 
 .triangle {
