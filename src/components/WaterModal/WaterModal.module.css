@@ -1,0 +1,22 @@
+.modalWater {
+    width: 518px;
+    height: auto;
+    padding: 40px;  
+}
+
+.titleWaterModal {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 0.9;
+    letter-spacing: -1%;
+    color: rgb(50, 63, 71);
+    margin-bottom: 24px;
+}
+
+.subTitleWaterModal {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.3;
+    color: rgb(50, 63, 71);
+    letter-spacing: -1%;
+}
