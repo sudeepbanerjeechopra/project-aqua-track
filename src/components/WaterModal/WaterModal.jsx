@@ -1,4 +1,4 @@
-// import WaterForm from "../../components/WaterForm/WaterForm.jsx";
+import WaterForm from "../../components/WaterForm/WaterForm.jsx";
 import ModalWindow from "../../shared/components/ModalWindow/ModalWindow.jsx";
 import { useModal } from "../../hooks/useModal.js";
 import css from './WaterModal.module.css';
@@ -22,7 +22,7 @@ export const WaterModal = ({ operationType }) => {
           <div className={css.modalWater}>
           <h2 className={css.titleWaterModal}>{title}</h2>
           <p className={css.subTitleWaterModal}>{subTitle}</p>
-          {/* <WaterForm operationType={operationType} />   */}
+          <WaterForm operationType={operationType} />  
           </div>
           </div>
     </ModalWindow> 
