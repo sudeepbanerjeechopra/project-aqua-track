@@ -8,8 +8,8 @@ export const WaterModal = ({ operationType }) => {
     const feedbackModal = useModal();
 
     const title = operationType === 'add' ? 'Add water' : 'Edit the entered amount of water';
-    const subTitle = operationType === 'add' ? 'Choose a value:' : 'Correct entered data:';
-  
+    const subTitle = operationType === 'edit' ? 'Choose a value:' : 'Correct entered data:';
+
   return (
   <>
     <button onClick={feedbackModal.openModal}>click</button>
