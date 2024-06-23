@@ -1,0 +1,45 @@
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    max-width: 149px;
+    max-height: 74px;
+    padding: 18px 14px;
+    background-color: var(--white);
+    border-radius: 15px;
+}
+
+.btns {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.btn {
+    border: none;
+    padding: 0;
+    background-color: var(--white);
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.info_ml {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.info_time {
+    font-size: 12px;
+}
+
+.svg {
+    fill: var(--white);
+    stroke: var(--dark-blue);
+}

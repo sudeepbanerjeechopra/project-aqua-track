@@ -1,9 +1,13 @@
-import React from 'react'
+import WaterItem from '../WaterItem/WaterItem';
+import css from './WaterList.module.css';
 
 function WaterList() {
   return (
-    <div>WaterList</div>
-  )
+    <div className={css.list}>
+      <WaterItem />
+      <WaterItem />
+    </div>
+  );
 }
 
-export default WaterList
+export default WaterList;

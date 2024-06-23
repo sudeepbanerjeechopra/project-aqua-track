@@ -1,9 +1,17 @@
-import React from 'react'
+import { icons as sprite } from '../../../../shared/icons/index.js';
+import css from './AddWaterBtn.module.css';
 
 function AddWaterBtn() {
   return (
-    <div>AddWaterBtn</div>
-  )
+    <div className={css.wrapper}>
+      <button className={css.btn}>
+        <svg className={css.svg} width="30" height="30">
+          <use xlinkHref={`${sprite}#add-water-green`} />
+        </svg>
+      </button>
+      <p className={css.text}>Add water</p>
+    </div>
+  );
 }
 
-export default AddWaterBtn
+export default AddWaterBtn;
