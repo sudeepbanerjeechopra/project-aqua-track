@@ -3,6 +3,7 @@ import { useModalContext } from '../../context/useModalContext';
 import MonthInfo from './MonthInfo/MonthInfo';
 import WaterModal from '../../components/WaterModal/WaterModal';
 
+import DailyInfo from './DailyInfo/DailyInfo';
 const WaterDetailedInfo = () => {
   const { openModal } = useModalContext();
   return (
@@ -12,6 +13,7 @@ const WaterDetailedInfo = () => {
       >
         Open LogOut Modal
       </button>
+      <DailyInfo />
       <MonthInfo />
     </>
   );
