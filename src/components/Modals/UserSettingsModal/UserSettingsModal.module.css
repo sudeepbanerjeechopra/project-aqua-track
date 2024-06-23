@@ -1,0 +1,50 @@
+.wrapper {
+  width: calc(100vw - 32px);
+  min-width: 288px;
+  max-width: 343px;
+  padding: 40px 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.userPic {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.picWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.pic {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 75px;
+  height: 75px;
+}
+
+.uploadWrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.iconUpload {
+  width: 18px;
+  height: 18px;
+  stroke: var(--dark);
+  fill: none;
+}
+
+.textUpload {
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+}

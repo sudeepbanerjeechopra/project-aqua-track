@@ -1,3 +1,4 @@
+import UserSettingsModal from '../Modals/UserSettingsModal/UserSettingsModal';
 import AdvantagesSection from './AdvantagesSection/AdvantagesSection';
 import WelcomeSection from './WelcomeSection/WelcomeSection';
 
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <AdvantagesSection />
       <WelcomeSection />
+      <UserSettingsModal />
     </>
   );
 };
