@@ -10,6 +10,19 @@
   flex-direction: column;
   gap: 40px;
 }
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
 
 .userPic {
   display: flex;
@@ -44,6 +57,51 @@
 }
 
 .textUpload {
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.midContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.radioContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.radioButton {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.radio {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--accent);
+  transition: var(--animation);
+}
+
+.radio:checked {
+  background-color: var(--accent);
+  box-shadow: inset 0 0 0 4px var(--white);
+}
+
+.radioLabel {
   font-size: 14px;
   line-height: 1.28;
   letter-spacing: -0.01em;
