@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import axios from 'axios'; 
+import { useSelector, useDispatch } from 'react-redux';
+import { editWaterEntry, addWaterEntry } from '../../redux/water/slice'; 
+import { selectLoading, selectError } from "../../redux/water/selectors";
 
 const schemaWater = yup.object().shape({
     waterAmount: yup.number()
@@ -15,17 +17,20 @@ const schemaWater = yup.object().shape({
     // .max(15000, 'Maximum amount of water: 15000 ml.'),
 });
 
-const defaultTime = () => {
+
+const WaterForm = ({operationType, waterId}) => {
+    const dispatch = useDispatch();
+    const loading = useSelector(selectLoading);
+    const error = useSelector(selectError);
+
+    const defaultTime = () => {
     const currentTime = new Date();
     const hours = String(currentTime.getHours()).padStart(2, '0');
     const minutes = String(currentTime.getMinutes()).padStart(2, '0');
     return `${hours}:${minutes}`
 }
 
-const WaterForm = () => {
-
     const { handleSubmit, formState: { errors }, getValues, setValue, register } = useForm({
-        resolver: schemaWater,
         defaultValues: {
             waterAmount: 50,
             time: defaultTime(),
@@ -35,13 +40,14 @@ const WaterForm = () => {
 
 const onSubmit = async (formData) => {
     try {
-        console.log('Submitting data:', formData);
+        schemaWater.validate(formData, { abortEarly: false });
 
-        const response = await axios.post('https://jsonplaceholder.typicode.com/posts', formData);
-
-           
-        console.log('Server response:', response.data);
-        alert('Data successfully submitted!')
+        if (operationType === "add") {
+          dispatch(addWaterEntry(formData));
+        } else if (operationType === 'edit') {
+          dispatch(editWaterEntry({ waterId, updatedEntry: formData })); 
+        }
+        alert('Data successfully submitted!');
     } catch (error) {
         console.error('Error sending data:', error);
         alert('Error submitting data. Please try again.')
@@ -112,7 +118,9 @@ const decrementWater = () => {
         <p>{errors.keyboardAmount?.message}</p>
        </div>
 
-            <button type="submit">Save</button>
+              <button type="submit">Save</button>
+              {loading && <p>Loading...</p>}
+            {error && <p>{error}</p>}
         </form>
     </div>
   )

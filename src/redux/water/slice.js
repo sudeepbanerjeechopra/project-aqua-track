@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { fetchWater, addWater, editWater } from "../../redux/water/operation";
 
-export const fetchWaterEtries = async () => {
+export const fetchWaterEntries = async () => {
     const { data } = await axios.get('/water');
     return data;
 };
@@ -26,38 +27,42 @@ const handleRejected = (state, action) => {
 }
 
 const waterModalSlice = createSlice({
-    name: 'water',
-    initialState: {
+   name: 'water',
+   initialState: {
         entries: [],
         loading: false,
         error: null,
     },
+    
     extraReducers: (builder) => {
         builder
-            .addCase(fetchWaterEtries.pending, handlePending)
-            .addCase(fetchWaterEtries.fulfilled, (state, action) => {
+            .addCase(fetchWater.pending, handlePending)
+            .addCase(fetchWater.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
                 state.entries = action.payload;
             })
-            .addCase(fetchWaterEtries.rejected, handleRejected)
-            .addCase(addWaterEntry.pending, handlePending)
-            .addCase(addWaterEntry.fulfilled, (state, action) => {
+            .addCase(fetchWater.rejected, handleRejected)
+            .addCase(addWater.pending, handlePending)
+            .addCase(addWater.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
                 state.entries.push(action.payload);
             })
-            .addCase(addWaterEntry.rejected, handleRejected)
-            .addCase(editWaterEntry.pending, handlePending)
-            .addCase(editWaterEntry.fulfilled, (state, action) => {
+            .addCase(addWater.rejected, handleRejected)
+            .addCase(editWater.pending, handlePending)
+            .addCase(editWater.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-                const index = state.entries.findIndex(entry => entry.id === action.payload.id);
-                if (index !== -1) {
-                    state.entries.index = action.payload;
-                }      
-            })
-            .addCase(editWaterEntry.rejected, handleRejected)
+                const updatedEntry = action.payload;
+                state.entries = state.entries.map(entry => {
+               if (entry.id === updatedEntry.id) {
+               return updatedEntry;
+            }
+              return entry;
+    });
+})
+            .addCase(editWater.rejected, handleRejected)
     }
 })
 

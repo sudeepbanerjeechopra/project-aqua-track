@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchWaterEtries, addWaterEntry, editWaterEntry } from '../../redux/water/slice';
+import { fetchWaterEntries, addWaterEntry, editWaterEntry } from '../../redux/water/slice';
 
 export const fetchWater = createAsyncThunk(
     "water/fetchWater",
     async (_, thunkAPI) => {
         try {
-            const response = fetchWaterEtries();
+            const response = fetchWaterEntries();
             return response;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
