@@ -1,20 +1,20 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const fetchWaterEtries = createAsyncThunk('water/fetchEntries', async () => {
-    const response = await axios.get('api/water-entries');
-    return response.data;
-});
+export const fetchWaterEtries = async () => {
+    const { data } = await axios.get('/water');
+    return data;
+};
 
-export const addWaterEntry = createAsyncThunk('water/addEntry', async (newEntry) => {
-    const response = await axios.post('api/water-entries', newEntry);
-    return response.data;
-});
+export const addWaterEntry = async (newEntry) => {
+    const { data } = await axios.post('/water', newEntry);
+    return data;
+};
 
-export const editWaterEntry = createAsyncThunk('water/editEntry', async ({ id, updatedEntry }) => {
-    const response = await axios.put(`api/water-entries${id}`, updatedEntry);
-    return response.data;
-});
+export const editWaterEntry = async ({ waterId, updatedEntry }) => {
+    const { data } = await axios.put(`/water/${waterId}`, updatedEntry);
+    return data;
+};
 
 const handlePending = (state) => {
     state.loading = true;
