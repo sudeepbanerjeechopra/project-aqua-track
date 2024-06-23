@@ -6,6 +6,7 @@ import Home from '../../components/Home/Home';
 const HomePage = () => {
   return (
     <>
+      
       <h2>HomePage</h2>
       <Helmet>
         <title>Home Page</title>

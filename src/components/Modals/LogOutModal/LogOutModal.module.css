@@ -1,0 +1,126 @@
+body {
+  min-width: 320px;
+}
+
+.modalContent {
+  width: 344px;
+  height: 267px;
+  background: var(--white);
+  padding: 40px 14px 40px 14px;
+
+  border-radius: 15px;
+  text-align: center;
+}
+
+.title {
+  width: 316px;
+  height: 24px;
+  font-size: 20px;
+  margin-bottom: 16px;
+  line-height: 1.14em;
+}
+
+.text {
+  margin-bottom: 28px;
+  line-height: 1.28em;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logoutButton {
+  background-color: var(--accent);
+  color: var(--dark-blue);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28em;
+  text-align: center;
+  width: 304px;
+  height: 46px;
+  margin-bottom: 9px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  display: block;
+  padding: 0;
+}
+
+.cancelButton {
+  background-color: var(--light-gray);
+  color: var(--color-light-grey);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28em;
+  text-align: center;
+  width: 304px;
+  height: 46px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  display: block;
+  padding: 0;
+}
+
+.cancelButton:hover {
+  color: var(--dark-blue);
+}
+
+.closeButton {
+  padding: 0;
+  height: 24px;
+}
+
+@media only screen and (min-width: 768px) {
+  .modalContent {
+    width: 516px;
+    height: 244px;
+    padding: 40px;
+  }
+
+  .title {
+    width: 316px;
+    height: 32px;
+    margin-bottom: 24px;
+    display: inline-block;
+    font-size: 28px;
+  }
+
+  .text {
+    margin-bottom: 24px;
+    line-height: 1.33em;
+  }
+
+  .buttonContainer {
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .cancelButton {
+    width: 173px;
+    height: 60px;
+    line-height: 1.5em;
+  }
+
+  .logoutButton {
+    margin-bottom: 0;
+    width: 173px;
+    height: 60px;
+    line-height: 1.5em;
+  }
+
+  .closeButton {
+    width: 28px;
+    padding: 0;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .cancelButton,
+  .logoutButton {
+    width: 176px;
+  }
+}
