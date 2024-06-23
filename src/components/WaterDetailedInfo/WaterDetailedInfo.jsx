@@ -7,7 +7,11 @@ const WaterDetailedInfo = () => {
   const { openModal } = useModalContext();
   return (
     <>
-      <button onClick={() => openModal(<WaterModal operationType={'add'} recordId/>)}>Open LogOut Modal</button>
+      <button
+        onClick={() => openModal(<WaterModal operationType={'add'} recordId />)}
+      >
+        Open LogOut Modal
+      </button>
       <MonthInfo />
     </>
   );
