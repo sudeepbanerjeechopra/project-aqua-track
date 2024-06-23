@@ -1,7 +1,10 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-// import RestrictedRoute from '../../RestrictedRoute.jsx';
+
 import SharedLayout from '../../shared/components/SharedLayout/SharedLayout .jsx';
+import ForgotPage from '../../pages/ForgotPage/ForgotPage.jsx';
+import ResetPage from '../../pages/ResetPage/ResetPage.jsx';
+// import RestrictedRoute from '../../RestrictedRoute.jsx';
 // import PrivateRoute from '../../PrivateRoute.jsx';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
@@ -20,16 +23,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
-          <Route
-            path="/signup"
-            element={
-              <SignUpPage />
-              // <RestrictedRoute
-              //   redirectTo="/tracker"
-              //   component={<SignUpPage />}
-              // />
-            }
-          />
+
+          <Route path="/signup" element={<SignUpPage />} />
+
           <Route
             path="/signin"
             element={
@@ -40,6 +36,20 @@ const App = () => {
               // />
             }
           />
+
+          <Route path="/forgot" element={<ForgotPage />} />
+
+          <Route
+            path="/reset"
+            element={
+              <ResetPage />
+              // <RestrictedRoute
+              //   redirectTo="/forgot"
+              //   component={<ResetPage />}
+              // />
+            }
+          />
+
           <Route
             path="/tracker"
             element={
