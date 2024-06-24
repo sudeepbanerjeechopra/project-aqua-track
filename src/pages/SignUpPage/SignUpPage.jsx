@@ -1,16 +1,16 @@
 import { Helmet } from 'react-helmet-async';
+import AdvantagesSection from '../../components/Home/AdvantagesSection/AdvantagesSection';
+import SignUpForm from '../../components/SignUpForm/SignUpForm';
 
 const SignUpPage = () => {
   return (
     <>
-      <h2>SignUpPage</h2>
       <Helmet>
         <title>Sign Up</title>
       </Helmet>
-      {/* <Section>
-        <SignUpForm />
-        <AdvantagesSection />
-      </Section> */}
+
+      <SignUpForm />
+      <AdvantagesSection />
     </>
   );
 };
