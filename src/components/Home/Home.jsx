@@ -1,13 +1,14 @@
-import UserSettingsModal from '../Modals/UserSettingsModal/UserSettingsModal';
+import Container from '../../shared/components/Container/Container';
 import AdvantagesSection from './AdvantagesSection/AdvantagesSection';
 import WelcomeSection from './WelcomeSection/WelcomeSection';
 
 const Home = () => {
   return (
     <>
-      <AdvantagesSection />
-      <WelcomeSection />
-      <UserSettingsModal />
+      <Container>
+        <WelcomeSection />
+        <AdvantagesSection />
+      </Container>
     </>
   );
 };
