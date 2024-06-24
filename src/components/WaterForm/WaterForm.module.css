@@ -2,12 +2,8 @@
 @media (320px <=width) {}
 /* .listWaterForm {
 
+}  */
 
-}
-
-.listWaterForm {
-
-} */
 
 .spanFormWater {
     display: block;
@@ -29,6 +25,7 @@ margin-bottom: 24px;
 .enterWaterForm {
 margin-bottom: 24px;
 }
+
 .inputAddWater {
     max-width: 88px;
     height: 40px;
@@ -40,6 +37,29 @@ margin-bottom: 24px;
     background-color: var(--dark-blue);
     border-radius: 30px;
     padding: 11px 20px;
+}
+
+.waterAmountInputContainer {
+    display: flex;
+    margin-right: auto;
+}
+
+.iconOperator {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    fill: none;
+    stroke: var(--white);
+    margin: 0 8px;
+}
+/* 
+.iconOperator:hover {
+
+} */
+
+.icon {
+    width: 14px;
+    stroke: var(--dark-blue);
 }
 
 .inputWaterForm {
@@ -68,12 +88,9 @@ margin-bottom: 24px;
     font-size: 14px;
     line-height: 1.2;
     letter-spacing: 0.0014em;
+    cursor: pointer;
 }
 
-
-/* .iconOperator {
-    
-} */
 
  @media (width >=320px) and (width < 767px) {}
     

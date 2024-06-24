@@ -99,20 +99,22 @@ const decrementWater = () => {
               
 <div className={style.addWaterForm}>
   <label className={style.itemWaterForm}>
-    <span className={style.spanFormWater}>Amount of water:</span>
+            <span className={style.spanFormWater}>Amount of water:</span>
+            <div className={style.waterAmountInputContainer}>
     <svg className={style.iconOperator} onClick={decrementWater}>
-      <use xlinkHref={`${sprite}#minus-modal`} />
+      <use className={style.icon} xlinkHref={`${sprite}#minus-modal`} />
     </svg>
     <input
       className={style.inputAddWater}
-      type="number"
+      type="text"
       {...register('waterAmount', { required: true })}
       value={getValues('waterAmount')}
       readOnly
     />
     <svg className={style.iconOperator} onClick={incrementWater}>
-      <use xlinkHref={`${sprite}#plus-modal`} />
-    </svg>
+      <use className={style.icon} xlinkHref={`${sprite}#plus-modal`} />
+            </svg>
+            </div>
   </label>
   <p>{errors.waterAmount?.message}</p>
 </div>
