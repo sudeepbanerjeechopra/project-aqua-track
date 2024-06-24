@@ -1,7 +1,8 @@
 
 .modalContent {
-  width: 344px;
-  height: 267px;
+  width: 100%;
+  max-width: 344px;
+  height: auto;
   background: var(--white);
   padding: 40px 14px 40px 14px;
 
