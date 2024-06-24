@@ -8,7 +8,6 @@ const HomePage = () => {
 
   return (
     <>
-      <h2>HomePage</h2>
       <Helmet>
         <title>Home Page</title>
       </Helmet>
