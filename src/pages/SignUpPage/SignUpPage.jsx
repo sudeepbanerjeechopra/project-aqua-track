@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import AdvantagesSection from '../../components/Home/AdvantagesSection/AdvantagesSection';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
+import Container from '../../shared/components/Container/Container';
 
 const SignUpPage = () => {
   return (
@@ -9,8 +10,10 @@ const SignUpPage = () => {
         <title>Sign Up</title>
       </Helmet>
 
-      <SignUpForm />
-      <AdvantagesSection />
+      <Container>
+        <SignUpForm />
+        <AdvantagesSection />
+      </Container>
     </>
   );
 };
