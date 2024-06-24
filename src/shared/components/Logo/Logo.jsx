@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import style from './Logo.module.css';
 
-const Logo = () => {
+const Logo = ({ className }) => {
   return (
     <>
-      <NavLink to="/" className={style.logo}>
+      <NavLink to="/" className={`${style.logo} ${className}`}>
         AquaTrack
       </NavLink>
     </>
