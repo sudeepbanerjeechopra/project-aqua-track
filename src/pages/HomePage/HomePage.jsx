@@ -2,6 +2,7 @@
 
 import { Helmet } from 'react-helmet-async';
 import Home from '../../components/Home/Home';
+import WaterModal from '../../components/WaterModal/WaterModal';
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
         <title>Home Page</title>
       </Helmet>
       <Home />
+      <WaterModal/>
     </>
   );
 };

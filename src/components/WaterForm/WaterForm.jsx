@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { useSelector, useDispatch } from 'react-redux';
-import { editWaterEntry, addWaterEntry } from '../../redux/water/slice'; 
-import { selectLoading, selectError } from "../../redux/water/selectors";
+import css from "./WaterForm.module.css";
+// import { useDispatch } from 'react-redux';
+// import { editWaterEntry, addWaterEntry } from '../../redux/water/slice'; 
+// import { selectLoading, selectError } from "../../redux/water/selectors";
 
 const schemaWater = yup.object().shape({
     waterAmount: yup.number()
@@ -18,10 +19,10 @@ const schemaWater = yup.object().shape({
 });
 
 
-const WaterForm = ({operationType, waterId}) => {
-    const dispatch = useDispatch();
-    const loading = useSelector(selectLoading);
-    const error = useSelector(selectError);
+const WaterForm = () => {
+    // const dispatch = useDispatch();
+    // const loading = useSelector(selectLoading);
+    // const error = useSelector(selectError);
 
     const defaultTime = () => {
     const currentTime = new Date();
@@ -38,21 +39,40 @@ const WaterForm = ({operationType, waterId}) => {
         }
     });
 
-const onSubmit = async (formData) => {
-    try {
-        schemaWater.validate(formData, { abortEarly: false });
+    const onSubmit = async (data) => {
+      schemaWater.validate(data, { abortEarly: false });
+    // try {
+    //     schemaWater.validate(data, { abortEarly: false });
 
-        if (operationType === "add") {
-          dispatch(addWaterEntry(formData));
-        } else if (operationType === 'edit') {
-          dispatch(editWaterEntry({ waterId, updatedEntry: formData })); 
-        }
-        alert('Data successfully submitted!');
-    } catch (error) {
-        console.error('Error sending data:', error);
-        alert('Error submitting data. Please try again.')
-        }
+    //     if (operationType === "add") {
+    //       dispatch(addWaterEntry(data));
+    //     } else if (operationType === 'edit') {
+    //       dispatch(editWaterEntry({ waterId, updatedEntry: data })); 
+    //     }
+    //     alert('Data successfully submitted!');
+    // } catch (error) {
+    //     console.error('Error sending data:', error);
+    //     alert('Error submitting data. Please try again.')
+    //     }
+    console.log(data);
     };
+
+            const fetchWaterEntries = async () => {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch water entries');
+                }
+                const data = await response.json();
+                console.log('Water entries:', data);
+                // Тут ви можете обробити отримані дані далі
+            } catch (error) {
+                console.error('Error fetching water entries:', error);
+            }
+        };
+
+        fetchWaterEntries();
+
 
 const handleWaterChange = (newValue) => {
         setValue('waterAmount', newValue); 
@@ -77,12 +97,14 @@ const decrementWater = () => {
 
   return (
    <div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-                <label>
-                    <span>Amount of water:</span>
+          <form className={css.listWaterForm} onSubmit={handleSubmit(onSubmit)}>
+              
+            <div className={css.addWaterForm}>
+                <label className={css.itemWaterForm}>
+                    <span className={css.spanFormWater}>Amount of water:</span>
                     <button type="button" onClick={decrementWater}>-</button>
-                    <input
+                      <input
+                        className={css.inputAddWater}
                         type="number"
                         {...register('waterAmount', { required: true })}
                         value={getValues('waterAmount')}
@@ -93,10 +115,11 @@ const decrementWater = () => {
                 <p>{errors.waterAmount?.message}</p>
             </div>
        
-      <div>
-         <label>
-            <span>Recording time:</span>
-                <input
+      <div className={css.timeWaterForm}>
+         <label className={css.itemWaterForm}>
+            <span className={css.spanFormWater}>Recording time:</span>
+                    <input
+                    className={css.inputWaterForm}
                     type="time"
                     {...register('time', { required: true })}
                     defaultValue={defaultTime()}
@@ -106,10 +129,11 @@ const decrementWater = () => {
             <p>{errors.time?.message}</p>
       </div>
 
-      <div>
-        <label>
-            <span>Enter the value of the water used:</span>
-                <input
+      <div className={css.enterWaterForm}>
+        <label className={css.itemWaterForm}>
+            <span className={css.spanFormWater}>Enter the value of the water used:</span>
+                    <input
+                    className={css.inputWaterForm}
                     type="number"
                     {...register('keyboardAmount', { required: true })}
                     readOnly
@@ -118,9 +142,9 @@ const decrementWater = () => {
         <p>{errors.keyboardAmount?.message}</p>
        </div>
 
-              <button type="submit">Save</button>
-              {loading && <p>Loading...</p>}
-            {error && <p>{error}</p>}
+              <button className={css.btnWaterForm} type="submit">Save</button>
+              {/* {loading && <p>Loading...</p>}
+            {error && <p>{error}</p>} */}
         </form>
     </div>
   )

@@ -1,16 +1,20 @@
 
 import WaterForm from "../../components/WaterForm/WaterForm";
 import css from './WaterModal.module.css';
-import { useDispatch } from "react-redux";
-import { useEffect } from 'react';
-import { fetchWaterEntries } from "../../redux/water/slice";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useEffect } from 'react';
+// import { fetchWaterEntries } from "../../redux/water/slice";
+// import { selectEntries, selectLoading, selectError } from "../../redux/water/selectors";
 
 const WaterModal = ({ operationType }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  // const entries = useSelector(selectEntries);
+  // const loading = useSelector(selectLoading);
+  // const error = useSelector(selectError);
 
-      useEffect(() => {
-        dispatch(fetchWaterEntries());
-    }, [dispatch]);
+  // useEffect(() => {
+  //       dispatch(fetchWaterEntries());     
+  //   }, [dispatch]);
 
 
     const title = operationType === 'add' ? 'Add water' : 'Edit the entered amount of water';

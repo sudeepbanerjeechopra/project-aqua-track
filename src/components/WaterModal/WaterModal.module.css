@@ -25,6 +25,7 @@
         line-height: 1.2;
         color: var(--dark-blue);
         letter-spacing: -0.0016em;
+        margin-bottom: 20px;
     }
   /* проміжок між 320px і 769рх */
   @media (width >=320px) and (width < 767px) {
