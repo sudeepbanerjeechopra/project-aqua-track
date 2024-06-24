@@ -1,6 +1,5 @@
-
-  /* починаючи з 320px */
-  @media (320px <=width) {
+/* починаючи з 320px */
+ @media (320px <=width) {
   }
     .modalWater {
         max-width: 343px;
@@ -62,4 +61,4 @@
   @media (width >=1440px) {
   }
  
- 
+  

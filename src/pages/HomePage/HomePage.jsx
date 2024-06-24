@@ -5,6 +5,7 @@ import Home from '../../components/Home/Home';
 import WaterModal from '../../components/WaterModal/WaterModal';
 
 const HomePage = () => {
+
   return (
     <>
       <h2>HomePage</h2>
@@ -13,6 +14,7 @@ const HomePage = () => {
       </Helmet>
       <Home />
       <WaterModal/>
+
     </>
   );
 };

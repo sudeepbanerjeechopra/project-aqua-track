@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import css from "./WaterForm.module.css";
+import style from "./WaterForm.module.css";
 // import { useDispatch } from 'react-redux';
 // import { editWaterEntry, addWaterEntry } from '../../redux/water/slice'; 
-// import { selectLoading, selectError } from "../../redux/water/selectors";
+import { icons as sprite } from '../../shared/icons';
 
 const schemaWater = yup.object().shape({
     waterAmount: yup.number()
@@ -21,8 +21,6 @@ const schemaWater = yup.object().shape({
 
 const WaterForm = () => {
     // const dispatch = useDispatch();
-    // const loading = useSelector(selectLoading);
-    // const error = useSelector(selectError);
 
     const defaultTime = () => {
     const currentTime = new Date();
@@ -97,29 +95,33 @@ const decrementWater = () => {
 
   return (
    <div>
-          <form className={css.listWaterForm} onSubmit={handleSubmit(onSubmit)}>
+          <form className={style.listWaterForm} onSubmit={handleSubmit(onSubmit)}>
               
-            <div className={css.addWaterForm}>
-                <label className={css.itemWaterForm}>
-                    <span className={css.spanFormWater}>Amount of water:</span>
-                    <button type="button" onClick={decrementWater}>-</button>
-                      <input
-                        className={css.inputAddWater}
-                        type="number"
-                        {...register('waterAmount', { required: true })}
-                        value={getValues('waterAmount')}
-                        readOnly
-                    />
-                    <button type="button" onClick={incrementWater}>+</button>
-                </label>
-                <p>{errors.waterAmount?.message}</p>
-            </div>
+<div className={style.addWaterForm}>
+  <label className={style.itemWaterForm}>
+    <span className={style.spanFormWater}>Amount of water:</span>
+    <svg className={style.iconOperator} onClick={decrementWater}>
+      <use xlinkHref={`${sprite}#minus-modal`} />
+    </svg>
+    <input
+      className={style.inputAddWater}
+      type="number"
+      {...register('waterAmount', { required: true })}
+      value={getValues('waterAmount')}
+      readOnly
+    />
+    <svg className={style.iconOperator} onClick={incrementWater}>
+      <use xlinkHref={`${sprite}#plus-modal`} />
+    </svg>
+  </label>
+  <p>{errors.waterAmount?.message}</p>
+</div>
        
-      <div className={css.timeWaterForm}>
-         <label className={css.itemWaterForm}>
-            <span className={css.spanFormWater}>Recording time:</span>
+      <div className={style.timeWaterForm}>
+         <label className={style.itemWaterForm}>
+            <span className={style.spanFormWater}>Recording time:</span>
                     <input
-                    className={css.inputWaterForm}
+                    className={style.inputWaterForm}
                     type="time"
                     {...register('time', { required: true })}
                     defaultValue={defaultTime()}
@@ -129,11 +131,11 @@ const decrementWater = () => {
             <p>{errors.time?.message}</p>
       </div>
 
-      <div className={css.enterWaterForm}>
-        <label className={css.itemWaterForm}>
-            <span className={css.spanFormWater}>Enter the value of the water used:</span>
+      <div className={style.enterWaterForm}>
+        <label className={style.itemWaterForm}>
+            <span className={style.spanFormWater}>Enter the value of the water used:</span>
                     <input
-                    className={css.inputWaterForm}
+                    className={style.inputWaterForm}
                     type="number"
                     {...register('keyboardAmount', { required: true })}
                     readOnly
@@ -142,9 +144,7 @@ const decrementWater = () => {
         <p>{errors.keyboardAmount?.message}</p>
        </div>
 
-              <button className={css.btnWaterForm} type="submit">Save</button>
-              {/* {loading && <p>Loading...</p>}
-            {error && <p>{error}</p>} */}
+              <button className={style.btnWaterForm} type="submit">Save</button>
         </form>
     </div>
   )
