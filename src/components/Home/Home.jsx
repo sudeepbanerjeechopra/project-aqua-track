@@ -4,8 +4,8 @@ import WelcomeSection from './WelcomeSection/WelcomeSection';
 const Home = () => {
   return (
     <>
-      <AdvantagesSection />
       <WelcomeSection />
+      <AdvantagesSection />
     </>
   );
 };
