@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import UserSettingsModal from '../../components/Modals/UserSettingsModal/UserSettingsModal';
 
 const SignInPage = () => {
   return (
@@ -7,6 +8,7 @@ const SignInPage = () => {
       <Helmet>
         <title>Sign In</title>
       </Helmet>
+      <UserSettingsModal/>
       {/* <Section>
         <SignInForm />
           <AdvantagesSection />
