@@ -3,6 +3,7 @@ import WaterMainInfo from '../../components/WaterMainInfo/WaterMainInfo';
 import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
 import style from './TrackerPage.module.css';
 import Modals from '../../components/Modals/Modals';
+import DeleteWaterModal from '../../components/Modals/DeleteWaterModal/DeleteWaterModal';
 
 const TrackerPage = () => {
   return (
@@ -15,7 +16,9 @@ const TrackerPage = () => {
         <WaterMainInfo />
         <WaterDetailedInfo />
       </div>
-
+      <div>
+        <DeleteWaterModal />
+      </div>
       <Modals />
     </>
   );
