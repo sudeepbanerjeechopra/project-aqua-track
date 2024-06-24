@@ -1,11 +1,14 @@
+import Container from '../../shared/components/Container/Container';
 import AdvantagesSection from './AdvantagesSection/AdvantagesSection';
 import WelcomeSection from './WelcomeSection/WelcomeSection';
 
 const Home = () => {
   return (
     <>
-      <WelcomeSection />
-      <AdvantagesSection />
+      <Container>
+        <WelcomeSection />
+        <AdvantagesSection />
+      </Container>
     </>
   );
 };
