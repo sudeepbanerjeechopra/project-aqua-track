@@ -1,6 +1,6 @@
 /* починаючи з 320px */
- @media (320px <=width) {
-  }
+ /* @media (320px <=width) {
+  } */
     .modalWater {
         max-width: 343px;
         width: 100%;
@@ -27,8 +27,8 @@
         margin-bottom: 20px;
     }
   /* проміжок між 320px і 769рх */
-  @media (width >=320px) and (width < 767px) {
-  }
+  /* @media (width >=320px) and (width < 767px) {
+  } */
   /* починаючи з 768px */
   @media (768px <=width) {  
     .modalWater {
@@ -54,11 +54,11 @@
     }
   }
   /* проміжок між 769рх і 1440рх */
-  @media (width >=768px) and (width < 1440px) {   
-  }
+  /* @media (width >=768px) and (width < 1440px) {   
+  } */
 
   /* починаючи з 1440рх */
-  @media (width >=1440px) {
-  }
+  /* @media (width >=1440px) {
+  } */
  
   

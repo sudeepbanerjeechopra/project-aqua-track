@@ -4,18 +4,15 @@ import style from "./WaterForm.module.css";
 // import { useDispatch } from 'react-redux';
 // import { editWaterEntry, addWaterEntry } from '../../redux/water/slice'; 
 import { icons as sprite } from '../../shared/icons';
+import toast from 'react-hot-toast';
 
 const schemaWater = yup.object().shape({
     waterAmount: yup.number()
-    .required('Please enter the amount of water.'),
-    // .min(5000, 'Minimum amount of water: 5000 ml.')
-    // .max(15000, 'Maximum amount of water: 15000 ml.'),
-    time: yup.string()
+        .required('Please enter the amount of water.'),
+    time: yup.string('Please select recording time.')
     .required(),
-    keyboardAmount: yup.number()
+    keyboardAmount: yup.number('Please enter the value of water used.')
     .required()
-    // .min(5000, 'Minimum amount of water: 5000 ml.')
-    // .max(15000, 'Maximum amount of water: 15000 ml.'),
 });
 
 
@@ -29,30 +26,28 @@ const WaterForm = () => {
     return `${hours}:${minutes}`
 }
 
-    const { handleSubmit, formState: { errors }, getValues, setValue, register } = useForm({
+    const { handleSubmit, formState: { errors, isValid }, getValues, setValue, register } = useForm({
         defaultValues: {
             waterAmount: 50,
+            ml: 'ml',
             time: defaultTime(),
             keyboardAmount: 50,
         }
     });
 
     const onSubmit = async (data) => {
-      schemaWater.validate(data, { abortEarly: false });
-    // try {
-    //     schemaWater.validate(data, { abortEarly: false });
+        try {
+            await schemaWater.validate(data, { abortEarly: false });
+            console.log('Valid data:', data);
 
-    //     if (operationType === "add") {
-    //       dispatch(addWaterEntry(data));
-    //     } else if (operationType === 'edit') {
-    //       dispatch(editWaterEntry({ waterId, updatedEntry: data })); 
-    //     }
-    //     alert('Data successfully submitted!');
-    // } catch (error) {
-    //     console.error('Error sending data:', error);
-    //     alert('Error submitting data. Please try again.')
-    //     }
-    console.log(data);
+            toast.success('Data successfully added!')
+            // Reset form or perform other actions as needed
+            // reset();
+        } catch (error) {
+            console.error('Validation errors:', error);
+            toast.error('Validation failed. Please check your input')
+           
+        }
     };
 
             const fetchWaterEntries = async () => {
@@ -94,30 +89,30 @@ const decrementWater = () => {
 };
 
   return (
-   <div>
-          <form className={style.listWaterForm} onSubmit={handleSubmit(onSubmit)}>
+   <div> 
+     <form onSubmit={handleSubmit(onSubmit)}>
               
-<div className={style.addWaterForm}>
-  <label className={style.itemWaterForm}>
+        <div className={style.addWaterForm}>
+            <label className={style.itemWaterForm}>
             <span className={style.spanFormWater}>Amount of water:</span>
             <div className={style.waterAmountInputContainer}>
-    <svg className={style.iconOperator} onClick={decrementWater}>
-      <use className={style.icon} xlinkHref={`${sprite}#minus-modal`} />
-    </svg>
-    <input
-      className={style.inputAddWater}
-      type="text"
-      {...register('waterAmount', { required: true })}
-      value={getValues('waterAmount')}
-      readOnly
-    />
-    <svg className={style.iconOperator} onClick={incrementWater}>
-      <use className={style.icon} xlinkHref={`${sprite}#plus-modal`} />
+            <svg className={style.iconOperator} onClick={decrementWater}>
+                <use className={style.icon} xlinkHref={`${sprite}#minus-modal`} />
+           </svg>
+                    <input
+                    className={style.inputAddWater}
+                    type="number"
+                    {...register('waterAmount', { required: true })}
+                    value={getValues('waterAmount')}
+                    readOnly
+                          />
+            <svg className={style.iconOperator} onClick={incrementWater}>
+                <use className={style.icon} xlinkHref={`${sprite}#plus-modal`} />
             </svg>
             </div>
-  </label>
-  <p>{errors.waterAmount?.message}</p>
-</div>
+        </label>
+        <p>{errors.waterAmount?.message}</p>
+      </div>
        
       <div className={style.timeWaterForm}>
          <label className={style.itemWaterForm}>
@@ -146,7 +141,7 @@ const decrementWater = () => {
         <p>{errors.keyboardAmount?.message}</p>
        </div>
 
-              <button className={style.btnWaterForm} type="submit">Save</button>
+              <button className={style.btnWaterForm} type="submit" disabled={!isValid}>Save</button>
         </form>
     </div>
   )
