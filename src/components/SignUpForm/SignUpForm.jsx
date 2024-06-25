@@ -2,11 +2,13 @@ import { useId, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
 
 import WrapperWelcome from '../../shared/components/WrapperWelcome/WrapperWelcome';
 import { signUpSchema } from './signUpSchema';
 import GoogleBtn from '../../shared/components/GoogleBtn/GoogleBtn';
 import { formValuesSignUp } from '../../helpers/constants';
+import { registerUser } from '../../redux/auth/operation';
 
 import { icons as sprite } from '../../shared/icons/index';
 import style from './SignUpForm.module.css';
@@ -14,17 +16,13 @@ import style from './SignUpForm.module.css';
 const SignUpForm = () => {
   const [openPassword, setOpenPassword] = useState(false);
   const [openRepeatPassword, setOpenRepeatPassword] = useState(false);
+
   const nameId = useId();
   const emailId = useId();
   const passwordId = useId();
   const repeatPasswordId = useId();
 
-  const handelClickPassword = () => {
-    setOpenPassword((prevState) => !prevState);
-  };
-  const handelClickRepeatPassword = () => {
-    setOpenRepeatPassword((prevState) => !prevState);
-  };
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -37,9 +35,23 @@ const SignUpForm = () => {
     mode: 'onTouched',
   });
 
+  const handelClickPassword = () => {
+    setOpenPassword((prevState) => !prevState);
+  };
+  const handelClickRepeatPassword = () => {
+    setOpenRepeatPassword((prevState) => !prevState);
+  };
+
   const onSubmit = (data) => {
-    console.log(data);
-    reset();
+    const userData = { ...data };
+    delete userData.repeatPassword;
+
+    try {
+      dispatch(registerUser(userData));
+      reset();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
