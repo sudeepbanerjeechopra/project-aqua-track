@@ -4,8 +4,9 @@ import { Route, Routes } from 'react-router-dom';
 import SharedLayout from '../../shared/components/SharedLayout/SharedLayout .jsx';
 import ForgotPage from '../../pages/ForgotPage/ForgotPage.jsx';
 import ResetPage from '../../pages/ResetPage/ResetPage.jsx';
-// import RestrictedRoute from '../../RestrictedRoute.jsx';
-// import PrivateRoute from '../../PrivateRoute.jsx';
+import RestrictedRoute from '../../RestrictedRoute.jsx';
+import PrivateRoute from '../../PrivateRoute.jsx';
+import VerifyEmailPage from '../VerifyEmailPage/VerifyEmailPage.jsx';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
 const SignInPage = lazy(() => import('../../pages/SignInPage/SignInPage.jsx'));
@@ -29,11 +30,10 @@ const App = () => {
           <Route
             path="/signin"
             element={
-              <SignInPage />
-              // <RestrictedRoute
-              //   redirectTo="/tracker"
-              //   component={<SignInPage />}
-              // />
+              <RestrictedRoute
+                redirectTo="/tracker"
+                component={<SignInPage />}
+              />
             }
           />
 
@@ -42,21 +42,17 @@ const App = () => {
           <Route
             path="/reset"
             element={
-              <ResetPage />
-              // <RestrictedRoute
-              //   redirectTo="/forgot"
-              //   component={<ResetPage />}
-              // />
+              <RestrictedRoute redirectTo="/forgot" component={<ResetPage />} />
             }
           />
 
           <Route
             path="/tracker"
             element={
-              <TrackerPage />
-              // <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
+              <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
             }
           />
+          <Route path="/verify-email" element={<VerifyEmailPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

@@ -2,7 +2,7 @@ import axios from '../../helpers/axiosConfig';
 import toast from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const setAuthHeader = (token) => {
+export const setAuthHeader = (token) => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
@@ -24,3 +24,19 @@ export const registerUser = createAsyncThunk(
         }
     }
 );
+
+// export const verifyEmail = createAsyncThunk(
+//     'auth/verifyEmail',
+//     async (token, thunkAPI) => {
+//         try {
+//             const res = await axios.get(`/users/verify/${token}`);
+//             console.log(res);
+//             setAuthHeader(res.data.token);
+//             toast.success('Email verified successfully');
+//             return res.data;
+//         } catch (error) {
+//             toast.error('Email verification failed');
+//             return thunkAPI.rejectWithValue(error.message);
+//         }
+//     }
+// );
