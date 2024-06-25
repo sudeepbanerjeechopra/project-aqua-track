@@ -9,8 +9,8 @@ const DeleteWaterModal = () => {
       <h2 className={css.title}>Delete entry</h2>
       <p className={css.paragraf}>Are you sure you want to delete the entry?</p>
       <div className={css.buttons}>
-        <button className={css.button-1} type='button'>Delete</button>
-        <button className={css.button-2} onClick={closeModal} type='button'>Cancel</button>
+        <button className={css.buttondelete} type='button'>Delete</button>
+        <button className={css.buttoncancel} onClick={closeModal} type='button'>Cancel</button>
       </div>
     </div>
   );

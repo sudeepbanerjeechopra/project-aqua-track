@@ -2,7 +2,7 @@
     font-weight: 700;
     font-size: 20px;
     line-height: 1.28em;
-    letter-spacing: -1em;
+    letter-spacing: 0.01em;
     padding-bottom: 16px;
     color: var(--dark-blue);
 }
@@ -13,6 +13,7 @@
     margin-bottom: 28px;
     line-height: 1.28em;
     padding-bottom: 28px;
+    margin: 0;
 }
 .deleteModalBackground {
     background-color: var(--white);
@@ -29,13 +30,12 @@
     justify-content: center;
     align-items: center;
 }
-.button-1 {
+.buttondelete {
     width: 304px;
     height: 46px;
     border-radius: 30px;
     border: none;
     display: block;
-    padding: 14px 129px;
     background-color: var(--accent);
     color: var(--dark-blue);
     font-size: 14px;
@@ -44,21 +44,27 @@
     text-align: center;
     cursor: pointer;
 }
-.button-2 {
+.buttoncancel {
     width: 304px;
     height: 46px;
     border-radius: 30px;
-    padding: 14px 129px;
     background-color: var(--light-gray-transparent);
     color: var(--color-light-grey);
     font-size: 14px;
     font-weight: 700;
     line-height: 1.28em;
     text-align: center;
-    text-align: center;
     cursor: pointer;
     border: none;
     display: block;
+}
+.buttondelete:hover,
+.buttondelete:focus {
+    background-color: var(--accent-secondary);
+}
+.buttoncancel:hover,
+.buttoncancel:focus {
+    color: var(--dark-blue);
 }
 @media screen and (min-width: 768px) {
     .deleteModalBackground {
@@ -70,21 +76,23 @@
         font-size: 28px;
         padding-bottom: 24px;
     }
+    .paragraf {
+        font-size: 18px;
+        padding-bottom: 24px;
+    }
     .buttons{
         flex-direction: row;
         gap: 10px;
     }
-    .button-1{
+    .buttondelete{
         width: 170px;
         height: 60px;
-        padding: 18px 67px;
         font-size: 16px;
         line-height: 1.5em;
     }
-    .button-2{
+    .buttoncancel{
         width: 170px;
         height: 60px;
-        padding: 18px 67px;
         font-size: 16px;
         line-height: 1.5em;
     }
