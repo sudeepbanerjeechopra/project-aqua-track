@@ -160,10 +160,47 @@ const UserSettingsModal = ({
                   <p className={css.textRegular}>Active time in hours</p>
                 </div>
               </div>
-              <div className={css.midContainer}></div>
-              <div className={css.midContainer}></div>
+              <div className={css.midContainer}>
+                <div className={css.userInfoInputContainer}>
+                  <p className={css.textRegular}>Your weight in kilograms:</p>
+                  <input
+                    className={css.userInfoInput}
+                    type="number"
+                    name="weight"
+                    id="weight"
+                  />
+                </div>
+                <div className={css.userInfoInputContainer}>
+                  <p className={css.textRegular}>
+                    The time of active participation in sports:
+                  </p>
+                  <input
+                    className={css.userInfoInput}
+                    type="number"
+                    name="time"
+                    id="time"
+                  />
+                </div>
+              </div>
+              <div className={css.midContainer}>
+                <div className={css.userInfoInputContainer}>
+                  <p className={css.textRegular}>
+                    The required amount of water in liters per day:
+                  </p>
+                  <p className={css.textAccent}>{'1.8 L'}</p>
+                </div>
+                <div className={css.userInfoInputContainer}></div>
+              </div>
             </div>
-            <div className={css.buttonContainer}></div>
+            <div className={css.buttonContainer}>
+              <h3>Write down how much water you will drink:</h3>
+              <input
+                className={css.userInfoInput}
+                type="number"
+                name="water"
+                id="water"
+              />
+            </div>
           </form>
         </div>
       </CustomScrollWrapper>
