@@ -25,18 +25,22 @@ export const registerUser = createAsyncThunk(
     }
 );
 
-// export const verifyEmail = createAsyncThunk(
-//     'auth/verifyEmail',
-//     async (token, thunkAPI) => {
-//         try {
-//             const res = await axios.get(`/users/verify/${token}`);
-//             console.log(res);
-//             setAuthHeader(res.data.token);
-//             toast.success('Email verified successfully');
-//             return res.data;
-//         } catch (error) {
-//             toast.error('Email verification failed');
-//             return thunkAPI.rejectWithValue(error.message);
-//         }
-//     }
-// );
+export const refreshUser = createAsyncThunk(
+    'auth/refresh',
+    async (_, thunkAPI) => {
+        const state = thunkAPI.getState();
+        const persistedToken = state.auth.token;
+
+        if (persistedToken === null) {
+            return thunkAPI.rejectWithValue('Unable to fetch user');
+        }
+
+        try {
+            setAuthHeader(persistedToken);
+            const res = await axios.get('/users/profile');
+            return res.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+);
