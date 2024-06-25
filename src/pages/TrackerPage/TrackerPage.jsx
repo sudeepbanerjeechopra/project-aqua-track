@@ -4,8 +4,10 @@ import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedI
 import style from './TrackerPage.module.css';
 import Modals from '../../components/Modals/Modals';
 import DeleteWaterModal from '../../components/Modals/DeleteWaterModal/DeleteWaterModal';
+import { useModalContext } from "../../context/useModalContext.jsx"
 
 const TrackerPage = () => {
+  const { openModal } = useModalContext();
   return (
     <>
       <h2>TrackerPage</h2>
@@ -16,9 +18,9 @@ const TrackerPage = () => {
         <WaterMainInfo />
         <WaterDetailedInfo />
       </div>
-      <div>
-        <DeleteWaterModal />
-      </div>
+      <button onClick={() => openModal(<DeleteWaterModal />)}>
+        Open Delete Water Modal
+      </button>
       <Modals />
     </>
   );
