@@ -3,7 +3,7 @@ import WaterMainInfo from '../../components/WaterMainInfo/WaterMainInfo';
 import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
 import style from './TrackerPage.module.css';
 import Modals from '../../components/Modals/Modals';
-import DeleteWaterModal from '../../components/Modals/DeleteWaterModal/DeleteWaterModal';
+import DeleteWaterModal from '../../components/Modals/DeleteWaterModal/DeleteWaterModal.jsx';
 import { useModalContext } from "../../context/useModalContext.jsx"
 
 const TrackerPage = () => {
