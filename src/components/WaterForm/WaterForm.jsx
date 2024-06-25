@@ -9,10 +9,10 @@ import toast from 'react-hot-toast';
 const schemaWater = yup.object().shape({
     waterAmount: yup.number()
     .required('Please enter the amount of water.'),
-    time: yup.string('Please select recording time.')
-    .required(),
-    keyboardAmount: yup.number('Please enter the value of water used.')
-    .required()
+    time: yup.string()
+    .required('Please select recording time.'),
+    keyboardAmount: yup.number()
+    .required('Please enter the value of water used.')
 });
 
 
@@ -105,6 +105,7 @@ const decrementWater = () => {
                     value={getValues('waterAmount')}
                     readOnly
                           />
+                    <span className={style.mlLabel}>ml</span>
             <svg className={style.iconOperator} onClick={incrementWater}>
                 <use className={style.icon} xlinkHref={`${sprite}#plus-modal`} />
             </svg>
@@ -114,7 +115,7 @@ const decrementWater = () => {
       </div>
        
       <div className={style.timeWaterForm}>
-         <label className={style.itemWaterForm}>
+         <label>
             <span className={style.spanFormWater}>Recording time:</span>
                     <input
                     className={style.inputWaterForm}
@@ -128,14 +129,14 @@ const decrementWater = () => {
       </div>
 
       <div className={style.enterWaterForm}>
-        <label className={style.itemWaterForm}>
+        <label>
             <span className={style.spanFormWater}>Enter the value of the water used:</span>
                     <input
                     className={style.inputWaterForm}
                     type="number"
                     {...register('keyboardAmount', { required: true })}
                     onChange={(e) => setValue('waterAmount', e.target.value)}
-                    />
+                      />
         </label>
         <p>{errors.keyboardAmount?.message}</p>
        </div>

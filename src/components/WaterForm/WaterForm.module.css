@@ -26,6 +26,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 .inputAddWater {
+    position: relative;
     max-width: 88px;
     height: 40px;
     width: 100%;
@@ -40,8 +41,21 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     padding: 11px 20px;
 }
 
+.mlLabel {
+    position: absolute;
+    top: 50%;
+    right: 58%;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.2;
+    transform: translateY(-50%);
+    color: var(--white);
+    font-size: 14px;
+}
+
 .waterAmountInputContainer {
     display: flex;
+    position: relative;
     gap: 8px;
     margin-right: auto;
 }
@@ -91,7 +105,12 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
- /* @media (width >=320px) and (width < 767px) {} */
+ @media (width >=320px) and (width < 767px) {
+    .mlLabel {
+            right: 61%;
+
+        }
+ }
     
         /* починаючи з 768px */
 @media (768px <=width) {
@@ -122,6 +141,13 @@ input[type="time"]::-webkit-calendar-picker-indicator {
         height: 43px;
         font-size: 16px;
         line-height: 1.3;
+    }
+
+    .mlLabel {
+        right: 71%;
+        font-size: 16px;
+        line-height: 1.3;
+        transform: translateY(-50%);
     }
 
     .waterAmountInputContainer {
