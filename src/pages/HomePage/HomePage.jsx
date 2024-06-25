@@ -12,7 +12,7 @@ const HomePage = () => {
         <title>Home Page</title>
       </Helmet>
       <Home />
-      <WaterModal/>
+      <WaterModal operationType={'add'}/>
 
     </>
   );

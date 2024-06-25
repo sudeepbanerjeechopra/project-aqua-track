@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 
 const schemaWater = yup.object().shape({
     waterAmount: yup.number()
-        .required('Please enter the amount of water.'),
+    .required('Please enter the amount of water.'),
     time: yup.string('Please select recording time.')
     .required(),
     keyboardAmount: yup.number('Please enter the value of water used.')
@@ -29,7 +29,6 @@ const WaterForm = () => {
     const { handleSubmit, formState: { errors, isValid }, getValues, setValue, register } = useForm({
         defaultValues: {
             waterAmount: 50,
-            ml: 'ml',
             time: defaultTime(),
             keyboardAmount: 50,
         }
@@ -39,13 +38,12 @@ const WaterForm = () => {
         try {
             await schemaWater.validate(data, { abortEarly: false });
             console.log('Valid data:', data);
-
-            toast.success('Data successfully added!')
+                toast.success('Data successfully added!')  
             // Reset form or perform other actions as needed
             // reset();
         } catch (error) {
             console.error('Validation errors:', error);
-            toast.error('Validation failed. Please check your input')
+            toast.error('Invalid value of water! Min: 0, Max: 500')
            
         }
     };
@@ -66,17 +64,18 @@ const WaterForm = () => {
 
         fetchWaterEntries();
 
-
-const handleWaterChange = (newValue) => {
-        setValue('waterAmount', newValue); 
+    const handleWaterChange = (newValue) => {
+        setValue('waterAmount', newValue);
         setValue('keyboardAmount', newValue);
     };
 
 const incrementWater = () => {
     const currentAmount = Number(getValues('waterAmount'));
     const newValue = currentAmount + 50;
-       handleWaterChange(newValue);
-       setValue('waterAmount', newValue);
+        if (newValue <= 500) { 
+        handleWaterChange(newValue);
+            setValue('waterAmount', newValue);
+    }
 };
     
 const decrementWater = () => {
@@ -120,7 +119,7 @@ const decrementWater = () => {
                     <input
                     className={style.inputWaterForm}
                     type="time"
-                    {...register('time', { required: true })}
+                    {...register('time', {required: true})}
                     defaultValue={defaultTime()}
                     onChange={(e) => setValue('time', e.target.value)}
                 />
@@ -135,13 +134,12 @@ const decrementWater = () => {
                     className={style.inputWaterForm}
                     type="number"
                     {...register('keyboardAmount', { required: true })}
-                    readOnly
+                    onChange={(e) => setValue('waterAmount', e.target.value)}
                     />
         </label>
         <p>{errors.keyboardAmount?.message}</p>
        </div>
-
-              <button className={style.btnWaterForm} type="submit" disabled={!isValid}>Save</button>
+            <button className={style.btnWaterForm} type="submit" disabled={!isValid}>Save</button>
         </form>
     </div>
   )
