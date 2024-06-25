@@ -1,0 +1,45 @@
+.container{
+    min-width: 288px;
+    max-width: 343px;
+    height: 415px;
+    background: var(--accent);
+    border-radius: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.imageContainer{
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+}
+.image{  width: 262px;
+    height: 335px;
+    object-fit: cover;}
+
+@media screen and (min-width: 768px) {  .container {
+    min-width: 704px;
+    height: 578px;
+  }
+  .imageContainer {
+    margin-top: 69px;
+  }
+  .image {
+    width: 374px;
+    height: 477px;
+  }
+    
+} 
+@media screen and (min-width: 1440px) {
+    .container {
+        min-width: 672px;
+        height: 100%;
+    }
+    .imageContainer {
+      margin-top: 92px;
+    }
+    .image {
+      width: 472px;
+      height: 604px;
+    }
+}
