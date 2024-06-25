@@ -1,11 +1,11 @@
 import Logo from '../Logo/Logo';
 import style from './WrapperWelcome.module.css';
 
-const WrapperWelcome = ({ children, className }) => {
+const WrapperWelcome = ({ children, classNameLogo, classNameWelcom }) => {
   return (
     <>
-      <div className={style.welcome}>
-        <Logo className={`${style.welcomeLogo} ${className}`} />
+      <div className={`${style.welcome} ${classNameWelcom}`}>
+        <Logo className={`${style.welcomeLogo} ${classNameLogo}`} />
         {children}
       </div>
     </>

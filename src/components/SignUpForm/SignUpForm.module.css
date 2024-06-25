@@ -1,5 +1,5 @@
 .signUp {
-    margin-bottom: 126px;
+    margin-bottom: 70px;
 }
 
 .signUpTitle {
@@ -146,13 +146,12 @@
 
 @media (min-width: 768px) {
     .signUp {
-        margin-bottom: 171px;
+        margin-bottom: 100px;
     }
 
     .signUpBlock {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        width: 436px;
+        margin: 0 auto;
     }
 
     .signUpTitle {
@@ -161,9 +160,53 @@
         letter-spacing: -0.01em;
     }
 
+    .formLabel {
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+    }
+
+    .formInput {
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+    }
+
+    .eyeBtn {
+        top: 18px;
+        right: 20px;
+    }
+
+    .btnSignUp {
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+
+        padding: 18px 0;
+    }
+
+    .haveAccount {
+        gap: 8px;
+    }
+
+    .haveAccountText {
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+    }
+
+    .haveAccountSignIn {
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+    }
 }
 
 @media (min-width: 1440px) {
+    .welcomPadding {
+        padding-bottom: 100px;
+    }
+
     .signUp {
         margin-bottom: 74px;
     }
@@ -172,7 +215,6 @@
         margin-bottom: 32px;
     }
 }
-
 
 .formInput:-webkit-autofill,
 .formInput:-webkit-autofill:hover,

@@ -44,7 +44,10 @@ const SignUpForm = () => {
 
   return (
     <>
-      <WrapperWelcome className={style.signUp}>
+      <WrapperWelcome
+        classNameLogo={style.signUp}
+        classNameWelcom={style.welcomPadding}
+      >
         <div className={style.signUpBlock}>
           <h2 className={style.signUpTitle}>Sign Up</h2>
 

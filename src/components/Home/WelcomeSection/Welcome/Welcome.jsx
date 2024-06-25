@@ -4,7 +4,7 @@ import style from './Welcome.module.css';
 
 const Welcome = () => {
   return (
-    <WrapperWelcome>
+    <WrapperWelcome classNameLogo={style.wrapperLogo}>
       <p className={style.welcomeText}>Record daily water intake and track</p>
       <h1 className={style.welcomeTitle}>Water consumption tracker</h1>
       <div className={style.welcomeBtn}>
