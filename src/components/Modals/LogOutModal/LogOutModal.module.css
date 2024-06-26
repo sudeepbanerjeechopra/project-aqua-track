@@ -1,0 +1,111 @@
+
+.modalContent {
+  width: 344px;
+  height: auto;
+  background: var(--white);
+  padding: 40px 14px 40px 14px;
+
+  border-radius: 15px;
+  text-align: center;
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 16px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.text {
+  margin-bottom: 28px;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 9px;
+}
+
+.logoutButton {
+  background-color: var(--accent);
+  color: var(--dark-blue);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 126px;
+}
+
+.cancelButton {
+  background-color: var(--light-gray);
+  color: var(--color-light-grey);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 126px;
+}
+
+.cancelButton:hover {
+  color: var(--dark-blue);
+}
+
+.closeButton {
+  padding: 0;
+  height: 24px;
+}
+ @media (width >=320px) and (width < 767px) {
+  }
+
+@media only screen and (min-width: 768px) {
+  .modalContent {
+    width: 516px;
+    height: 244px;
+    padding: 40px;
+  }
+
+  .title {
+    margin-bottom: 24px;
+    display: inline-block;
+    font-size: 28px;
+  }
+
+  .text {
+    margin-bottom: 24px;
+    line-height: 1.33;
+  }
+
+  .buttonContainer {
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .cancelButton {
+    padding: 18px 59px;
+    line-height: 1.5;
+  }
+
+  .logoutButton {
+    line-height: 1.5;
+    padding: 18px 59px;
+  }
+
+  .closeButton {
+    width: 28px;
+    padding: 0;
+  }
+}
+
+/* @media only screen and (min-width: 1440px) {
+  .cancelButton,
+  .logoutButton {
+    
+  }
+} */
