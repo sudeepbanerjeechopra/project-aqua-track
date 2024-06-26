@@ -3,6 +3,7 @@
   min-width: 288px;
   max-width: 343px;
   padding: 40px 20px;
+
 }
 
 .form {
@@ -123,6 +124,7 @@ h3 {
   font-weight: 400;
   line-height: 1.29;
   letter-spacing: -0.01em;
+  transition: var(--animation);
 }
 
 .userInfoInput:hover,
@@ -171,4 +173,46 @@ span.textAccent {
 .note {
   display: flex;
   gap: 4px;
+}
+
+.saveButton {
+  display: flex;
+  padding: 14px 40px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  background: var(--accent);
+  color: var(--dark-blue);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  border: none;
+  transition: var(--animation);
+}
+
+.saveButton:hover,
+.saveButton:focus {
+  background: var(--accent-secondary);
+}
+
+.saveButton:disabled {
+  background: var(--disabled-color);
+  color: var(--secondary-text);
+}
+
+@media screen and (min-width: 768px) {
+
+  .wrapper {
+    max-width: 648px;
+    padding: 40px;
+  }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+  }
 }
