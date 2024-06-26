@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
-import UserSettingsModal from '../../components/Modals/UserSettingsModal/UserSettingsModal';
-// import Container from '../../shared/components/Container/Container';
-// import AdvantagesSection from '../../components/Home/AdvantagesSection/AdvantagesSection';
+import Container from '../../shared/components/Container/Container';
+import AdvantagesSection from '../../components/Home/AdvantagesSection/AdvantagesSection';
+import SignInForm from '../../components/SignInForm/SignInForm';
 
 const SignInPage = () => {
   return (
@@ -9,11 +9,11 @@ const SignInPage = () => {
       <Helmet>
         <title>Sign In</title>
       </Helmet>
-      <UserSettingsModal/>
-      {/* <Section>
+
+      <Container>
         <SignInForm />
         <AdvantagesSection />
-      </Container> */}
+      </Container>
     </>
   );
 };
