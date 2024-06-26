@@ -40,6 +40,7 @@ const App = () => {
           <Route index element={<HomePage />} />
 
           <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/Renew" element={<ForgotPage />} />
 
           <Route
             path="/signin"
