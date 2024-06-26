@@ -1,23 +1,27 @@
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
+ import * as yup from 'yup';
 import style from "./WaterForm.module.css";
-// import { useDispatch } from 'react-redux';
-// import { editWaterEntry, addWaterEntry } from '../../redux/water/slice'; 
+import { useDispatch } from 'react-redux';
+import { addWater } from '../../redux/water/slice'; 
 import { icons as sprite } from '../../shared/icons';
 import toast from 'react-hot-toast';
 
 const schemaWater = yup.object().shape({
     waterAmount: yup.number()
-    .required('Please enter the amount of water.'),
+    .required('Please enter the amount of water.')
+    .min(0, 'The minimum allowed amount of water is 0 ml.')
+    .max(500, 'The maximum allowed amount of water is 500 ml.'),
     time: yup.string()
     .required('Please select recording time.'),
     keyboardAmount: yup.number()
     .required('Please enter the value of water used.')
+    .min(0, 'The minimum allowed amount of water is 0 ml.')
+    .max(500, 'The maximum allowed amount of water is 500 ml.')
 });
 
 
 const WaterForm = () => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const defaultTime = () => {
     const currentTime = new Date();
@@ -37,36 +41,38 @@ const WaterForm = () => {
     const onSubmit = async (data) => {
         try {
             await schemaWater.validate(data, { abortEarly: false });
-            console.log('Valid data:', data);
-                toast.success('Data successfully added!')  
-            // Reset form or perform other actions as needed
-            // reset();
+            const [hours, minutes] = data.time.split(':');
+            const newEntry = {
+                amount: data.waterAmount,
+                hours: parseInt(hours, 10),
+                minutes: parseInt(minutes, 10)
+            };
+            dispatch(addWater(newEntry));
+            toast.success('Data successfully added!');
         } catch (error) {
             console.error('Validation errors:', error);
-            toast.error('Invalid value of water! Min: 0, Max: 500')
-           
+            toast.error('Invalid value of water! Min: 0, Max: 500');
         }
     };
 
-            const fetchWaterEntries = async () => {
-            try {
-                const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch water entries');
-                }
-                const data = await response.json();
-                console.log('Water entries:', data);
-                // Тут ви можете обробити отримані дані далі
-            } catch (error) {
-                console.error('Error fetching water entries:', error);
-            }
-        };
+        //     const fetchWaterEntries = async () => {
+        //     try {
+        //         const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+        //         if (!response.ok) {
+        //             throw new Error('Failed to fetch water entries');
+        //         }
+        //         const data = await response.json();
+        //         console.log('Water entries:', data);
+        //     } catch (error) {
+        //         console.error('Error fetching water entries:', error);
+        //     }
+        // };
 
-        fetchWaterEntries();
+        // fetchWaterEntries();
 
     const handleWaterChange = (newValue) => {
-        setValue('waterAmount', newValue);
-        setValue('keyboardAmount', newValue);
+            setValue('waterAmount', newValue);
+            setValue('keyboardAmount', newValue);
     };
 
 const incrementWater = () => {
@@ -85,7 +91,14 @@ const decrementWater = () => {
             handleWaterChange(newValue);
             setValue('waterAmount', newValue);
         }
-};
+    };
+    
+        const handleKeyboardAmountChange = (e) => {
+        const newValue = Number(e.target.value);
+        if (e.target.value.length <= 3 && newValue >= 0 && newValue <= 500) {
+            handleWaterChange(newValue);
+        }
+    };
 
   return (
    <div> 
@@ -135,7 +148,7 @@ const decrementWater = () => {
                     className={style.inputWaterForm}
                     type="number"
                     {...register('keyboardAmount', { required: true })}
-                    onChange={(e) => setValue('waterAmount', e.target.value)}
+                    onChange={handleKeyboardAmountChange}
                       />
         </label>
         <p>{errors.keyboardAmount?.message}</p>
