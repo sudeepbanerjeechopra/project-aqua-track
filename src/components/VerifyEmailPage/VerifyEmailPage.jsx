@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { setToken } from '../../redux/auth/slice';
 import { getRefreshToken, setAuthHeader } from '../../redux/auth/operation';
 import { useAuth } from '../../hooks/useAut';
+import Loader from '../Loader/Loader';
 
 const VerifyEmailPage = () => {
   const dispatch = useDispatch();
@@ -29,9 +30,9 @@ const VerifyEmailPage = () => {
   }, [isLoggedIn, navigate]);
 
   return (
-    <div>
-      <h1>Verifying your email...</h1>
-    </div>
+    <>
+      <Loader />
+    </>
   );
 };
 

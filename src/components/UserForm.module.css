@@ -1,8 +1,8 @@
-.signUp {
+.form {
     margin-bottom: 70px;
 }
 
-.signUpTitle {
+.formTitle {
     font-weight: 700;
     font-size: 32px;
     line-height: 1;
@@ -11,7 +11,7 @@
     margin-bottom: 32px;
 }
 
-.signUpForm {
+.mainForm {
     margin-bottom: 16px;
 }
 
@@ -95,7 +95,7 @@
     color: var(--error);
 }
 
-.btnSignUp {
+.btnform {
     width: 100%;
     background-color: var(--accent);
     border-radius: 30px;
@@ -110,12 +110,12 @@
     transition: background-color var(--animation);
 }
 
-.btnSignUp:hover,
-.btnSignUp:active {
+.btnform:hover,
+.btnform:active {
     background-color: var(--accent-secondary);
 }
 
-.btnSignUp:disabled {
+.btnform:disabled {
     background-color: var(--disabled-color);
     color: var(--secondary-text);
     cursor: not-allowed;
@@ -135,7 +135,7 @@
     color: var(--grey-text);
 }
 
-.haveAccountSignIn {
+.haveAccountForm {
     font-weight: 700;
     font-size: 14px;
     line-height: 1.29;
@@ -145,16 +145,16 @@
 }
 
 @media (min-width: 768px) {
-    .signUp {
+    .form {
         margin-bottom: 100px;
     }
 
-    .signUpBlock {
+    .formBlock {
         width: 436px;
         margin: 0 auto;
     }
 
-    .signUpTitle {
+    .formTitle {
         font-size: 36px;
         line-height: 1.06;
         letter-spacing: -0.01em;
@@ -177,7 +177,7 @@
         right: 20px;
     }
 
-    .btnSignUp {
+    .btnform {
         font-size: 16px;
         line-height: 1.5;
         letter-spacing: -0.01em;
@@ -195,7 +195,7 @@
         letter-spacing: -0.01em;
     }
 
-    .haveAccountSignIn {
+    .haveAccountForm {
         font-size: 16px;
         line-height: 1.5;
         letter-spacing: -0.01em;
@@ -207,11 +207,11 @@
         padding-bottom: 100px;
     }
 
-    .signUp {
+    .form {
         margin-bottom: 74px;
     }
 
-    .signUpTitle {
+    .formTitle {
         margin-bottom: 32px;
     }
 }
