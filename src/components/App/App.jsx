@@ -40,7 +40,6 @@ const App = () => {
           <Route index element={<HomePage />} />
 
           <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/Renew" element={<ForgotPage />} />
 
           <Route
             path="/signin"
@@ -67,6 +66,7 @@ const App = () => {
               <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
             }
           />
+
           <Route path="/verify-email" element={<VerifyEmailPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

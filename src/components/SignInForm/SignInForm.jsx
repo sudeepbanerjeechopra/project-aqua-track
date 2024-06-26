@@ -133,7 +133,7 @@ const SignInForm = () => {
             </div>
             <div className={s.question}>
               <p className={style.haveAccountText}>Forgot your password?</p>{' '}
-              <NavLink to="/renew" className={style.haveAccountForm}>
+              <NavLink to="/forgot" className={style.haveAccountForm}>
                 Renew
               </NavLink>
             </div>

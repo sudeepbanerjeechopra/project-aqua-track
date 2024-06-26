@@ -1,16 +1,19 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
+import Container from '../../shared/components/Container/Container';
+import AdvantagesSection from '../../components/Home/AdvantagesSection/AdvantagesSection';
+import ForgotPageForm from '../../components/ForgotPageForm/ForgotPageForm';
 
 const ForgotPage = () => {
   return (
     <>
-      <h2>ForgotPage</h2>
       <Helmet>
         <title>Forgot page</title>
       </Helmet>
-      {/* <Container>
+
+      <Container>
         <ForgotPageForm />
         <AdvantagesSection />
-      </Container> */}
+      </Container>
     </>
   );
 };
