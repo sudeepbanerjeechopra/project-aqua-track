@@ -1,13 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialStateConstant } from './constants';
-import { refreshUser, registerUser, } from './operation';
+import { refreshUser, registerUser } from './operation';
 
 const authSlice = createSlice({
     name: 'auth',
     initialState: initialStateConstant,
     reducers: {
         setToken(state, action) {
-            state.token = action.payload;
+            state.token = action.payload.token;
+            state.refreshToken = action.payload.refreshToken;
             state.isLoggedIn = true;
         },
     },
@@ -16,7 +17,8 @@ const authSlice = createSlice({
             .addCase(registerUser.fulfilled, (state, action) => {
                 state.user = action.payload.user;
                 state.token = action.payload.token;
-                state.isLoggedIn = false;
+                state.refreshToken = action.payload.refreshToken;
+                state.isLoggedIn = true;
             })
             .addCase(registerUser.rejected, (state, action) => {
                 state.error = action.payload;
@@ -32,7 +34,8 @@ const authSlice = createSlice({
             .addCase(refreshUser.rejected, (state) => {
                 state.isRefreshing = false;
             });
-    }
+    },
 });
+
 export const { setToken } = authSlice.actions;
 export const authReducer = authSlice.reducer;

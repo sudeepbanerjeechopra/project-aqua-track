@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAut';
 import { setToken } from '../../redux/auth/slice';
-import { setAuthHeader } from '../../redux/auth/operation';
+import { getRefreshToken, setAuthHeader } from '../../redux/auth/operation';
+import { useAuth } from '../../hooks/useAut';
 
 const VerifyEmailPage = () => {
   const dispatch = useDispatch();
@@ -14,9 +14,11 @@ const VerifyEmailPage = () => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const token = params.get('token');
-    if (token) {
-      dispatch(setToken(token));
+    const refreshToken = params.get('refreshToken');
+    if (token && refreshToken) {
+      dispatch(setToken({ token, refreshToken }));
       setAuthHeader(token);
+      getRefreshToken(dispatch, token, refreshToken);
     }
   }, [dispatch, location.search]);
 

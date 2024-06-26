@@ -11,11 +11,12 @@ import {
     REGISTER,
 } from 'redux-persist';
 import { authReducer } from './auth/slice';
+import { setupAxiosInterceptors } from './auth/operation';
 
 const authPersistConfig = {
     key: 'auth',
     storage,
-    whitelist: ['token'],
+    whitelist: ['token', 'refreshToken'],
 };
 
 const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
@@ -31,5 +32,7 @@ export const store = configureStore({
             },
         }),
 });
+
+setupAxiosInterceptors(store);
 
 export const persistor = persistStore(store);
