@@ -8,10 +8,10 @@ import Container from '../../shared/components/Container/Container';
 const TrackerPage = () => {
   return (
     <>
-      <h2>TrackerPage</h2>
       <Helmet>
         <title>Tracker Page</title>
       </Helmet>
+
       <Container>
         <WaterMainInfo />
         <WaterDetailedInfo />
