@@ -1,8 +1,8 @@
 import * as Yup from "yup";
-import { formatRegex, passwordRegex } from "../../helpers/constants";
+import { formatRegex, isValidLatinInput, passwordRegex } from "../../helpers/constants";
 
 export const signUpSchema = Yup.object().shape({
-    name: Yup.string().required("Required"),
+    name: Yup.string().matches(isValidLatinInput, "A comment can only contain Latin characters").required("Required"),
     email: Yup.string()
         .matches(
             formatRegex,
