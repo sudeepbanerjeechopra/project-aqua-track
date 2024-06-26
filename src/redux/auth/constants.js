@@ -12,14 +12,5 @@ export const initialStateConstant = {
     refreshToken: null,
     isLoggedIn: false,
     isRefreshing: false,
-}
-
-export const initialValuesSignIn = {
-    email: '',
-    password: '',
-}
-export const initialValuesSignUp = {
-    name: '',
-    email: '',
-    password: '',
+    error: null,
 }
