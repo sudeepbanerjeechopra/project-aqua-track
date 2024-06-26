@@ -3,7 +3,7 @@ import WaterForm from "../../components/WaterForm/WaterForm";
 import style from './WaterModal.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
-import { updateWaterAmount } from "../../redux/water/slice";
+import { updateWaterAmount } from "../../redux/water/operation";
 import {selectLoading, selectError  } from "../../redux/water/selectors.js";
 
 const WaterModal = ({ operationType }) => {
@@ -23,8 +23,8 @@ const WaterModal = ({ operationType }) => {
             <h2 className={style.titleWaterModal}>{title}</h2>
             <p className={style.subTitleWaterModal}>{subTitle}</p>
       <WaterForm operationType={operationType} /> 
-      {loading}
-      {error}
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
         </div>
     )
 }

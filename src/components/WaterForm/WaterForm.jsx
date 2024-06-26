@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
  import * as yup from 'yup';
 import style from "./WaterForm.module.css";
 import { useDispatch } from 'react-redux';
-import { addWater } from '../../redux/water/slice'; 
+import { addWater, updateWaterAmount } from '../../redux/water/operation'; 
 import { icons as sprite } from '../../shared/icons';
 import toast from 'react-hot-toast';
 
@@ -20,7 +20,7 @@ const schemaWater = yup.object().shape({
 });
 
 
-const WaterForm = () => {
+const WaterForm = ({ operationType, recordId }) => {
     const dispatch = useDispatch();
 
     const defaultTime = () => {
@@ -38,19 +38,32 @@ const WaterForm = () => {
         }
     });
 
+    const mlToDecimal = (ml) => {
+    return (ml / 1000).toFixed(3); 
+};
+
     const onSubmit = async (data) => {
         try {
+            console.log('Received data:', data);
             await schemaWater.validate(data, { abortEarly: false });
+
             const [hours, minutes] = data.time.split(':');
             const newEntry = {
-                amount: data.waterAmount,
+                amount: mlToDecimal(data.waterAmount),
                 hours: parseInt(hours, 10),
                 minutes: parseInt(minutes, 10)
             };
-            dispatch(addWater(newEntry));
-            toast.success('Data successfully added!');
+
+            console.log('New entry to add or update:', newEntry);
+
+            if (operationType === 'add') {
+                dispatch(addWater(newEntry));
+                toast.success('Data successfully added!');
+            } else if (operationType === 'edit' && recordId) {
+                dispatch(updateWaterAmount({ id: recordId, updatedAmount: data.waterAmount }));
+                toast.success('Data successfully updated!');
+            }
         } catch (error) {
-            console.error('Validation errors:', error);
             toast.error('Invalid value of water! Min: 0, Max: 500');
         }
     };
