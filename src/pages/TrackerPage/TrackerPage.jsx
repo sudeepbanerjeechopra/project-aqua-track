@@ -5,22 +5,30 @@ import style from './TrackerPage.module.css';
 import Modals from '../../components/Modals/Modals.jsx';
 import { useModalContext } from "../../context/useModalContext.jsx"
 import LogOutModal from '../../components/Modals/LogOutModal/LogOutModal.jsx';
+// import style from './TrackerPage.module.css';
+import Modals from '../../components/Modals/Modals';
+import Container from '../../shared/components/Container/Container';
+
 const TrackerPage = () => {
     const { openModal } = useModalContext();
 
   return (
     <>
-      <h2>TrackerPage</h2>
       <Helmet>
         <title>Tracker Page</title>
       </Helmet>
-      <div className={style.wrapper}>
+
+      <Container>
         <WaterMainInfo />
         <WaterDetailedInfo />
+
       </div>
       <button onClick={() => openModal(<LogOutModal />)}>
         Open Log Out Modal
       </button>
+
+      </Container>
+
 
       <Modals />
     </>
