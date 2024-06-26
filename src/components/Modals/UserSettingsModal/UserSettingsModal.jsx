@@ -13,6 +13,24 @@ const UserSettingsModal = ({
 }) => {
   const { closeModal } = useModalContext();
   const [avatarFile, setAvatarFile] = useState(null);
+  const [amount, setAmount] = useState(0);
+  const [weight, setWeight] = useState(0);
+  const [time, setTime] = useState(0);
+  const [gender, setGender] = useState('');
+
+  function calcAmount() {
+    if (weight && gender) {
+      console.log(weight, time, gender);
+      let newAmount;
+      if (gender === 'man') {
+        newAmount = weight*0.04+time*0.6
+      }
+      if (gender === 'woman') {
+        newAmount = (weight*0.03)+(time*0.4)
+      }
+      setAmount((Math.ceil(newAmount * 10) / 10).toFixed(1));
+    }
+  }
 
   useEffect(() => {
     if (isOpen) {
@@ -87,6 +105,12 @@ const UserSettingsModal = ({
                       type="radio"
                       name="gender"
                       id="woman"
+                      value="woman"
+                      onChange={(e) => {
+                        setGender(e.target.value);
+                        setTimeout(calcAmount, 200)
+                        ;
+                      }}
                     />
                     <label className={css.radioLabel} htmlFor="woman">
                       Woman
@@ -98,6 +122,11 @@ const UserSettingsModal = ({
                       type="radio"
                       name="gender"
                       id="man"
+                      value="man"
+                      onChange={(e) => {
+                        setGender(e.target.value);
+                        setTimeout(calcAmount(), 200);
+                      }}
                     />
                     <label className={css.radioLabel} htmlFor="man">
                       Man
@@ -161,13 +190,17 @@ const UserSettingsModal = ({
                 </div>
               </div>
               <div className={css.midContainer}>
-                <div className={css.userInfoInputContainer}>
+                <div className={`${css.userInfoInputContainer} ${css.down}`}>
                   <p className={css.textRegular}>Your weight in kilograms:</p>
                   <input
                     className={css.userInfoInput}
                     type="number"
                     name="weight"
                     id="weight"
+                    onChange={(e) => {
+                      setWeight(e.target.value);
+                      setTimeout(calcAmount, 200);
+                    }}
                   />
                 </div>
                 <div className={css.userInfoInputContainer}>
@@ -179,27 +212,38 @@ const UserSettingsModal = ({
                     type="number"
                     name="time"
                     id="time"
+                    onChange={(e) => {
+                      setTime(e.target.value);
+                      setTimeout(calcAmount(), 200);
+                    }}
                   />
                 </div>
               </div>
               <div className={css.midContainer}>
-                <div className={css.userInfoInputContainer}>
+                <div className={`${css.userInfoInputContainer} ${css.amount}`}>
                   <p className={css.textRegular}>
                     The required amount of water in liters per day:
                   </p>
-                  <p className={css.textAccent}>{'1.8 L'}</p>
+                  <p
+                    className={css.textAccent}
+                  >{`${amount ? amount : 1.8} L`}</p>
                 </div>
-                <div className={css.userInfoInputContainer}></div>
+              </div>
+              <div className={css.userInfoInputContainer}>
+                <h3>Write down how much water you will drink:</h3>
+                <input
+                  className={css.userInfoInput}
+                  type="number"
+                  name="water"
+                  id="water"
+                />
               </div>
             </div>
+
             <div className={css.buttonContainer}>
-              <h3>Write down how much water you will drink:</h3>
-              <input
-                className={css.userInfoInput}
-                type="number"
-                name="water"
-                id="water"
-              />
+              <button className={css.saveButton} type="submit">
+                Save
+              </button>
             </div>
           </form>
         </div>

@@ -3,7 +3,6 @@
   min-width: 288px;
   max-width: 343px;
   padding: 40px 20px;
-
 }
 
 .form {
@@ -214,5 +213,78 @@ span.textAccent {
     font-weight: 700;
     line-height: 1.14;
     letter-spacing: -0.02em;
+  }
+
+  .pic {
+    width: 100px;
+    height: 100px;
+  }
+
+  .iconUpload {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .textRegular {
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+
+  .userInfoInput {
+    height: 56px;
+    padding: 16px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .formulaContainer {
+    flex-direction: row;
+    gap: 28px;
+  }
+
+  .textAccent {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .textarea {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .amount {
+    flex-direction: row;
+  }
+
+  .saveButton {
+    padding: 16px 50px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    max-width: 920px;
+  }
+
+  .inputs {
+    flex-wrap: wrap;
+    height: 594px;
+    column-gap: 40px;
+  }
+
+  .userInfoInput,
+  .textarea {
+    width: 400px;
+  }
+  .down {
+    margin-top: 82px;
   }
 }

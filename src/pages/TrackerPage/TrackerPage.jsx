@@ -1,8 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import WaterMainInfo from '../../components/WaterMainInfo/WaterMainInfo';
 import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
-import style from './TrackerPage.module.css';
-import Modals from '../../components/Modals/Modals.jsx';
 import { useModalContext } from "../../context/useModalContext.jsx"
 import LogOutModal from '../../components/Modals/LogOutModal/LogOutModal.jsx';
 // import style from './TrackerPage.module.css';
@@ -22,7 +20,6 @@ const TrackerPage = () => {
         <WaterMainInfo />
         <WaterDetailedInfo />
 
-      </div>
       <button onClick={() => openModal(<LogOutModal />)}>
         Open Log Out Modal
       </button>
