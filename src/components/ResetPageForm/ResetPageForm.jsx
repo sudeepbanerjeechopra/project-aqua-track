@@ -9,13 +9,12 @@ import { formValuesRenew } from '../../helpers/constants';
 import { resetSchema } from './resetSchema';
 
 import style from '../UserForm.module.css';
-// import s from './ResetPageForm.module.css';
 import { icons as sprite } from '../../shared/icons/index';
 import { useLocation } from 'react-router-dom';
 
 const ResetPageForm = () => {
-  const [openPassword, setOpenPassword] = useState(false);
-  const [openRepeatPassword, setOpenRepeatPassword] = useState(false);
+  const [openPasswordEye, setOpenPasswordEye] = useState(false);
+  const [openRepeatPasswordEye, setOpenRepeatPasswordEye] = useState(false);
 
   const passwordId = useId();
   const repeatPasswordId = useId();
@@ -49,10 +48,10 @@ const ResetPageForm = () => {
   };
 
   const handelClickPassword = () => {
-    setOpenPassword((prevState) => !prevState);
+    setOpenPasswordEye((prevState) => !prevState);
   };
   const handelClickRepeatPassword = () => {
-    setOpenRepeatPassword((prevState) => !prevState);
+    setOpenRepeatPasswordEye((prevState) => !prevState);
   };
   return (
     <>
@@ -71,14 +70,15 @@ const ResetPageForm = () => {
               <div className={style.passwordWrapper}>
                 <input
                   className={`${style.formInput} ${errors.password && style.errorName}`}
-                  type={openPassword ? 'text' : 'password'}
+                  type={openPasswordEye ? 'text' : 'password'}
                   name="password"
                   id={passwordId}
                   placeholder="Enter your password"
                   {...register('password')}
                 />
-                {openPassword ? (
+                {openPasswordEye ? (
                   <button
+                    type="button"
                     onClick={handelClickPassword}
                     className={style.eyeBtn}
                   >
@@ -88,6 +88,7 @@ const ResetPageForm = () => {
                   </button>
                 ) : (
                   <button
+                    type="button"
                     onClick={handelClickPassword}
                     className={style.eyeBtn}
                   >
@@ -112,14 +113,15 @@ const ResetPageForm = () => {
               <div className={style.passwordWrapper}>
                 <input
                   className={`${style.formInput} ${style.formPhone} ${errors.repeatPassword && style.errorName}`}
-                  type={openRepeatPassword ? 'text' : 'password'}
+                  type={openRepeatPasswordEye ? 'text' : 'password'}
                   name="repeatPassword"
                   id={repeatPasswordId}
                   placeholder="Repeat password"
                   {...register('repeatPassword')}
                 />
-                {openRepeatPassword ? (
+                {openRepeatPasswordEye ? (
                   <button
+                    type="button"
                     onClick={handelClickRepeatPassword}
                     className={style.eyeBtn}
                   >
@@ -129,6 +131,7 @@ const ResetPageForm = () => {
                   </button>
                 ) : (
                   <button
+                    type="button"
                     onClick={handelClickRepeatPassword}
                     className={style.eyeBtn}
                   >

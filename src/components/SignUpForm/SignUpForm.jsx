@@ -113,6 +113,7 @@ const SignUpForm = () => {
                 />
                 {openPassword ? (
                   <button
+                    type="button"
                     onClick={handelClickPassword}
                     className={style.eyeBtn}
                   >
@@ -122,6 +123,7 @@ const SignUpForm = () => {
                   </button>
                 ) : (
                   <button
+                    type="button"
                     onClick={handelClickPassword}
                     className={style.eyeBtn}
                   >
@@ -154,6 +156,7 @@ const SignUpForm = () => {
                 />
                 {openRepeatPassword ? (
                   <button
+                    type="button"
                     onClick={handelClickRepeatPassword}
                     className={style.eyeBtn}
                   >
@@ -163,6 +166,7 @@ const SignUpForm = () => {
                   </button>
                 ) : (
                   <button
+                    type="button"
                     onClick={handelClickRepeatPassword}
                     className={style.eyeBtn}
                   >
