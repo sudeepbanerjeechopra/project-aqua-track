@@ -1,5 +1,11 @@
+import Welcome from './Welcome/Welcome';
+
 const WelcomeSection = () => {
-  return <></>;
+  return (
+    <>
+      <Welcome />
+    </>
+  );
 };
 
 export default WelcomeSection;
