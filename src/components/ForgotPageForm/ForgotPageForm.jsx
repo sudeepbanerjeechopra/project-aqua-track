@@ -38,7 +38,7 @@ const ForgotPageForm = () => {
         classNameWelcom={style.welcomPadding}
       >
         <div className={style.formBlock}>
-          <h2 className={style.formTitle}>Sign In</h2>
+          <h2 className={style.formTitle}>Reset your password</h2>
 
           <form className={style.mainForm} onSubmit={handleSubmit(onSubmit)}>
             <div className={style.fieldThumb}>
@@ -59,7 +59,7 @@ const ForgotPageForm = () => {
             </div>
 
             <button type="submit" className={style.btnform} disabled={!isValid}>
-              Sign In
+              Send
             </button>
           </form>
         </div>

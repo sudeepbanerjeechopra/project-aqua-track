@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialStateConstant } from './constants';
-import { forgetPassword, logIn, logInWithGoogle, logOut, refreshUser, registerUser } from './operation';
+import { forgetPassword, logIn, logInWithGoogle, logOut, refreshUser, registerUser, resetPassword } from './operation';
 
 const authSlice = createSlice({
     name: 'auth',
@@ -70,6 +70,17 @@ const authSlice = createSlice({
                 state.isRefreshing = false;
             })
             .addCase(forgetPassword.rejected, (state) => {
+                state.isRefreshing = false;
+            })
+
+            .addCase(resetPassword.pending, (state) => {
+                state.isRefreshing = true;
+            })
+            .addCase(resetPassword.fulfilled, (state, action) => {
+                state.user = action.payload;
+                state.isRefreshing = false;
+            })
+            .addCase(resetPassword.rejected, (state) => {
                 state.isRefreshing = false;
             });
     },

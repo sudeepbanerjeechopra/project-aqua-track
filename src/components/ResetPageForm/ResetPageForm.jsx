@@ -1,0 +1,158 @@
+import { useId, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+
+import WrapperWelcome from '../../shared/components/WrapperWelcome/WrapperWelcome';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { resetPassword } from '../../redux/auth/operation';
+import { formValuesRenew } from '../../helpers/constants';
+import { resetSchema } from './resetSchema';
+
+import style from '../UserForm.module.css';
+// import s from './ResetPageForm.module.css';
+import { icons as sprite } from '../../shared/icons/index';
+import { useLocation } from 'react-router-dom';
+
+const ResetPageForm = () => {
+  const [openPassword, setOpenPassword] = useState(false);
+  const [openRepeatPassword, setOpenRepeatPassword] = useState(false);
+
+  const passwordId = useId();
+  const repeatPasswordId = useId();
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    reset,
+  } = useForm({
+    defaultValues: formValuesRenew,
+    resolver: yupResolver(resetSchema),
+    mode: 'onTouched',
+  });
+
+  const onSubmit = (data) => {
+    try {
+      const userData = { ...data };
+      delete userData.repeatPassword;
+
+      const queryParams = new URLSearchParams(location.search);
+      const resetToken = queryParams.get('resetToken');
+
+      dispatch(resetPassword({ ...userData, resetToken }));
+      reset();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handelClickPassword = () => {
+    setOpenPassword((prevState) => !prevState);
+  };
+  const handelClickRepeatPassword = () => {
+    setOpenRepeatPassword((prevState) => !prevState);
+  };
+  return (
+    <>
+      <WrapperWelcome
+        classNameLogo={style.form}
+        classNameWelcom={style.welcomPadding}
+      >
+        <div className={style.formBlock}>
+          <h2 className={style.formTitle}>Reset your password</h2>
+
+          <form className={style.mainForm} onSubmit={handleSubmit(onSubmit)}>
+            <div className={style.fieldThumb}>
+              <label className={style.formLabel} htmlFor={passwordId}>
+                Password
+              </label>
+              <div className={style.passwordWrapper}>
+                <input
+                  className={`${style.formInput} ${errors.password && style.errorName}`}
+                  type={openPassword ? 'text' : 'password'}
+                  name="password"
+                  id={passwordId}
+                  placeholder="Enter your password"
+                  {...register('password')}
+                />
+                {openPassword ? (
+                  <button
+                    onClick={handelClickPassword}
+                    className={style.eyeBtn}
+                  >
+                    <svg className={`${style.iconeye}`}>
+                      <use xlinkHref={`${sprite}#eye`} />
+                    </svg>
+                  </button>
+                ) : (
+                  <button
+                    onClick={handelClickPassword}
+                    className={style.eyeBtn}
+                  >
+                    <svg className={`${style.iconeye}`}>
+                      <use xlinkHref={`${sprite}#eye-off`} />
+                    </svg>
+                  </button>
+                )}
+              </div>
+
+              {errors.password && (
+                <span className={style.errorSpan}>
+                  {errors.password.message}
+                </span>
+              )}
+            </div>
+
+            <div className={style.fieldThumb}>
+              <label className={style.formLabel} htmlFor={repeatPasswordId}>
+                Repeat password
+              </label>
+              <div className={style.passwordWrapper}>
+                <input
+                  className={`${style.formInput} ${style.formPhone} ${errors.repeatPassword && style.errorName}`}
+                  type={openRepeatPassword ? 'text' : 'password'}
+                  name="repeatPassword"
+                  id={repeatPasswordId}
+                  placeholder="Repeat password"
+                  {...register('repeatPassword')}
+                />
+                {openRepeatPassword ? (
+                  <button
+                    onClick={handelClickRepeatPassword}
+                    className={style.eyeBtn}
+                  >
+                    <svg className={`${style.iconeye}`}>
+                      <use xlinkHref={`${sprite}#eye`} />
+                    </svg>
+                  </button>
+                ) : (
+                  <button
+                    onClick={handelClickRepeatPassword}
+                    className={style.eyeBtn}
+                  >
+                    <svg className={`${style.iconeye}`}>
+                      <use xlinkHref={`${sprite}#eye-off`} />
+                    </svg>
+                  </button>
+                )}
+              </div>
+              {errors.repeatPassword && (
+                <span className={style.errorSpan}>
+                  {errors.repeatPassword.message}
+                </span>
+              )}
+            </div>
+
+            <button type="submit" className={style.btnform} disabled={!isValid}>
+              Send
+            </button>
+          </form>
+        </div>
+      </WrapperWelcome>
+    </>
+  );
+};
+
+export default ResetPageForm;
