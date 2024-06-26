@@ -1,59 +1,58 @@
 import { useId, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
 
 import WrapperWelcome from '../../shared/components/WrapperWelcome/WrapperWelcome';
-import { signUpSchema } from './signUpSchema';
-import GoogleBtn from '../../shared/components/GoogleBtn/GoogleBtn';
-import { formValuesSignUp } from '../../helpers/constants';
-import { registerUser } from '../../redux/auth/operation';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { resetPassword } from '../../redux/auth/operation';
+import { formValuesRenew } from '../../helpers/constants';
+import { resetSchema } from './resetSchema';
 
-import { icons as sprite } from '../../shared/icons/index';
 import style from '../UserForm.module.css';
+import { icons as sprite } from '../../shared/icons/index';
+import { useLocation } from 'react-router-dom';
 
-const SignUpForm = () => {
-  const [openPassword, setOpenPassword] = useState(false);
-  const [openRepeatPassword, setOpenRepeatPassword] = useState(false);
+const ResetPageForm = () => {
+  const [openPasswordEye, setOpenPasswordEye] = useState(false);
+  const [openRepeatPasswordEye, setOpenRepeatPasswordEye] = useState(false);
 
-  const nameId = useId();
-  const emailId = useId();
   const passwordId = useId();
   const repeatPasswordId = useId();
-
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, isValid },
+    formState: { errors, isValid },
     reset,
   } = useForm({
-    defaultValues: formValuesSignUp,
-    resolver: yupResolver(signUpSchema),
+    defaultValues: formValuesRenew,
+    resolver: yupResolver(resetSchema),
     mode: 'onTouched',
   });
 
-  const handelClickPassword = () => {
-    setOpenPassword((prevState) => !prevState);
-  };
-  const handelClickRepeatPassword = () => {
-    setOpenRepeatPassword((prevState) => !prevState);
-  };
-
   const onSubmit = (data) => {
-    const userData = { ...data };
-    delete userData.repeatPassword;
-
     try {
-      dispatch(registerUser(userData));
+      const userData = { ...data };
+      delete userData.repeatPassword;
+
+      const queryParams = new URLSearchParams(location.search);
+      const resetToken = queryParams.get('resetToken');
+
+      dispatch(resetPassword({ ...userData, resetToken }));
       reset();
     } catch (error) {
       console.error(error);
     }
   };
 
+  const handelClickPassword = () => {
+    setOpenPasswordEye((prevState) => !prevState);
+  };
+  const handelClickRepeatPassword = () => {
+    setOpenRepeatPasswordEye((prevState) => !prevState);
+  };
   return (
     <>
       <WrapperWelcome
@@ -61,43 +60,9 @@ const SignUpForm = () => {
         classNameWelcom={style.welcomPadding}
       >
         <div className={style.formBlock}>
-          <h2 className={style.formTitle}>Sign Up</h2>
+          <h2 className={style.formTitle}>Reset your password</h2>
 
           <form className={style.mainForm} onSubmit={handleSubmit(onSubmit)}>
-            <div className={style.fieldThumb}>
-              <label className={style.formLabel} htmlFor={nameId}>
-                Name
-              </label>
-              <input
-                className={`${style.formInput} ${errors.name && style.errorName}`}
-                type="text"
-                name="name"
-                id={nameId}
-                placeholder="Enter your name"
-                {...register('name')}
-              />
-              {errors.name && (
-                <span className={style.errorSpan}>{errors.name.message}</span>
-              )}
-            </div>
-
-            <div className={style.fieldThumb}>
-              <label className={style.formLabel} htmlFor={emailId}>
-                Enter your email
-              </label>
-              <input
-                className={`${style.formInput} ${errors.email && style.errorName}`}
-                type="text"
-                name="email"
-                id={emailId}
-                placeholder="Enter your email"
-                {...register('email')}
-              />
-              {errors.email && (
-                <span className={style.errorSpan}>{errors.email.message}</span>
-              )}
-            </div>
-
             <div className={style.fieldThumb}>
               <label className={style.formLabel} htmlFor={passwordId}>
                 Password
@@ -105,13 +70,13 @@ const SignUpForm = () => {
               <div className={style.passwordWrapper}>
                 <input
                   className={`${style.formInput} ${errors.password && style.errorName}`}
-                  type={openPassword ? 'text' : 'password'}
+                  type={openPasswordEye ? 'text' : 'password'}
                   name="password"
                   id={passwordId}
                   placeholder="Enter your password"
                   {...register('password')}
                 />
-                {openPassword ? (
+                {openPasswordEye ? (
                   <button
                     type="button"
                     onClick={handelClickPassword}
@@ -148,13 +113,13 @@ const SignUpForm = () => {
               <div className={style.passwordWrapper}>
                 <input
                   className={`${style.formInput} ${style.formPhone} ${errors.repeatPassword && style.errorName}`}
-                  type={openRepeatPassword ? 'text' : 'password'}
+                  type={openRepeatPasswordEye ? 'text' : 'password'}
                   name="repeatPassword"
                   id={repeatPasswordId}
                   placeholder="Repeat password"
                   {...register('repeatPassword')}
                 />
-                {openRepeatPassword ? (
+                {openRepeatPasswordEye ? (
                   <button
                     type="button"
                     onClick={handelClickRepeatPassword}
@@ -183,27 +148,14 @@ const SignUpForm = () => {
               )}
             </div>
 
-            <button
-              type="submit"
-              className={style.btnform}
-              disabled={!isDirty || !isValid}
-            >
-              Sign Up
+            <button type="submit" className={style.btnform} disabled={!isValid}>
+              Send
             </button>
           </form>
-
-          <GoogleBtn type="Up" />
-
-          <div className={style.haveAccount}>
-            <p className={style.haveAccountText}>Already have account?</p>{' '}
-            <NavLink to="/signin" className={style.haveAccountForm}>
-              Sign In
-            </NavLink>
-          </div>
         </div>
       </WrapperWelcome>
     </>
   );
 };
 
-export default SignUpForm;
+export default ResetPageForm;

@@ -1,4 +1,5 @@
 import { useModalContext } from '../../context/useModalContext';
+import LogOutModal from '../Modals/LogOutModal/LogOutModal';
 import MonthInfo from './MonthInfo/MonthInfo';
 import WaterModal from '../../components/WaterModal/WaterModal';
 
