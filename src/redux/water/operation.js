@@ -5,7 +5,7 @@ export const addWater = createAsyncThunk(
   'water/addWater',
   async (newEntry, thunkAPI) => {
     try {
-      const response = await axios.post('https://aqua-track-api.onrender.com/water', newEntry);
+      const response = await axios.post('/water', newEntry);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -17,7 +17,7 @@ export const updateWaterAmount = createAsyncThunk(
   'water/updateWaterAmount',
   async ({ waterId, updatedAmount }, thunkAPI) => {
     try {
-      const response = await axios.patch(`https://aqua-track-api.onrender.com/water/${waterId}/amount`, {
+      const response = await axios.patch(`/water/${waterId}/amount`, {
         amount: updatedAmount
       });
       return response.data;

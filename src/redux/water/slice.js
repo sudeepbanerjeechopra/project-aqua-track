@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addWater, updateWaterAmount } from "../../redux/water/operation";
+import { addWater, updateWaterAmount } from "./operation";
 
 const handlePending = (state) => {
     state.loading = true;
+     state.error = null; 
 };
 
 const handleRejected = (state, action) => {
@@ -39,5 +40,5 @@ const waterModalSlice = createSlice({
             .addCase(updateWaterAmount.rejected, handleRejected);
     },
 });
-
+export const { loading, error, entries} = waterModalSlice.actions
 export default waterModalSlice.reducer;

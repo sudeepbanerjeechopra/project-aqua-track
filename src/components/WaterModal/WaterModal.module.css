@@ -2,7 +2,7 @@
  /* @media (320px <=width) {
   } */
     .modalWater {
-        max-width: 343px;
+        width: 343px;
         width: 100%;
         height: auto;
         padding: 40px 20px;
@@ -10,6 +10,7 @@
     
     .titleWaterModal {
         max-width: 248px;
+        width: 100%;
         font-weight: 700;
         font-size: 20px;
         line-height: 1.2;

@@ -1,10 +1,14 @@
 import { useForm } from 'react-hook-form';
- import * as yup from 'yup';
+import * as yup from 'yup';
 import style from "./WaterForm.module.css";
-import { useDispatch } from 'react-redux';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch, useSelector } from 'react-redux';
 import { addWater, updateWaterAmount } from '../../redux/water/operation'; 
+import { selectLoading, selectError, selectEntries } from '../../redux/water/selectors';
 import { icons as sprite } from '../../shared/icons';
 import toast from 'react-hot-toast';
+import { useEffect } from 'react';
+import Loader from '../../components/Loader/Loader';
 
 const schemaWater = yup.object().shape({
     waterAmount: yup.number()
@@ -22,6 +26,9 @@ const schemaWater = yup.object().shape({
 
 const WaterForm = ({ operationType, recordId }) => {
     const dispatch = useDispatch();
+    const loading = useSelector(selectLoading);
+    const error = useSelector(selectError);
+    const entries = useSelector(selectEntries);
 
     const defaultTime = () => {
     const currentTime = new Date();
@@ -31,6 +38,7 @@ const WaterForm = ({ operationType, recordId }) => {
 }
 
     const { handleSubmit, formState: { errors, isValid }, getValues, setValue, register } = useForm({
+        resolver: yupResolver(schemaWater),
         defaultValues: {
             waterAmount: 50,
             time: defaultTime(),
@@ -68,20 +76,9 @@ const WaterForm = ({ operationType, recordId }) => {
         }
     };
 
-        //     const fetchWaterEntries = async () => {
-        //     try {
-        //         const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-        //         if (!response.ok) {
-        //             throw new Error('Failed to fetch water entries');
-        //         }
-        //         const data = await response.json();
-        //         console.log('Water entries:', data);
-        //     } catch (error) {
-        //         console.error('Error fetching water entries:', error);
-        //     }
-        // };
-
-        // fetchWaterEntries();
+    useEffect(() => {
+      dispatch(updateWaterAmount());
+    }, [dispatch, entries]);
 
     const handleWaterChange = (newValue) => {
             setValue('waterAmount', newValue);
@@ -114,7 +111,10 @@ const decrementWater = () => {
     };
 
   return (
-   <div> 
+      <div> 
+          {loading && <Loader />}
+          {error}
+          
      <form onSubmit={handleSubmit(onSubmit)}>
               
         <div className={style.addWaterForm}>
