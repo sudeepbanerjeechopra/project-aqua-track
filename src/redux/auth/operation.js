@@ -16,7 +16,6 @@ export const setupAxiosInterceptors = (store) => {
                 originalRequest._retry = true;
                 try {
                     const { refreshToken } = store.getState().auth;
-                    console.log("Trying to refresh tokens with refresh token:", refreshToken);
                     const { data } = await axios.post('/users/refresh-tokens', { refreshToken });
 
                     setAuthHeader(data.token);
