@@ -1,12 +1,15 @@
-
 .modalContent {
-  width: 344px;
-  height: auto;
   background: var(--white);
-  padding: 40px 14px 40px 14px;
+  padding: 40px 14px;
 
   border-radius: 15px;
   text-align: center;
+  max-width: 375px;
+  min-width: 320px;
+}
+
+.wrapperText {
+  margin-bottom: 28px;
 }
 
 .title {
@@ -17,20 +20,20 @@
 }
 
 .text {
-  margin-bottom: 28px;
+  font-size: 14px;
   line-height: 1.28;
   letter-spacing: -0.01em;
-
 }
 
 .buttonContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 9px;
+  gap: 9px;
 }
 
 .logoutButton {
+  width: 100%;
   background-color: var(--accent);
   color: var(--dark-blue);
   font-size: 14px;
@@ -38,10 +41,18 @@
   line-height: 1.28;
   border: none;
   border-radius: 30px;
-  padding: 14px 126px;
+
+  padding: 14px 0;
+  transition: background-color var(--animation);
+}
+
+.logoutButton:hover,
+.logoutButton:active {
+  background-color: var(--accent-secondary);
 }
 
 .cancelButton {
+  width: 100%;
   background-color: var(--light-gray);
   color: var(--color-light-grey);
   font-size: 14px;
@@ -49,7 +60,9 @@
   line-height: 1.28;
   border: none;
   border-radius: 30px;
-  padding: 14px 126px;
+  padding: 14px 0;
+
+  transition: color var(--animation);
 }
 
 .cancelButton:hover {
@@ -60,23 +73,22 @@
   padding: 0;
   height: 24px;
 }
- @media (width >=320px) and (width < 767px) {
-  }
 
 @media only screen and (min-width: 768px) {
   .modalContent {
     width: 516px;
-    height: 244px;
-    padding: 40px;
+    max-width: 516px;
+    padding: 40px 78px;
   }
 
   .title {
     margin-bottom: 24px;
-    display: inline-block;
     font-size: 28px;
+    line-height: 1.14;
   }
 
   .text {
+    font-size: 18px;
     margin-bottom: 24px;
     line-height: 1.33;
   }
@@ -84,28 +96,15 @@
   .buttonContainer {
     flex-direction: row;
     gap: 10px;
-    justify-content: center;
   }
 
   .cancelButton {
-    padding: 18px 59px;
+    padding: 18px 0;
     line-height: 1.5;
   }
 
   .logoutButton {
     line-height: 1.5;
-    padding: 18px 59px;
-  }
-
-  .closeButton {
-    width: 28px;
-    padding: 0;
+    padding: 18px 0;
   }
 }
-
-/* @media only screen and (min-width: 1440px) {
-  .cancelButton,
-  .logoutButton {
-    
-  }
-} */
