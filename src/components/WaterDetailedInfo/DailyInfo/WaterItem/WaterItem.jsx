@@ -1,5 +1,6 @@
 import { useModalContext } from '../../../../context/useModalContext.jsx';
 import { icons as sprite } from '../../../../shared/icons/index.js';
+import WaterModal from '../../../WaterModal/WaterModal.jsx';
 
 import css from './WaterItem.module.css';
 
@@ -19,7 +20,7 @@ function WaterItem() {
         <button
           className={css.btn}
           onClick={() => {
-            openModal(<></>);
+            openModal(<WaterModal />);
           }}
         >
           <svg className={css.svg_edit}>
@@ -29,7 +30,7 @@ function WaterItem() {
         <button
           className={css.btn}
           onClick={() => {
-            openModal(<></>);
+            openModal(<WaterModal />);
           }}
         >
           <svg className={css.svg_trash}>

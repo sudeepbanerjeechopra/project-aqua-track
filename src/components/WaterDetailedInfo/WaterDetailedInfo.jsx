@@ -1,5 +1,5 @@
 import { useModalContext } from '../../context/useModalContext';
-// import LogOutModal from '../Modals/LogOutModal/LogOutModal';
+import LogOutModal from '../Modals/LogOutModal/LogOutModal';
 import MonthInfo from './MonthInfo/MonthInfo';
 import DailyInfo from './DailyInfo/DailyInfo';
 const WaterDetailedInfo = () => {
