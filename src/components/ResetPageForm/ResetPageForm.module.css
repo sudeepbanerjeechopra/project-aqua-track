@@ -35,3 +35,14 @@
         padding: 18px 0;
     }
 }
+
+
+@media (min-width: 1440px) {
+    .formPosition {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+}
