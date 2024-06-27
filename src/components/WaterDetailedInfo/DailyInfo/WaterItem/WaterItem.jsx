@@ -1,7 +1,5 @@
 import { useModalContext } from '../../../../context/useModalContext.jsx';
 import { icons as sprite } from '../../../../shared/icons/index.js';
-import { useDispatch } from 'react-redux';
-import { openModal } from '../../../../redux/modal/slice.js';
 
 import css from './WaterItem.module.css';
 
