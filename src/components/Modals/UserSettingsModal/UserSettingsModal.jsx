@@ -18,6 +18,8 @@ const UserSettingsModal = ({
   const [weight, setWeight] = useState(0);
   const [time, setTime] = useState(0);
   const [gender, setGender] = useState('');
+  const [name, setName] = useState(' ')
+  const [email, setEmail] = useState(' ')
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -80,7 +82,7 @@ const UserSettingsModal = ({
   if (loading) {
     return <div>Loading...</div>;
   } else {
-
+console.log(userData)
   return (
     <ModalWindow
       isOpen={isOpen}
@@ -159,7 +161,11 @@ const UserSettingsModal = ({
                     type="text"
                     name="name"
                     id="name"
-                    value={userData.name}
+                    value={(name === ' ')?userData.name : name}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                      console.log(name)
+                    }}
                   />
                 </div>
                 <div className={css.userInfoInputContainer}>
@@ -169,6 +175,12 @@ const UserSettingsModal = ({
                     type="email"
                     name="email"
                     id="email"
+                    required
+                    value={(email === ' ')?userData.email : email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      console.log(email)
+                    }}
                   />
                 </div>
               </div>
