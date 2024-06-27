@@ -6,6 +6,8 @@ function WaterList() {
     <div className={css.list}>
       <WaterItem />
       <WaterItem />
+      <WaterItem />
+      <WaterItem />
     </div>
   );
 }

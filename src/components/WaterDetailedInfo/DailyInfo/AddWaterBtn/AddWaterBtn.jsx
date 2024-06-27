@@ -5,7 +5,7 @@ function AddWaterBtn() {
   return (
     <div className={css.wrapper}>
       <button className={css.btn}>
-        <svg className={css.svg} width="30" height="30">
+        <svg className={css.svg}>
           <use xlinkHref={`${sprite}#add-water-green`} />
         </svg>
       </button>
