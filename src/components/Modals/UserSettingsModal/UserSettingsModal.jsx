@@ -38,7 +38,7 @@ const UserSettingsModal = ({
   }, []);
 
   useEffect(() => {
-    if (weight && gender && weight > 0) {
+    if (weight && gender) {
       let newAmount;
       if (gender === 'man') {
         newAmount = weight * 0.04 + time * 0.6;
