@@ -1,17 +1,18 @@
-import { Helmet } from 'react-helmet';
-// import Container from '../../shared/components/Container/Container';
+import { Helmet } from 'react-helmet-async';
+import Container from '../../shared/components/Container/Container';
+import AdvantagesSection from '../../components/Home/AdvantagesSection/AdvantagesSection';
+import ResetPageForm from '../../components/ResetPageForm/ResetPageForm';
 
 const ResetPage = () => {
   return (
     <>
-      <h2>ResetPage</h2>
       <Helmet>
         <title>Reset page</title>
       </Helmet>
-      {/* <Container>
+      <Container>
         <ResetPageForm />
         <AdvantagesSection />
-      </Container> */}
+      </Container>
     </>
   );
 };

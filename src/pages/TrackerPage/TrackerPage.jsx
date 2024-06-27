@@ -8,8 +8,6 @@ import Modals from '../../components/Modals/Modals';
 import Container from '../../shared/components/Container/Container';
 
 const TrackerPage = () => {
-    const { openModal } = useModalContext();
-
   return (
     <>
       <Helmet>
@@ -25,7 +23,6 @@ const TrackerPage = () => {
       </button>
 
       </Container>
-
 
       <Modals />
     </>
