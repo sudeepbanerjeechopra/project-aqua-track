@@ -1,4 +1,4 @@
-import { useId } from 'react';
+import { useEffect, useId } from 'react';
 import WrapperWelcome from '../../shared/components/WrapperWelcome/WrapperWelcome';
 import style from '../UserForm.module.css';
 import { useDispatch } from 'react-redux';
@@ -7,6 +7,8 @@ import { formValuesForgot } from '../../helpers/constants';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { forgotSchema } from './forgotSchema';
 import { forgetPassword } from '../../redux/auth/operation';
+import s from './ForgotPageForm.module.css';
+import toast from 'react-hot-toast';
 
 const ForgotPageForm = () => {
   const emailId = useId();
@@ -31,13 +33,20 @@ const ForgotPageForm = () => {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    if (errors.email) {
+      toast.error(errors.email.message);
+    }
+  }, [errors.email]);
+
   return (
     <>
       <WrapperWelcome
         classNameLogo={style.form}
         classNameWelcom={style.welcomPadding}
       >
-        <div className={style.formBlock}>
+        <div className={`${style.formBlock} ${s.formPosition}`}>
           <h2 className={style.formTitle}>Reset your password</h2>
 
           <form className={style.mainForm} onSubmit={handleSubmit(onSubmit)}>
@@ -53,9 +62,6 @@ const ForgotPageForm = () => {
                 placeholder="Enter your email"
                 {...register('email')}
               />
-              {errors.email && (
-                <span className={style.errorSpan}>{errors.email.message}</span>
-              )}
             </div>
 
             <button type="submit" className={style.btnform} disabled={!isValid}>

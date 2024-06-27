@@ -1,6 +1,8 @@
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { useLocation } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 import WrapperWelcome from '../../shared/components/WrapperWelcome/WrapperWelcome';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -9,8 +11,8 @@ import { formValuesRenew } from '../../helpers/constants';
 import { resetSchema } from './resetSchema';
 
 import style from '../UserForm.module.css';
+import s from './ResetPageForm.module.css';
 import { icons as sprite } from '../../shared/icons/index';
-import { useLocation } from 'react-router-dom';
 
 const ResetPageForm = () => {
   const [openPasswordEye, setOpenPasswordEye] = useState(false);
@@ -53,13 +55,22 @@ const ResetPageForm = () => {
   const handelClickRepeatPassword = () => {
     setOpenRepeatPasswordEye((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    if (errors.password) {
+      toast.error(errors.password.message);
+    } else if (errors.repeatPassword) {
+      toast.error(errors.repeatPassword.message);
+    }
+  }, [errors.password, errors.repeatPassword]);
+
   return (
     <>
       <WrapperWelcome
         classNameLogo={style.form}
         classNameWelcom={style.welcomPadding}
       >
-        <div className={style.formBlock}>
+        <div className={`${style.formBlock} ${s.formPosition}`}>
           <h2 className={style.formTitle}>Reset your password</h2>
 
           <form className={style.mainForm} onSubmit={handleSubmit(onSubmit)}>
@@ -98,12 +109,6 @@ const ResetPageForm = () => {
                   </button>
                 )}
               </div>
-
-              {errors.password && (
-                <span className={style.errorSpan}>
-                  {errors.password.message}
-                </span>
-              )}
             </div>
 
             <div className={style.fieldThumb}>
@@ -141,11 +146,6 @@ const ResetPageForm = () => {
                   </button>
                 )}
               </div>
-              {errors.repeatPassword && (
-                <span className={style.errorSpan}>
-                  {errors.repeatPassword.message}
-                </span>
-              )}
             </div>
 
             <button type="submit" className={style.btnform} disabled={!isValid}>

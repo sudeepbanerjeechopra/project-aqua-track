@@ -1,8 +1,9 @@
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
+// import toast from 'react-hot-toast';
 
 import WrapperWelcome from '../../shared/components/WrapperWelcome/WrapperWelcome';
 import { signUpSchema } from './signUpSchema';
@@ -12,6 +13,7 @@ import { registerUser } from '../../redux/auth/operation';
 
 import { icons as sprite } from '../../shared/icons/index';
 import style from '../UserForm.module.css';
+import toast from 'react-hot-toast';
 
 const SignUpForm = () => {
   const [openPassword, setOpenPassword] = useState(false);
@@ -54,6 +56,18 @@ const SignUpForm = () => {
     }
   };
 
+  useEffect(() => {
+    if (errors.password) {
+      toast.error(errors.password.message);
+    } else if (errors.email) {
+      toast.error(errors.email.message);
+    } else if (errors.name) {
+      toast.error(errors.name.message);
+    } else if (errors.repeatPassword) {
+      toast.error(errors.repeatPassword.message);
+    }
+  }, [errors.password, errors.email, errors.name, errors.repeatPassword]);
+
   return (
     <>
       <WrapperWelcome
@@ -76,9 +90,6 @@ const SignUpForm = () => {
                 placeholder="Enter your name"
                 {...register('name')}
               />
-              {errors.name && (
-                <span className={style.errorSpan}>{errors.name.message}</span>
-              )}
             </div>
 
             <div className={style.fieldThumb}>
@@ -93,9 +104,6 @@ const SignUpForm = () => {
                 placeholder="Enter your email"
                 {...register('email')}
               />
-              {errors.email && (
-                <span className={style.errorSpan}>{errors.email.message}</span>
-              )}
             </div>
 
             <div className={style.fieldThumb}>
@@ -133,12 +141,6 @@ const SignUpForm = () => {
                   </button>
                 )}
               </div>
-
-              {errors.password && (
-                <span className={style.errorSpan}>
-                  {errors.password.message}
-                </span>
-              )}
             </div>
 
             <div className={style.fieldThumb}>
@@ -176,11 +178,6 @@ const SignUpForm = () => {
                   </button>
                 )}
               </div>
-              {errors.repeatPassword && (
-                <span className={style.errorSpan}>
-                  {errors.repeatPassword.message}
-                </span>
-              )}
             </div>
 
             <button
