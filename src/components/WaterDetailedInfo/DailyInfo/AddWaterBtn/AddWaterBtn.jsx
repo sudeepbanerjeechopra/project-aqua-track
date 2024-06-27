@@ -1,6 +1,6 @@
 import { useModalContext } from '../../../../context/useModalContext.jsx';
 import { icons as sprite } from '../../../../shared/icons/index.js';
-import WaterForm from '../../../WaterForm/WaterForm.jsx';
+import WaterModal from '../../../WaterModal/WaterModal';
 import css from './AddWaterBtn.module.css';
 
 function AddWaterBtn() {
@@ -8,7 +8,10 @@ function AddWaterBtn() {
 
   return (
     <div className={css.wrapper}>
-      <button className={css.btn} onClick={() => openModal(<WaterForm />)}>
+      <button
+        className={css.btn}
+        onClick={() => openModal(<WaterModal operationType={'add'} />)}
+      >
         <svg className={css.svg}>
           <use xlinkHref={`${sprite}#add-water-green`} />
         </svg>
