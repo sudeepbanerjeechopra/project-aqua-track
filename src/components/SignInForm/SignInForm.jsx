@@ -11,6 +11,7 @@ import { signInSchema } from './signInSchema';
 
 import { icons as sprite } from '../../shared/icons/index';
 import style from '../UserForm.module.css';
+import s from './SignInForm.module.css';
 import { logIn } from '../../redux/auth/operation';
 
 const SignInForm = () => {
@@ -123,11 +124,19 @@ const SignInForm = () => {
 
           <GoogleBtn type="In" />
 
-          <div className={style.haveAccount}>
-            <p className={style.haveAccountText}>Don’t have an account?</p>{' '}
-            <NavLink to="/signup" className={style.haveAccountForm}>
-              Sign Up
-            </NavLink>
+          <div className={s.haveAccountSignIn}>
+            <div className={s.question}>
+              <p className={style.haveAccountText}>Don’t have an account?</p>{' '}
+              <NavLink to="/signup" className={style.haveAccountForm}>
+                Sign Up
+              </NavLink>
+            </div>
+            <div className={s.question}>
+              <p className={style.haveAccountText}>Forgot your password?</p>{' '}
+              <NavLink to="/forgot" className={style.haveAccountForm}>
+                Renew
+              </NavLink>
+            </div>
           </div>
         </div>
       </WrapperWelcome>
