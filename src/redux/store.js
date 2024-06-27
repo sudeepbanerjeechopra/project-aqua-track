@@ -14,6 +14,8 @@ import {
 import { authReducer } from './auth/slice';
 import { setupAxiosInterceptors } from './auth/operation';
 
+import { waterReducer } from './water/slice';
+
 const authPersistConfig = {
   key: 'auth',
   storage,
@@ -25,6 +27,7 @@ const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
+    water: waterReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
