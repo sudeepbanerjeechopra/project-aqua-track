@@ -15,5 +15,11 @@ export const formValuesSignIn = {
     email: '',
     password: '',
 };
+export const formValuesForgot = {
+    email: '',
+};
+export const formValuesRenew = {
+    password: '',
+};
 
 export const isValidLatinInput = /^[a-zA-Z]+$/
