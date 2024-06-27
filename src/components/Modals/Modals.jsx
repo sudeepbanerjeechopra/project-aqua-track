@@ -1,11 +1,19 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { useModalContext } from '../../context/useModalContext';
+import { closeModal } from '../../redux/modal/slice.js';
 import ModalWindow from '../../shared/components/ModalWindow/ModalWindow';
 
 const Modals = () => {
-  const { isOpen, closeModal, modalContent } = useModalContext();
+  const dispatch = useDispatch();
+  const { modalContent } = useModalContext();
+  const isOpen = useSelector((state) => state.modal.isOpen);
+
+  const handleCloseModal = () => {
+    dispatch(closeModal());
+  };
 
   return (
-    <ModalWindow isOpen={isOpen} onRequestClose={closeModal}>
+    <ModalWindow isOpen={isOpen} onRequestClose={handleCloseModal}>
       {modalContent}
     </ModalWindow>
   );
