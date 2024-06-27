@@ -1,32 +1,41 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { selectDate } from '../../../../redux/water/selectors';
 import css from './ChooseDate.module.css';
+import { useSelector } from 'react-redux';
 
 function ChooseDate() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const currentDate = useSelector(selectDate);
+  const [formattedDate, setFormattedDate] = useState('');
 
-  const formatDate = (date) => {
-    const today = new Date();
+  const todayDate = () => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
 
-    if (
-      date.getDate() === today.getDate() &&
-      date.getMonth() === today.getMonth() &&
-      date.getFullYear() === today.getFullYear()
-    ) {
-      return 'Today';
-    } else {
-      return `${date.getDate()}, ${date.toLocaleDateString('en-US', { month: 'long' })}`;
-    }
+    return `${year}-${month}-${day}`;
   };
+
+  const formatDisplayDate = (dateString) => {
+    const dateObj = new Date(dateString);
+    const day = String(dateObj.getDate());
+    const month = dateObj.toLocaleString('en-US', { month: 'long' });
+    return `${day}, ${month}`;
+  };
+
+  const today = todayDate();
+
+  useEffect(() => {
+    if (currentDate === today) {
+      return setFormattedDate('Today');
+    } else {
+      setFormattedDate(formatDisplayDate(currentDate));
+    }
+  }, [currentDate, today]);
 
   return (
     <div className={css.wrapper}>
-      {<h3 className={css.date}>{formatDate(selectedDate)}</h3>}
-      <input
-        className={css.input}
-        type="date"
-        value={selectedDate.toISOString().substr(0, 10)}
-        onChange={(e) => setSelectedDate(new Date(e.target.value))}
-      />
+      {<h3 className={css.date}>{formattedDate}</h3>}
     </div>
   );
 }
