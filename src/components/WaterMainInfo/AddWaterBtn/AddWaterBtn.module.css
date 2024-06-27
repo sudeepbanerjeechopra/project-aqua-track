@@ -24,12 +24,13 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+
+  transition: color var(--animation), stroke var(--animation);
 }
 
 .btn__Primary:hover,
 .btn__Primary:focus {
   color: var(--accent);
-  stroke: var(--accent);
 }
 
 .btn__Primary:hover .btn__svg,
@@ -48,6 +49,7 @@
     line-height: 1.5;
   }
 }
+
 @media screen and (min-width: 1440px) {
   .btn__Primary {
     bottom: 50px;
