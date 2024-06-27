@@ -8,33 +8,47 @@ import axios from 'axios';
 
 const UserSettingsModal = ({
   isOpen,
-  onRequestClose,
-  children,
   shouldCloseOnOverlayClick = true,
 }) => {
-  const prevData = axios.get("https://aqua-track-api.onrender.com/users/profile")
 
   const { closeModal } = useModalContext();
+  const [userData, setUserData] = useState(null);
   const [avatarFile, setAvatarFile] = useState(null);
   const [amount, setAmount] = useState(0);
   const [weight, setWeight] = useState(0);
   const [time, setTime] = useState(0);
   const [gender, setGender] = useState('');
-  
-  console.log(prevData);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (weight && gender) {
+    async function fetchData() {
+      try {
+        const response = await axios.get('https://aqua-track-api.onrender.com/users/profile');
+        const result = response;
+        setUserData(result.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+        
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (weight && gender && weight > 0) {
       let newAmount;
       if (gender === 'man') {
-        newAmount = (weight*0.04)+(time*0.6)
+        newAmount = weight * 0.04 + time * 0.6;
       }
       if (gender === 'woman') {
-        newAmount = (weight*0.03)+(time*0.4)
+        newAmount = weight * 0.03 + time * 0.4;
       }
       setAmount((Math.ceil(newAmount * 10) / 10).toFixed(1));
     }
-  }, [setAmount, gender, time, weight])
+  }, [setAmount, gender, time, weight]);
 
   useEffect(() => {
     if (isOpen) {
@@ -63,9 +77,13 @@ const UserSettingsModal = ({
     }
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  } else {
+
   return (
     <ModalWindow
-      isOpen={true}
+      isOpen={isOpen}
       onRequestClose={closeModal}
       shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
     >
@@ -77,11 +95,7 @@ const UserSettingsModal = ({
               <div className={css.picWrapper}>
                 <div className={css.pic}>
                   <img
-                    src={
-                      avatarFile
-                        ? URL.createObjectURL(avatarFile)
-                        : 'user-icon.jpg'
-                    }
+                    src={avatarFile ? URL.createObjectURL(avatarFile) : userData.avatar}
                     alt="avatar"
                   />
                 </div>
@@ -112,8 +126,8 @@ const UserSettingsModal = ({
                       value="woman"
                       onChange={(e) => {
                         setGender(e.target.value);
-                        ;
                       }}
+                      checked={gender === "woman"}
                     />
                     <label className={css.radioLabel} htmlFor="woman">
                       Woman
@@ -129,6 +143,7 @@ const UserSettingsModal = ({
                       onChange={(e) => {
                         setGender(e.target.value);
                       }}
+                      checked={gender === "man"}
                     />
                     <label className={css.radioLabel} htmlFor="man">
                       Man
@@ -144,6 +159,7 @@ const UserSettingsModal = ({
                     type="text"
                     name="name"
                     id="name"
+                    value={userData.name}
                   />
                 </div>
                 <div className={css.userInfoInputContainer}>
@@ -202,6 +218,8 @@ const UserSettingsModal = ({
                     onChange={(e) => {
                       setWeight(e.target.value);
                     }}
+                    value={userData.weight || weight}
+
                   />
                 </div>
                 <div className={css.userInfoInputContainer}>
@@ -226,7 +244,7 @@ const UserSettingsModal = ({
                   </p>
                   <p
                     className={css.textAccent}
-                  >{`${amount ? amount : 1.8} L`}</p>
+                  >{`${amount ? amount : userData.dailyWaterNorm} L`}</p>
                 </div>
               </div>
               <div className={css.userInfoInputContainer}>
@@ -251,5 +269,5 @@ const UserSettingsModal = ({
     </ModalWindow>
   );
 };
-
+}
 export default UserSettingsModal;
