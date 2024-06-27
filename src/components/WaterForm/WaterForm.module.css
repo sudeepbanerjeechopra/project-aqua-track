@@ -25,8 +25,17 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     margin-bottom: 24px;
 }
 
-.inputAddWater {
+.inputWaterForm[type="number"]::-webkit-outer-spin-button,
+.inputWaterForm[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.wrapperInput {
     position: relative;
+}
+
+.inputAddWater {
     max-width: 88px;
     height: 40px;
     width: 100%;
@@ -43,8 +52,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 .mlLabel {
     position: absolute;
-    top: 50%;
-    right: 60%;
+    top: 19.3px;
+    right: 20px;
     font-weight: 700;
     font-size: 14px;
     line-height: 1.2;
@@ -55,7 +64,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 .waterAmountInputContainer {
     display: flex;
-    position: relative;
     gap: 8px;
     margin-right: auto;
 }
@@ -64,8 +72,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     width: 40px;
     height: 40px;
     cursor: pointer;
-    fill: none;
-    stroke: var(--white);
+    fill: transparent;
 }
 
 .icon {
@@ -74,7 +81,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 .inputWaterForm {
-    max-width: 304px;
     height: 46px;
     width: 100%;
     font-size: 14px;
@@ -101,23 +107,23 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     font-weight: 700;
     font-size: 14px;
     line-height: 1.2;
-    letter-spacing: 0.0014em;
+    letter-spacing: 0.01em;
     cursor: pointer;
+
+    transition: backgraund-color var(--animation);
 }
 
- @media (width >=320px) and (width < 767px) {
-    .mlLabel {
-            right: 61%;
-
-        }
- }
-    
+.btnWaterForm:hover,
+.btnWaterForm:active {
+    background-color: var(--accent-secondary)
+}
+  
         /* починаючи з 768px */
 @media (768px <=width) {
 .spanFormWater {
         font-size: 16px;
         line-height: 1.5;
-        letter-spacing: -0.0016em;
+        letter-spacing: -0.01em;
     }
 
     .addWaterForm {
@@ -144,7 +150,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     }
 
     .mlLabel {
-        right: 71%;
+        top: 22px;
         font-size: 16px;
         line-height: 1.3;
         transform: translateY(-50%);
@@ -169,19 +175,16 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     }
 
     .inputWaterForm {
-        max-width: 338px;
         height: 56px;
         width: 100%;
-        font-size: 14px;
-        line-height: 1.2;
-        letter-spacing: -0.0014em;
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
         border-radius: 15px;
-        padding: 14px 16px;
+        padding: 16px;
     }
 
     .btnWaterForm {
-        max-width: 140px;
-        width: 100%;
         height: 60px;
         padding: 18px 50px;
         font-weight: 700;

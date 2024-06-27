@@ -16,6 +16,7 @@ export const addWater = createAsyncThunk(
 export const updateWaterAmount = createAsyncThunk(
   'water/updateWaterAmount',
   async ({ waterId, updatedAmount }, thunkAPI) => {
+    console.log('Updating water amount for waterId:', waterId); 
     try {
       const response = await axios.patch(`/water/${waterId}/amount`, {
         amount: updatedAmount

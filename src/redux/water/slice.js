@@ -40,5 +40,5 @@ const waterModalSlice = createSlice({
             .addCase(updateWaterAmount.rejected, handleRejected);
     },
 });
-export const { loading, error, entries} = waterModalSlice.actions
+export const { loading, error, entries } = waterModalSlice.actions;
 export default waterModalSlice.reducer;

@@ -25,6 +25,8 @@ const schemaWater = yup.object().shape({
 
 
 const WaterForm = ({ operationType, recordId }) => {
+
+console.log('Record ID:', recordId); 
     const dispatch = useDispatch();
     const loading = useSelector(selectLoading);
     const error = useSelector(selectError);
@@ -53,6 +55,7 @@ const WaterForm = ({ operationType, recordId }) => {
     const onSubmit = async (data) => {
         try {
             console.log('Received data:', data);
+            console.log('Record ID:', recordId);
             await schemaWater.validate(data, { abortEarly: false });
 
             const [hours, minutes] = data.time.split(':');
@@ -68,17 +71,19 @@ const WaterForm = ({ operationType, recordId }) => {
                 dispatch(addWater(newEntry));
                 toast.success('Data successfully added!');
             } else if (operationType === 'edit' && recordId) {
-                dispatch(updateWaterAmount({ id: recordId, updatedAmount: data.waterAmount }));
+                // dispatch(updateWaterAmount({ id: recordId, updatedAmount: data.waterAmount }));
+             dispatch(updateWaterAmount({ waterId: recordId, updatedAmount: data.waterAmount }));
                 toast.success('Data successfully updated!');
             }
         } catch (error) {
             toast.error('Invalid value of water! Min: 0, Max: 500');
         }
-    };
+    };  
 
     useEffect(() => {
+          console.log('WaterForm - useEffect - Record ID:', recordId); 
       dispatch(updateWaterAmount());
-    }, [dispatch, entries]);
+    }, [dispatch, entries, recordId]);
 
     const handleWaterChange = (newValue) => {
             setValue('waterAmount', newValue);
@@ -109,6 +114,8 @@ const decrementWater = () => {
             handleWaterChange(newValue);
         }
     };
+
+     console.log('Record ID:', recordId);
 
   return (
       <div> 
