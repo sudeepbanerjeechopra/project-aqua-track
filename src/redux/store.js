@@ -10,6 +10,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+
 import { authReducer } from './auth/slice';
 import { setupAxiosInterceptors } from './auth/operation';
 

@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  apiAddWaterMonth,
-  apiUpdateWater,
   apiDeleteWater,
   apiGetWaterDay,
   apiGetWaterMonth,
   apiGetWaterStats,
+  addWater,
+  updateWaterAmount,
 } from './operation';
 
 const initialState = {
@@ -23,6 +23,19 @@ const initialState = {
   errorMonth: null,
   isLoadingMonth: false,
   toggleInfo: true,
+  // some logic
+  entries: [],
+  loading: false,
+  error: null,
+};
+const handlePending = (state) => {
+  state.loading = true;
+  state.error = null;
+};
+
+const handleRejected = (state, action) => {
+  state.loading = false;
+  state.error = action.payload;
 };
 
 const waterSlice = createSlice({
@@ -67,10 +80,37 @@ const waterSlice = createSlice({
       .addCase(apiGetWaterMonth.rejected, (state, action) => {
         state.isLoadingMonth = false;
         state.errorMonth = action.payload;
-      }),
+      })
+      .addCase(addWater.pending, handlePending)
+      .addCase(addWater.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.entries.push(action.payload);
+      })
+      .addCase(addWater.rejected, handleRejected)
+      .addCase(updateWaterAmount.pending, handlePending)
+      .addCase(updateWaterAmount.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        const updatedEntry = action.payload;
+        const index = state.entries.findIndex(
+          (entry) => entry.id === updatedEntry.id
+        );
+        if (index !== -1) {
+          state.entries[index] = updatedEntry;
+        }
+      })
+      .addCase(updateWaterAmount.rejected, handleRejected),
 });
 
-export const { increaseMonth, decreaseMonth, setToggleInfo, setDate } =
-  waterSlice.actions;
+export const {
+  increaseMonth,
+  decreaseMonth,
+  setToggleInfo,
+  setDate,
+  loading,
+  error,
+  entries,
+} = waterSlice.actions;
 
 export const waterReducer = waterSlice.reducer;

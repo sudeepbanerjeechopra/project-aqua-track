@@ -1,0 +1,22 @@
+.haveAccountSignIn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.question {
+    display: flex;
+    gap: 5px;
+}
+
+
+
+@media (min-width: 1440px) {
+    .formPosition {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+}

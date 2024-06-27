@@ -5,7 +5,7 @@ import Loader from './Loader/Loader';
 import Schedule from './Schedule/Schedule';
 
 import clsx from 'clsx';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { apiGetWaterMonth } from '../../../redux/water/operation';
