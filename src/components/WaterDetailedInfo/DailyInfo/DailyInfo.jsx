@@ -1,6 +1,7 @@
 import WaterList from './WaterList/WaterList';
 import ChooseData from './ChooseDate/ChooseDate';
 import AddWaterBtn from './AddWaterBtn/AddWaterBtn';
+import CustomScrollBar from '../../../shared/components/CustomScrollWrapper/CustomScrollWrapper';
 import css from './DailyInfo.module.css';
 
 function DailyInfo() {
@@ -10,7 +11,9 @@ function DailyInfo() {
         <ChooseData />
         <AddWaterBtn />
       </div>
-      <WaterList />
+      <CustomScrollBar>
+        <WaterList />
+      </CustomScrollBar>
     </div>
   );
 }
