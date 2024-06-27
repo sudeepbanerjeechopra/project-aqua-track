@@ -18,9 +18,8 @@ const UserSettingsModal = ({
   const [time, setTime] = useState(0);
   const [gender, setGender] = useState('');
 
-  function calcAmount() {
+  useEffect(() => {
     if (weight && gender) {
-      console.log(weight, time, gender);
       let newAmount;
       if (gender === 'man') {
         newAmount = weight*0.04+time*0.6
@@ -30,7 +29,7 @@ const UserSettingsModal = ({
       }
       setAmount((Math.ceil(newAmount * 10) / 10).toFixed(1));
     }
-  }
+  }, [setAmount, gender, time, weight])
 
   useEffect(() => {
     if (isOpen) {
@@ -108,7 +107,6 @@ const UserSettingsModal = ({
                       value="woman"
                       onChange={(e) => {
                         setGender(e.target.value);
-                        setTimeout(calcAmount, 200)
                         ;
                       }}
                     />
@@ -125,7 +123,6 @@ const UserSettingsModal = ({
                       value="man"
                       onChange={(e) => {
                         setGender(e.target.value);
-                        setTimeout(calcAmount(), 200);
                       }}
                     />
                     <label className={css.radioLabel} htmlFor="man">
@@ -199,7 +196,6 @@ const UserSettingsModal = ({
                     id="weight"
                     onChange={(e) => {
                       setWeight(e.target.value);
-                      setTimeout(calcAmount, 200);
                     }}
                   />
                 </div>
@@ -214,7 +210,6 @@ const UserSettingsModal = ({
                     id="time"
                     onChange={(e) => {
                       setTime(e.target.value);
-                      setTimeout(calcAmount(), 200);
                     }}
                   />
                 </div>
