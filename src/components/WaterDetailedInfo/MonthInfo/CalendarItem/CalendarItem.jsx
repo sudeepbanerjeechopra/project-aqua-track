@@ -1,29 +1,20 @@
 import clsx from 'clsx';
 import css from './CalendarItem.module.css';
 
-// Imitation
-function getRandomNumber() {
-  return Math.floor(Math.random() * 2) + 1;
-}
-function getRandomPercentage() {
-  return Math.floor(Math.random() * 100);
-}
-// ////////
-const CalendarItem = ({ day }) => {
-  // Imitation
-  const check = getRandomNumber();
-  // //////
+const CalendarItem = ({ date, isActive, onClick }) => {
+  const percentages = Math.floor(Number(date.percentComplete));
   return (
-    <li className={css.element}>
+    <li className={css.element} onClick={() => onClick(date.day)}>
       <div
         className={clsx(css.number, {
-          [css.notFull]: check === 2,
+          [css.notFull]: Number(date.percentComplete) < 100,
+          [css.active]: isActive,
         })}
       >
-        {day.getDate()}
+        {date.day.split('-')[2]}
       </div>
       <span className={css.percentages}>
-        {check === 2 ? getRandomPercentage() : '100'}%
+        {percentages < 100 ? percentages : 100}%
       </span>
     </li>
   );
