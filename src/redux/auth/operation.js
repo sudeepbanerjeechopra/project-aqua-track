@@ -49,11 +49,27 @@ export const registerUser = createAsyncThunk(
         }
     }
 );
+
 export const logIn = createAsyncThunk(
     'auth/login',
     async (credentials, thunkAPI) => {
         try {
             const res = await axios.post('/users/signin', credentials);
+            setAuthHeader(res.data.token);
+            toast.success(res.data.message);
+            return res.data;
+        } catch (error) {
+            toast.error(error.response.data.message);
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+);
+
+export const logInWithGoogle = createAsyncThunk(
+    'auth/googleLogin',
+    async (credentials, thunkAPI) => {
+        try {
+            const res = await axios.get('/users/google', credentials);
             setAuthHeader(res.data.token);
             toast.success(res.data.message);
             return res.data;
@@ -104,3 +120,30 @@ export const getRefreshToken = async (dispatch, token, refreshToken) => {
         console.error('Error fetching refresh token:', error);
     }
 };
+
+export const forgetPassword = createAsyncThunk(
+    'auth/forget',
+    async (credentials, thunkAPI) => {
+        try {
+            const res = await axios.post('/users/forgot', credentials);
+            toast.success(res.data.message);
+            return res.data;
+        } catch (error) {
+            toast.error(error.response.data.message);
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+);
+export const resetPassword = createAsyncThunk(
+    'auth/reset',
+    async (credentials, thunkAPI) => {
+        try {
+            const res = await axios.patch('/users/reset', credentials);
+            toast.success(res.data.message);
+            return res.data;
+        } catch (error) {
+            toast.error(error.response.data.message);
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+);

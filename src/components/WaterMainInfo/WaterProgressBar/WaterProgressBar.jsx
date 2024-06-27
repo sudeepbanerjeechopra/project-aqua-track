@@ -1,9 +1,11 @@
-import { useState } from 'react';
 import Slider from '@mui/material/Slider';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 import css from './WaterProgressBar.module.css';
 import { styled } from '@mui/material/styles';
+import { useSelector } from 'react-redux';
+import { selectDate, selectEntries } from '../../../redux/water/selectors';
+import { selectUser } from '../../../redux/auth/selectors';
 const CustomTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))({
@@ -24,7 +26,8 @@ function ValueLabelComponent(props) {
       open={open}
       enterTouchDelay={0}
       placement="top"
-      title={`${value}%`}
+      title={`${Math.min(value, 100).toFixed(0)}%`}
+      // title={`${value}%`}
       arrow
     >
       {children}
@@ -32,13 +35,49 @@ function ValueLabelComponent(props) {
   );
 }
 const WaterProgressBar = () => {
-  const [value, setValue] = useState(67);
+  const user = useSelector(selectUser);
+  const entries = useSelector(selectEntries);
+  const selectedDate = useSelector(selectDate);
+
+  // Обчислюємо загальну кількість води
+  const totalWater = entries.reduce((total, entry) => {
+    const amount = entry.newWaterRecord?.amount || 0; 
+    return total + amount;
+  }, 0);
+
+  // Обчислюємо відсоток спожитої води від норми, обмежуючи його до 100%, якщо перевищено норму
+  const percent =
+    totalWater >= user.dailyWaterNorm
+      ? 100
+      : (totalWater / user.dailyWaterNorm) * 100;
+
+  // Функція для перевірки, чи співпадає вибрана дата з поточною
+  const isToday = (someDate) => {
+    const today = new Date();
+    return (
+      someDate.getDate() === today.getDate() &&
+      someDate.getMonth() === today.getMonth() &&
+      someDate.getFullYear() === today.getFullYear()
+    );
+  };
+
+  // Функція для форматування дати у потрібний формат
+  const formatDate = (date) => {
+    const dateObj = new Date(date);
+    if (isToday(dateObj)) {
+      return 'Today';
+    } else {
+      return dateObj.toLocaleDateString(); 
+    }
+  };
+
   return (
     <div className={css.container}>
-      <div className={css.title}>Today</div>
+      <div className={css.title}>{formatDate(selectedDate)}</div>
+     
       <Box sx={{ width: '100%', m: 0, p: 0 }}>
         <Slider
-          value={value}
+          value={percent}
           valueLabelDisplay="auto"
           components={{ ValueLabel: ValueLabelComponent }}
           onChange={() => {}}
