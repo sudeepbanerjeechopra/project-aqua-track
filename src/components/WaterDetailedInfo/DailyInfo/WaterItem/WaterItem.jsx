@@ -1,16 +1,8 @@
 import { icons as sprite } from '../../../../shared/icons/index.js';
-import { useDispatch } from 'react-redux';
-import { openModal } from '../../../../redux/modal/slice.js';
 
 import css from './WaterItem.module.css';
 
 function WaterItem() {
-  const dispatch = useDispatch();
-
-  const handleOpenModal = () => {
-    dispatch(openModal());
-  };
-
   return (
     <div className={css.item}>
       <svg className={css.svg_glass}>
@@ -21,7 +13,7 @@ function WaterItem() {
         <p className={css.info_time}>7:00 AM</p>
       </div>
       <div className={css.btns}>
-        <button className={css.btn} onClick={handleOpenModal}>
+        <button className={css.btn}>
           <svg className={css.svg_edit}>
             <use xlinkHref={`${sprite}#edit`} />
           </svg>

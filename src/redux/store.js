@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import {
   persistReducer,
@@ -11,7 +11,6 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { authReducer } from './auth/slice';
-import modalSlice from './modal/slice';
 import { setupAxiosInterceptors } from './auth/operation';
 
 const authPersistConfig = {
@@ -20,23 +19,12 @@ const authPersistConfig = {
   whitelist: ['token', 'refreshToken'],
 };
 
-const modalPersistConfig = {
-  key: 'modal',
-  storage,
-  whitelist: ['isOpen'],
-};
-
 const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 
-const persistedModalReducer = persistReducer(modalPersistConfig, modalSlice);
-
-const rootReducer = combineReducers({
-  auth: persistedAuthReducer,
-  modal: persistedModalReducer,
-});
-
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    auth: persistedAuthReducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
