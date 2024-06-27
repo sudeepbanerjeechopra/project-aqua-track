@@ -2,7 +2,6 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   margin: 0 auto;
   top: 225px;
   gap: 4px;
@@ -12,9 +11,6 @@
   padding: 12px;
   background-color: var(--white);
 }
-
-
-
 .title {
   pointer-events: none;
   font-weight: bold;
@@ -22,11 +18,9 @@
   line-height: 1;
   color: var(--color-darkblue);
 }
-
 .slider {
   width: 100%;
 }
-
 .percentBar {
   display: flex;
   justify-content: space-between;
@@ -36,35 +30,39 @@
   opacity: 0.6;
   margin-top: 4px;
 }
-
 .valueLabel {
   position: absolute;
-  top: -30px; /* Позиціюємо мітку над бігунком */
+  top: -30px;
   left: 50%;
   transform: translateX(-50%);
   background-color: var(--accent);
   color: var(--white);
   padding: 4px 8px;
   border-radius: 4px;
-  pointer-events: none; /* Запобігаємо взаємодії з міткою */
-  z-index: 1; /* Шар мітки над слайдером */
-  display: none; /* Сховати мітку за замовчуванням */
+  pointer-events: none;
+  z-index: 1;
+  display: none;
 }
-
 .slider:hover .valueLabel {
-  display: block; /* Показати мітку при наведенні на слайдер */
+  display: block;
 }
-
 .fifty {
   text-align: center;
 }
-
 .slider:global {
   height: 6px !important;
   pointer-events: none;
   padding: 0 !important;
 }
-
+.customTooltip {
+  background-color: #9be1a0 !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  border-radius: 8px !important;
+}
+.customArrow::before {
+  background-color: #9be1a0 !important;
+}
 @media screen and (min-width: 768px) {
   .container {
     left: 204px;
@@ -87,7 +85,6 @@
     height: 8px !important;
   }
 }
-
 @media screen and (min-width: 1440px) {
   .container {
     left: 188px;

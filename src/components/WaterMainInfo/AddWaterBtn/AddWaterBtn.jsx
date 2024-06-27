@@ -21,8 +21,7 @@ const AddWaterBtn = ({openModal, isPrimary = true }) => {
       height="24"
     >
       <use xlinkHref={`${sprite}#plus-add-water`} />
-    </svg>
-    <span>Add water</span>
+    </svg>Add water
   </button>
     </div>
   );

@@ -1,17 +1,17 @@
 
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../../redux/auth/selectors';
 import css from './WaterDailyNorma.module.css'
 
 const WaterDailyNorma = () => {
-  // замінити частину з desiredVolume яка буде повязана з користувачем
+ const user = useSelector(selectUser);
 
-    const desiredVolume = 3000;
-
-    const dailyNorma = desiredVolume / 1000;
+    const dailyUserGoal = user.waterRate / 1000;
 
   return (
   
     <div className={css.dailyNorma}>
-      <a className={css.title}>{dailyNorma} L</a>
+      <a className={css.title}>{dailyUserGoal} L</a>
       <a className={css.subtitle}>My daily norma</a>
     </div>
   )
