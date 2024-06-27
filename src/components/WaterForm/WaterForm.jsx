@@ -4,7 +4,7 @@ import style from "./WaterForm.module.css";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { addWater, updateWaterAmount } from '../../redux/water/operation'; 
-import { selectLoading, selectError, selectEntries } from '../../redux/water/selectors';
+import { selectLoading, selectEntries } from '../../redux/water/selectors';
 import { icons as sprite } from '../../shared/icons';
 import toast from 'react-hot-toast';
 import { useEffect } from 'react';
@@ -29,7 +29,6 @@ const WaterForm = ({ operationType, recordId }) => {
 console.log('Record ID:', recordId); 
     const dispatch = useDispatch();
     const loading = useSelector(selectLoading);
-    const error = useSelector(selectError);
     const entries = useSelector(selectEntries);
 
     const defaultTime = () => {
@@ -39,7 +38,8 @@ console.log('Record ID:', recordId);
     return `${hours}:${minutes}`
 }
 
-    const { handleSubmit, formState: { errors, isValid }, getValues, setValue, register } = useForm({
+    const { handleSubmit, formState: { errors, isValid },
+        getValues, setValue, register } = useForm({
         resolver: yupResolver(schemaWater),
         defaultValues: {
             waterAmount: 50,
@@ -71,17 +71,15 @@ console.log('Record ID:', recordId);
                 dispatch(addWater(newEntry));
                 toast.success('Data successfully added!');
             } else if (operationType === 'edit' && recordId) {
-                // dispatch(updateWaterAmount({ id: recordId, updatedAmount: data.waterAmount }));
              dispatch(updateWaterAmount({ waterId: recordId, updatedAmount: data.waterAmount }));
                 toast.success('Data successfully updated!');
-            }
+            } 
         } catch (error) {
             toast.error('Invalid value of water! Min: 0, Max: 500');
         }
     };  
 
     useEffect(() => {
-          console.log('WaterForm - useEffect - Record ID:', recordId); 
       dispatch(updateWaterAmount());
     }, [dispatch, entries, recordId]);
 
@@ -112,25 +110,22 @@ const decrementWater = () => {
         const newValue = Number(e.target.value);
         if (e.target.value.length <= 3 && newValue >= 0 && newValue <= 500) {
             handleWaterChange(newValue);
-        }
+        } 
     };
-
-     console.log('Record ID:', recordId);
 
   return (
       <div> 
           {loading && <Loader />}
-          {error}
           
-     <form onSubmit={handleSubmit(onSubmit)}>
-              
+     <form onSubmit={handleSubmit(onSubmit)}>           
         <div className={style.addWaterForm}>
             <label className={style.itemWaterForm}>
             <span className={style.spanFormWater}>Amount of water:</span>
             <div className={style.waterAmountInputContainer}>
             <svg className={style.iconOperator} onClick={decrementWater}>
                 <use className={style.icon} xlinkHref={`${sprite}#minus-modal`} />
-           </svg>
+            </svg>
+                    <div className={style.wrapperInput}>
                     <input
                     className={style.inputAddWater}
                     type="number"
@@ -138,7 +133,8 @@ const decrementWater = () => {
                     value={getValues('waterAmount')}
                     readOnly
                           />
-                    <span className={style.mlLabel}>ml</span>
+                          <span className={style.mlLabel}>ml</span>
+                          </div>
             <svg className={style.iconOperator} onClick={incrementWater}>
                 <use className={style.icon} xlinkHref={`${sprite}#plus-modal`} />
             </svg>
