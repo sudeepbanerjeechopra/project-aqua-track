@@ -2,7 +2,6 @@
 
 import { Helmet } from 'react-helmet-async';
 import Home from '../../components/Home/Home';
-import UserSettingsModal from '../../components/Modals/UserSettingsModal/UserSettingsModal';
 
 const HomePage = () => {
   return (
@@ -11,7 +10,6 @@ const HomePage = () => {
         <title>AquaTrack</title>
       </Helmet>
       <Home />
-      <UserSettingsModal/>
     </>
   );
 };

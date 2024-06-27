@@ -4,6 +4,7 @@ import ModalWindow from '../../../shared/components/ModalWindow/ModalWindow';
 import { useEffect, useRef, useState } from 'react';
 import { icons as sprite } from '../../../shared/icons/index';
 import CustomScrollWrapper from '../../../shared/components/CustomScrollWrapper/CustomScrollWrapper';
+import axios from 'axios';
 
 const UserSettingsModal = ({
   isOpen,
@@ -11,18 +12,22 @@ const UserSettingsModal = ({
   children,
   shouldCloseOnOverlayClick = true,
 }) => {
+  const prevData = axios.get("https://aqua-track-api.onrender.com/users/profile")
+
   const { closeModal } = useModalContext();
   const [avatarFile, setAvatarFile] = useState(null);
   const [amount, setAmount] = useState(0);
   const [weight, setWeight] = useState(0);
   const [time, setTime] = useState(0);
   const [gender, setGender] = useState('');
+  
+  console.log(prevData);
 
   useEffect(() => {
     if (weight && gender) {
       let newAmount;
       if (gender === 'man') {
-        newAmount = weight*0.04+time*0.6
+        newAmount = (weight*0.04)+(time*0.6)
       }
       if (gender === 'woman') {
         newAmount = (weight*0.03)+(time*0.4)
