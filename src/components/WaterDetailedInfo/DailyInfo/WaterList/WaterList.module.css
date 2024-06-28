@@ -1,0 +1,19 @@
+.list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+    .list {
+        gap: 32px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .list {
+        gap: 16px;
+    }
+}
