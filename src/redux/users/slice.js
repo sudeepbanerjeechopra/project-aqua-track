@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initialStateConstant } from './constats.js';
+import { initialStateConstant } from './constants.js';
 import { getUsers } from './operation.js';
 
 const usersSlice = createSlice({
@@ -8,7 +8,8 @@ const usersSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getUsers.fulfilled, (state, action) => {
-        state.users = action.payload;
+        state.count = action.payload.count;
+        state.avatars = action.payload.avatars;
       })
 
       .addCase(getUsers.rejected, (state, action) => {
