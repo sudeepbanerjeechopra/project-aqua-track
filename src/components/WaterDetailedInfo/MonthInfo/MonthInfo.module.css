@@ -39,6 +39,14 @@
   opacity: 0.6;
 }
 
+.errorMessage {
+  width: 100%;
+  padding: 100px auto;
+  display: grid;
+  place-items: center;
+  height: 300px;
+}
+
 @media (min-width: 768px) {
   .wrapper {
     max-width: 640px;
