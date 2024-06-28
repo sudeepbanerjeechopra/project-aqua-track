@@ -1,12 +1,10 @@
 import { useModalContext } from '../../../context/useModalContext';
 import css from './UserSettingsModal.module.css';
-import ModalWindow from '../../../shared/components/ModalWindow/ModalWindow';
 import { useEffect, useRef, useState } from 'react';
 import { icons as sprite } from '../../../shared/icons/index';
-import CustomScrollWrapper from '../../../shared/components/CustomScrollWrapper/CustomScrollWrapper';
 import axios from 'axios';
 
-const UserSettingsModal = ({ isOpen, shouldCloseOnOverlayClick = true }) => {
+const UserSettingsModal = ({ isOpen }) => {
   const { closeModal } = useModalContext();
   const [userData, setUserData] = useState(null);
   const [avatarFile, setAvatarFile] = useState(null);
