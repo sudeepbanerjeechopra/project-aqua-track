@@ -84,12 +84,6 @@ const UserSettingsModal = ({
   } else {
 console.log(userData)
   return (
-    <ModalWindow
-      isOpen={isOpen}
-      onRequestClose={closeModal}
-      shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
-    >
-      <CustomScrollWrapper>
         <div className={css.wrapper}>
           <form onSubmit={undefined} className={css.form}>
             <div className={css.userPic}>
@@ -277,8 +271,7 @@ console.log(userData)
             </div>
           </form>
         </div>
-      </CustomScrollWrapper>
-    </ModalWindow>
+
   );
 };
 }
