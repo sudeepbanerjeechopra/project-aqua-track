@@ -45,13 +45,26 @@
   z-index: 997;
 }
 
+.numberCustomers {
+  background-color: var(--dark-blue);
+  font-weight: 400;
+  font-size: 10px;
+  color: var(--white);
+  padding: 3px 5px;
+  border-radius: 40%;
+  z-index: 9999;
+  position: absolute;
+  left: 70px;
+  bottom: 22px;
+}
+
 .text {
   color: var(--dark-blue);
   font-weight: 700;
   font-size: 12px;
   width: 66.94px;
   line-height: 1.17;
-  margin-left: 4px;
+  margin-left: 22px;
 }
 
 .coloredText {
