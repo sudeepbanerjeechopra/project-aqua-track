@@ -37,7 +37,7 @@ export const apiGetWaterMonth = createAsyncThunk(
   async (date, thunkAPI) => {
     try {
       const response = await requestGetWaterMonth(date);
-      return response;
+      return response.daysInMonth;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
