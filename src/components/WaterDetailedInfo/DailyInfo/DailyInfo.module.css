@@ -1,0 +1,28 @@
+.wrapper {
+    width: 100%;
+    max-width: 304px;
+    margin: 0 auto;
+    background-color: var(--light-gray);
+    padding: 43px 0 40px 0;
+}
+
+.dataEntryContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+    .wrapper {
+        max-width: 640px;
+        padding: 40px 0;
+    }
+}
+
+@media (min-width: 1440px) {
+    .wrapper {
+        max-width: 608px;
+        padding: 49px 0 40px 0;
+    }
+}

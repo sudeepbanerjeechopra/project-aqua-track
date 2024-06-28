@@ -1,0 +1,127 @@
+.wrapperLogo {
+    margin-bottom: 74px;
+}
+
+.welcomeText {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: 0.01em;
+
+    margin-bottom: 16px;
+}
+
+.welcomeTitle {
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+
+    margin-bottom: 32px;
+}
+
+.welcomeBtn {
+    display: flex;
+    gap: 10px;
+}
+
+.welcomeTryTracker {
+    background-color: var(--accent);
+    border-radius: 30px;
+
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.01em;
+    color: var(--dark-blue);
+
+    padding: 14px 19px;
+
+    transition: background-color var(--animation);
+}
+
+.welcomeTryTracker:hover,
+.welcomeTryTracker:active {
+    background-color: var(--accent-secondary);
+}
+
+.welcomeSignIn {
+    border: 1px solid var(--dark-blue);
+    border-radius: 30px;
+
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.01em;
+    color: var(--dark-blue);
+
+    padding: 14px 28px;
+    transition: border-color var(--animation), color var(--animation);
+}
+
+.welcomeSignIn:hover,
+.welcomeSignIn:active {
+    border-color: var(--accent-secondary);
+    color: var(--accent-secondary);
+}
+
+@media (min-width: 768px) {
+    .wrapperLogo {
+        margin-bottom: 50px;
+    }
+
+    .mainInfo {
+        padding-left: 32px;
+    }
+
+    .welcomeText {
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: 0.06em;
+    }
+
+    .welcomeTitle {
+        font-size: 64px;
+        line-height: 1.09;
+        letter-spacing: -0.01em;
+    }
+
+    .welcomeBtn {
+        gap: 16px;
+    }
+
+    .welcomeTryTracker {
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+
+        padding: 18px 40px;
+    }
+
+    .welcomeSignIn {
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+        padding: 18px 40px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .wrapperLogo {
+        margin-bottom: 0;
+    }
+
+    .mainInfo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+
+    .welcomeTitle {
+        font-size: 80px;
+        line-height: 0.95;
+        letter-spacing: -0.01em;
+    }
+}

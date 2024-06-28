@@ -54,27 +54,3 @@ const ModalWindow = ({
 };
 
 export default ModalWindow;
-
-// Приклад використання:
-// const App = () => {
-//   const feedbackModal = useModal();
-//   return (
-//     <>
-//       <button onClick={feedbackModal.openModal}>click</button>
-
-//       <ModalWindow
-//         isOpen={feedbackModal.isOpen}
-//         onRequestClose={feedbackModal.closeModal}
-//       >
-//         <div>
-//           <h2>Leave a review about</h2>
-//           <button>click me</button>
-//           <p>
-//             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad dolorem
-//             tempore aliquid, vel nobis, quis, sequi nesciunt odit excepturi
-//           </p>
-//         </div>
-//       </ModalWindow>
-//     </>
-//   );
-// };

@@ -1,0 +1,202 @@
+/* @media (320px <=width) {} */
+
+.spanFormWater {
+    display: block;
+    font-size: 14px;
+    line-height: 1.2;
+    letter-spacing: -0.0014em;
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+.addWaterForm {
+    margin-bottom: 16px;
+}
+
+.timeWaterForm {
+    margin-bottom: 24px;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+        display: none;
+}
+
+.enterWaterForm {
+    margin-bottom: 24px;
+}
+
+.inputWaterForm[type="number"]::-webkit-outer-spin-button,
+.inputWaterForm[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.wrapperInput {
+    position: relative;
+}
+
+.inputAddWater {
+    max-width: 88px;
+    height: 40px;
+    width: 100%;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.2;
+    color: var(--white);
+    background-color: var(--dark-blue);
+    outline: none;
+    border: none;
+    border-radius: 30px;
+    padding: 11px 20px;
+}
+
+.mlLabel {
+    position: absolute;
+    top: 19.3px;
+    right: 20px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.2;
+    transform: translateY(-50%);
+    color: var(--white);
+    font-size: 14px;
+}
+
+.waterAmountInputContainer {
+    display: flex;
+    gap: 8px;
+    margin-right: auto;
+}
+
+.iconOperator {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    fill: transparent;
+}
+
+.icon {
+    width: 14px;
+    stroke: var(--dark-blue);
+}
+
+.inputWaterForm {
+    height: 46px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.2;
+    letter-spacing: -0.0014em;
+    outline: none;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 14px 16px;
+}
+
+.btnWaterForm {
+    max-width: 116px;
+    width: 100%;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 40px;
+    border: none;
+    border-radius: 30px;
+    background-color: var(--accent);
+    color: var(--dark-blue);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+
+    transition: backgraund-color var(--animation);
+}
+
+.btnWaterForm:hover,
+.btnWaterForm:active {
+    background-color: var(--accent-secondary)
+}
+  
+        /* починаючи з 768px */
+@media (768px <=width) {
+.spanFormWater {
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+    }
+
+    .addWaterForm {
+        margin-bottom: 16px;
+    }
+
+    .timeWaterForm {
+        margin-bottom: 24px;
+    }
+
+    input[type="time"]::-webkit-calendar-picker-indicator {
+        display: none;
+    }
+
+    .enterWaterForm {
+        margin-bottom: 24px;
+    }
+
+    .inputAddWater {
+        max-width: 92px;
+        height: 43px;
+        font-size: 16px;
+        line-height: 1.3;
+    }
+
+    .mlLabel {
+        top: 22px;
+        font-size: 16px;
+        line-height: 1.3;
+        transform: translateY(-50%);
+    }
+
+    .waterAmountInputContainer {
+        display: flex;
+        gap: 8px;
+        margin-right: auto;
+    }
+
+    .iconOperator {
+        width: 43px;
+        height: 43px;
+        cursor: pointer;
+        fill: none;
+        stroke: var(--white);
+    }
+
+    .icon {
+        width: 16px;
+    }
+
+    .inputWaterForm {
+        height: 56px;
+        width: 100%;
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+        border-radius: 15px;
+        padding: 16px;
+    }
+
+    .btnWaterForm {
+        height: 60px;
+        padding: 18px 50px;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: 0.0016em;
+    }
+
+}
+
+  /* проміжок між 769рх і 1440рх
+  @media (width >=768px) and (width < 1440px) {}
+
+  /* починаючи з 1440рх */
+  /* @media (width >=1440px) {}  */
