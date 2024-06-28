@@ -1,7 +1,4 @@
-/* забрать margin */
-
 .main {
-  margin: 16px;
   width: 343px;
   height: 353px;
   background-image: url('../../../shared/images/advantagesSection/adv-bg-mob.png');
@@ -133,7 +130,6 @@
 
 @media screen and (min-width: 768px) {
   .main {
-    margin: 32px;
     width: 704px;
     height: 446px;
     background-image: url('../../../shared/images/advantagesSection/adv-bg-tab.png');
@@ -159,7 +155,7 @@
     font-size: 15px;
     line-height: 1.49;
     width: 90px;
-    margin-left: 2px;
+    margin-left: 24px;
   }
   .benefits {
     font-size: 12px;
@@ -180,6 +176,12 @@
 
   .thirdBen {
     padding: 11px 16px;
+  }
+
+  .numberCustomers {
+    font-size: 14px;
+    left: 110px;
+    bottom: 35px;
   }
 }
 

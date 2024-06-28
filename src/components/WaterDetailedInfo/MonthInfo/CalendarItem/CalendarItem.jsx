@@ -3,12 +3,14 @@ import css from './CalendarItem.module.css';
 
 const CalendarItem = ({ date, isActive, onClick }) => {
   const percentages = Math.floor(Number(date.percentComplete));
+  const currentDate = new Date().toISOString().split('T')[0];
   return (
     <li className={css.element} onClick={() => onClick(date.day)}>
       <div
         className={clsx(css.number, {
           [css.notFull]: Number(date.percentComplete) < 100,
           [css.active]: isActive,
+          [css.current]: currentDate === date.day && !isActive,
         })}
       >
         {date.day.split('-')[2]}

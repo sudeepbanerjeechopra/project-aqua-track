@@ -5,7 +5,7 @@ import Loader from './Loader/Loader';
 import Schedule from './Schedule/Schedule';
 
 import clsx from 'clsx';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { apiGetWaterMonth } from '../../../redux/water/operation';
@@ -34,7 +34,17 @@ const MonthInfo = () => {
   const isLoading = useSelector(selectisLoadingMonth);
   const isError = useSelector(selectMonthError);
   const ToggleInfo = useSelector(selectToggleInfo);
-  const date = useSelector(selectDate);
+  const selectedDate = useSelector(selectDate);
+
+  const formattedMonthArray = useMemo(() => {
+    return monthArray.map((day) => {
+      return {
+        id: day.id,
+        date: day.day.split('-')[2],
+        value: Math.floor(Number(day.totalAmount) * 1000),
+      };
+    });
+  }, [monthArray]);
 
   const onNextMonth = () => {
     dispatch(increaseMonth());
@@ -65,6 +75,7 @@ const MonthInfo = () => {
               onPrevMonth={onPrevMonth}
               currentDate={currentMonth}
             />
+
             <button
               className={clsx(css.iconBtn, {
                 [css.active]: !ToggleInfo,
@@ -77,12 +88,24 @@ const MonthInfo = () => {
             </button>
           </div>
         </div>
-        {isLoading && !isError ? (
-          <Loader />
-        ) : ToggleInfo ? (
-          <Calendar month={monthArray} date={date} onClick={onDayChange} />
-        ) : (
-          <Schedule />
+        {isError && (
+          <div className={css.errorMessage}>
+            <p>Oops, something is wrong... </p>
+          </div>
+        )}
+
+        {isLoading && !isError && <Loader />}
+
+        {ToggleInfo && !isError && !isLoading && (
+          <Calendar
+            month={monthArray}
+            date={selectedDate}
+            onClick={onDayChange}
+          />
+        )}
+
+        {!ToggleInfo && !isError && !isLoading && (
+          <Schedule data={formattedMonthArray} />
         )}
       </div>
     </div>

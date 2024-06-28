@@ -1,19 +1,31 @@
 import css from '../AdvantagesSection/AdvantagesSection.module.css';
-import { selectUsersCount, selectUsersAvatars  } from '../../../redux/users/selectors';
-import { useSelector } from 'react-redux';
+import { selectUsersCount, selectUsersAvatars  } from '../../../redux/users/selectors.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getUsers } from '../../../redux/users/operation.js'
 
 const AdvantagesSection = () => {
   const usersCount = useSelector(selectUsersCount);
+  //const usersAvatars = useSelector(selectUsersAvatars);
+  // {usersAvatars.map((avatar) => {
+  //   return <div className={css.customer}><img src={avatar} alt="user avatar" /></div>
+  // })}
+  
 
-  console.log(usersCount);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
 
   return (
     <div className={css.main}>
       <div className={css.customers}>
+        
         <div className={css.customer}></div>
         <div className={css.customer}></div>
         <div className={css.customer}></div>
-        <div className={css.numberCustomers}>{usersCount}</div>
+        <div className={css.numberCustomers}>+{usersCount}</div>
         <p className={css.text}>
           Our <span className={css.coloredText}>happy</span> customers
         </p>
