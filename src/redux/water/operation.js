@@ -23,9 +23,10 @@ export const apiDeleteWater = createAsyncThunk(
 
 export const apiGetWaterDay = createAsyncThunk(
   'water/getWaterDay',
-  async (_, thunkAPI) => {
+  async (day, thunkAPI) => {
     try {
-      //some logic const res  = await requestGetWaterDay();
+      const response = await requestGetWaterDay(day);
+      return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
