@@ -89,7 +89,7 @@ const waterSlice = createSlice({
       .addCase(addWater.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.entries.push(action.payload);
+        state.waterDay = [...state.waterDay, action.payload.newWaterRecord];
       })
       .addCase(addWater.rejected, handleRejected)
       .addCase(updateWaterAmount.pending, handlePending)
