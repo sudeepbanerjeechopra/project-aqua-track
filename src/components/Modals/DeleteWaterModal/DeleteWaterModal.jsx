@@ -8,9 +8,10 @@ const DeleteWaterModal = () => {
   const { closeModal } = useModalContext();
   const dispatch = useDispatch();
 
-  const handleDelete = async () => {
+  const handleDelete = async ({waterid}) => {
+    console.log('Deleting waterid:', waterid);
     try {
-      await dispatch(apiDeleteWater(recordId)).unwrap();
+      await dispatch(apiDeleteWater(waterid)).unwrap();
       closeModal();
       toast.success('Entry deleted successfully');
     } catch (error) {
