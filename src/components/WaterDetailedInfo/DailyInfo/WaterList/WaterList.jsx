@@ -7,22 +7,19 @@ import { selectDate } from '../../../../redux/water/selectors';
 
 function WaterList({ waterDay }) {
   const currentDay = useSelector(selectDate);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (waterDay.length === 0) {
-      dispatch(apiGetWaterDay(currentDay));
-    }
-  }, [currentDay, dispatch, waterDay]);
+    dispatch(apiGetWaterDay(currentDay));
+  }, [currentDay, dispatch]);
 
   console.log(waterDay);
 
   return (
     <ul className={css.list}>
-      {waterDay.map((data) => (
-        <li key={data.id}>
-          <WaterItem data={data} />
-        </li>
+      {waterDay.map((data, index) => (
+        <WaterItem key={index} data={data} />
       ))}
     </ul>
   );

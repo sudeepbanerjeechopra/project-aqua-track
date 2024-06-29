@@ -1,23 +1,21 @@
 import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectWaterDay, selectDate } from '../../../redux/water/selectors';
+import { apiGetWaterDay } from '../../../redux/water/operation';
 import WaterList from './WaterList/WaterList';
 import ChooseData from './ChooseDate/ChooseDate';
 import AddWaterBtn from './AddWaterBtn/AddWaterBtn';
 import CustomScrollBar from '../../../shared/components/CustomScrollWrapper/CustomScrollWrapper';
 import css from './DailyInfo.module.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectWaterDay } from '../../../redux/water/selectors';
-import { apiGetWaterDay } from '../../../redux/water/operation';
 
 function DailyInfo() {
   const waterDay = useSelector(selectWaterDay);
+  const currentDate = useSelector(selectDate);
   const dispatch = useDispatch();
-  const currentDate = new Date().toISOString().split('T')[0];
 
   useEffect(() => {
-    if (waterDay.length === 0) {
-      dispatch(apiGetWaterDay(currentDate));
-    }
-  }, [waterDay, dispatch, currentDate]);
+    dispatch(apiGetWaterDay(currentDate));
+  }, [currentDate, dispatch]);
 
   return (
     <div className={css.wrapper}>
@@ -31,7 +29,7 @@ function DailyInfo() {
         </CustomScrollBar>
       ) : (
         <div className={css.text}>
-          <p>{`You haven't drunk water yet, maybe it's time to drink?`}</p>
+          <p>You havent drunk water yet, maybe its time to drink?</p>
         </div>
       )}
     </div>
