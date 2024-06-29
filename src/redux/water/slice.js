@@ -1,9 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  apiDeleteWater,
   apiGetWaterDay,
   apiGetWaterMonth,
-  apiGetWaterStats,
   addWater,
   updateWaterAmount,
 } from './operation';

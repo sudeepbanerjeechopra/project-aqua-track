@@ -1,4 +1,3 @@
-import { createSelector } from '@reduxjs/toolkit';
 // logic for monthInfo
 export const selectWaterMonth = (state) => state.water.monthData;
 export const selectisLoadingMonth = (state) => state.water.isLoadingMonth;
