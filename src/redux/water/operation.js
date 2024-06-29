@@ -12,9 +12,8 @@ import {
 
 export const apiDeleteWater = createAsyncThunk(
   'water/deleteWater',
-  async (_, thunkAPI) => {
+  async (recordId, thunkAPI) => {
     try {
-      console.log(111);
       const response = await requestDeleteWater(recordId);
       return response;
     } catch (error) {

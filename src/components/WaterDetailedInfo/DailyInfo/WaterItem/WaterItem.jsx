@@ -35,14 +35,15 @@ function WaterItem({ data }) {
             <use xlinkHref={`${sprite}#edit`} />
           </svg>
         </button>
-        <button className={css.btn}
+        <button
+          className={css.btn}
           onClick={() => {
-            openModal(<DeleteWaterModal />);
-          }}>
+            openModal(<DeleteWaterModal onDelete={id} />);
+          }}
+        >
           <svg className={css.svg_trash}>
             <use xlinkHref={`${sprite}#trash`} />
           </svg>
-          
         </button>
       </div>
     </div>
