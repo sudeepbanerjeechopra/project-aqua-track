@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import css from './Userbar.module.css';
 import { icons as sprite } from '../../../shared/icons/index';
 import { useAuth } from '../../../hooks/useAut';
@@ -25,14 +24,18 @@ const Userbar = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const getFirstName = (fullName) => {
+    return fullName ? fullName.split(' ')[0] : 'User';
+  };
+
   return (
     <div className={css.userBarWrapper}>
       <h2 className={css.welcome}>
-        Hello<span className={css.name}>, {user?.name || 'User'}!</span>
+        Hello<span className={css.name}>, {getFirstName(user?.name)}!</span>
       </h2>
       <div className={css.userBarMenu}>
         <button className={css.userBarBtn} onClick={toggleMenu}>
-          {user?.name || 'User'}
+          {getFirstName(user?.name)}
           {user?.avatar ? (
             <img src={user.avatar} alt="User Avatar" className={css.avatar} />
           ) : (
