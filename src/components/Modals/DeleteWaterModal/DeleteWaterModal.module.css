@@ -1,99 +1,109 @@
-.title{
+.title {
     font-weight: 700;
     font-size: 20px;
-    line-height: 1.28em;
-    letter-spacing: 0.01em;
-    padding-bottom: 16px;
+    line-height: 1.29;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
     color: var(--dark-blue);
 }
-.paragraf{
+
+.paragraf {
     color: var(--dark-blue);
     font-weight: 400;
     font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.01em;
     margin-bottom: 28px;
-    line-height: 1.28em;
-    padding-bottom: 28px;
-    margin: 0;
 }
+
 .deleteModalBackground {
-    background-color: var(--white);
-    width: 344px;
-    height: 267px;
-    padding: 40px 14px;
+    width: 100%;
+    min-width: 320px;
+    max-width: 375px;
+    padding: 40px 20px;
     border-radius: 15px;
     text-align: center;
+    box-sizing: border-box;
 }
-.buttons{
+
+.buttons {
     display: flex;
     flex-direction: column;
     gap: 9px;
-    justify-content: center;
-    align-items: center;
 }
+
 .buttondelete {
-    width: 304px;
-    height: 46px;
     border-radius: 30px;
     border: none;
-    display: block;
     background-color: var(--accent);
     color: var(--dark-blue);
     font-size: 14px;
     font-weight: 700;
-    line-height: 1.28em;
+    line-height: 1.28;
+    letter-spacing: -0.01em;
     text-align: center;
-    cursor: pointer;
+    padding: 14px 0;
+    transition: background-color var(--animation);
 }
+
 .buttoncancel {
-    width: 304px;
-    height: 46px;
     border-radius: 30px;
     background-color: var(--light-gray-transparent);
     color: var(--color-light-grey);
     font-size: 14px;
     font-weight: 700;
-    line-height: 1.28em;
+    line-height: 1.28;
+    letter-spacing: -0.01em;
     text-align: center;
-    cursor: pointer;
     border: none;
-    display: block;
+    padding: 14px 0;
+    transition: background-color var(--animation), color var(--animation);
 }
+
 .buttondelete:hover,
 .buttondelete:focus {
     background-color: var(--accent-secondary);
 }
+
 .buttoncancel:hover,
 .buttoncancel:focus {
     color: var(--dark-blue);
+    background-color: var(--light-gray);
 }
+
+
 @media screen and (min-width: 768px) {
     .deleteModalBackground {
-        width: 516px;
-        height: 244px;
+        width: 518px;
+        max-width: 518px;
         padding: 40px;
     }
-    .title{
+
+    .title {
         font-size: 28px;
-        padding-bottom: 24px;
+        margin-bottom: 24px;
     }
+
     .paragraf {
         font-size: 18px;
-        padding-bottom: 24px;
+        margin-bottom: 24px;
     }
-    .buttons{
+
+    .buttons {
         flex-direction: row;
+        justify-content: center;
         gap: 10px;
     }
-    .buttondelete{
-        width: 170px;
-        height: 60px;
+
+    .buttondelete {
         font-size: 16px;
         line-height: 1.5em;
+        padding: 18px 59px;
     }
-    .buttoncancel{
-        width: 170px;
-        height: 60px;
+
+    .buttoncancel {
         font-size: 16px;
         line-height: 1.5em;
+        padding: 18px 59px;
     }
 }
