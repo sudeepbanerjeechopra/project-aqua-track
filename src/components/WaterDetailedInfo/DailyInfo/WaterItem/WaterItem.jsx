@@ -10,7 +10,7 @@ function WaterItem({ data }) {
   const { id, amount, time } = data;
 
   const formatAmount = (amount) => {
-    const mlAmount = amount * 1000; // Преобразуем в миллилитры
+    const mlAmount = amount * 1000;
     return `${mlAmount} ml`;
   };
 
