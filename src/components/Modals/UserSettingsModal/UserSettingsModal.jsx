@@ -3,6 +3,7 @@ import css from './UserSettingsModal.module.css';
 import { useEffect, useRef, useState } from 'react';
 import { icons as sprite } from '../../../shared/icons/index';
 import axios from 'axios';
+import Loader from '../../Loader/Loader';
 
 const UserSettingsModal = ({ isOpen }) => {
   const { closeModal } = useModalContext();
@@ -75,9 +76,12 @@ const UserSettingsModal = ({ isOpen }) => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   } else {
-    console.log(userData);
     return (
       <div className={css.wrapper}>
         <form onSubmit={undefined} className={css.form}>

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import css from './Userbar.module.css';
 import { icons as sprite } from '../../../shared/icons/index';
 import { useAuth } from '../../../hooks/useAut';
 import LogOutModal from '../../Modals/LogOutModal/LogOutModal';
 import { useModalContext } from '../../../context/useModalContext';
+import UserSettingsModal from '../../Modals/UserSettingsModal/UserSettingsModal';
 
 const Userbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -26,11 +27,7 @@ const Userbar = () => {
           ) : (
             <span className={css.avatarPlaceholder}>.</span>
           )}
-          <svg
-            className={`${css.chevron} ${menuOpen ? css.open : ''}`}
-            width="20"
-            height="20"
-          >
+          <svg className={`${css.chevron} ${menuOpen ? css.open : ''}`}>
             <use xlinkHref={`${sprite}#arrow-down`} />
           </svg>
         </button>
@@ -38,7 +35,11 @@ const Userbar = () => {
           <div className={css.userBarOpenMenu}>
             <ul>
               <li>
-                <a className={css.userBarLink} href="#settings">
+                <a
+                  onClick={() => openModal(<UserSettingsModal isOpen={true} />)}
+                  className={css.userBarLink}
+                  href="#settings"
+                >
                   <svg width="16" height="16">
                     <use xlinkHref={`${sprite}#settings`} />
                   </svg>
