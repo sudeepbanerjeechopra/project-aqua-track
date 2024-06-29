@@ -14,6 +14,13 @@ function WaterItem({ data }) {
     return `${mlAmount} ml`;
   };
 
+  const formatTime = (isoString) => {
+    const date = new Date(isoString);
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+  };
+
   return (
     <div className={css.item} id={id}>
       <svg className={css.svg_glass}>
@@ -21,7 +28,7 @@ function WaterItem({ data }) {
       </svg>
       <div className={css.info}>
         <p className={css.info_ml}>{formatAmount(amount)}</p>
-        <p className={css.info_time}>{`${time} AM`}</p>
+        <p className={css.info_time}>{formatTime(time)} AM</p>
       </div>
       <div className={css.btns}>
         <button
