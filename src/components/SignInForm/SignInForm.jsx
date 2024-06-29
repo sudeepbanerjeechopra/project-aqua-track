@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -11,7 +11,9 @@ import { signInSchema } from './signInSchema';
 
 import { icons as sprite } from '../../shared/icons/index';
 import style from '../UserForm.module.css';
+import s from './SignInForm.module.css';
 import { logIn } from '../../redux/auth/operation';
+import toast from 'react-hot-toast';
 
 const SignInForm = () => {
   const [openPassword, setOpenPassword] = useState(false);
@@ -44,13 +46,21 @@ const SignInForm = () => {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    if (errors.password) {
+      toast.error(errors.password.message);
+    } else if (errors.email) {
+      toast.error(errors.email.message);
+    }
+  }, [errors.password, errors.email]);
   return (
     <>
       <WrapperWelcome
         classNameLogo={style.form}
         classNameWelcom={style.welcomPadding}
       >
-        <div className={style.formBlock}>
+        <div className={`${style.formBlock} ${s.formPosition}`}>
           <h2 className={style.formTitle}>Sign In</h2>
 
           <form className={style.mainForm} onSubmit={handleSubmit(onSubmit)}>
@@ -66,9 +76,6 @@ const SignInForm = () => {
                 placeholder="Enter your email"
                 {...register('email')}
               />
-              {errors.email && (
-                <span className={style.errorSpan}>{errors.email.message}</span>
-              )}
             </div>
 
             <div className={style.fieldThumb}>
@@ -104,12 +111,6 @@ const SignInForm = () => {
                   </button>
                 )}
               </div>
-
-              {errors.password && (
-                <span className={style.errorSpan}>
-                  {errors.password.message}
-                </span>
-              )}
             </div>
 
             <button
@@ -123,11 +124,19 @@ const SignInForm = () => {
 
           <GoogleBtn type="In" />
 
-          <div className={style.haveAccount}>
-            <p className={style.haveAccountText}>Don’t have an account?</p>{' '}
-            <NavLink to="/signup" className={style.haveAccountForm}>
-              Sign Up
-            </NavLink>
+          <div className={s.haveAccountSignIn}>
+            <div className={s.question}>
+              <p className={style.haveAccountText}>Don’t have an account?</p>{' '}
+              <NavLink to="/signup" className={style.haveAccountForm}>
+                Sign Up
+              </NavLink>
+            </div>
+            <div className={s.question}>
+              <p className={style.haveAccountText}>Forgot your password?</p>{' '}
+              <NavLink to="/forgot" className={style.haveAccountForm}>
+                Renew
+              </NavLink>
+            </div>
           </div>
         </div>
       </WrapperWelcome>
