@@ -9,6 +9,7 @@ import { icons as sprite } from '../../shared/icons';
 import toast from 'react-hot-toast';
 import { useEffect } from 'react';
 import Loader from '../../components/Loader/Loader';
+import { useModalContext } from '../../context/useModalContext';
 
 const schemaWater = yup.object().shape({
   waterAmount: yup
@@ -27,6 +28,7 @@ const schemaWater = yup.object().shape({
 const WaterForm = ({ operationType, recordId }) => {
   //   console.log('Record ID:', recordId);
   const dispatch = useDispatch();
+  const { closeModal } = useModalContext();
   const loading = useSelector(selectLoading);
   const entries = useSelector(selectEntries);
 
@@ -74,7 +76,6 @@ const WaterForm = ({ operationType, recordId }) => {
       if (operationType === 'add') {
         console.log(newEntry);
         dispatch(addWater(newEntry));
-        toast.success('Data successfully added!');
       } else if (operationType === 'edit' && recordId) {
         dispatch(
           updateWaterAmount({
@@ -82,6 +83,7 @@ const WaterForm = ({ operationType, recordId }) => {
             updatedAmount: data.waterAmount,
           })
         );
+        closeModal();
         toast.success('Data successfully updated!');
       }
     } catch (error) {

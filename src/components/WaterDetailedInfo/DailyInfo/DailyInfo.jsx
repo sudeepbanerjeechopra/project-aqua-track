@@ -3,12 +3,11 @@ import ChooseData from './ChooseDate/ChooseDate';
 import AddWaterBtn from './AddWaterBtn/AddWaterBtn';
 import CustomScrollBar from '../../../shared/components/CustomScrollWrapper/CustomScrollWrapper';
 import css from './DailyInfo.module.css';
-// import { useSelector } from 'react-redux';
-// import { selectWaterDay } from '../../../redux/water/selectors';
+import { useSelector } from 'react-redux';
+import { selectWaterDay } from '../../../redux/water/selectors';
 
 function DailyInfo() {
-  // const waterDay = useSelector(selectWaterDay);
-  const waterDay = 0;
+  const waterDay = useSelector(selectWaterDay);
 
   return (
     <div className={css.wrapper}>
