@@ -24,9 +24,9 @@ const initialState = {
   isLoadingMonth: false,
   toggleInfo: true,
   //DailyInfo
-  water: [],
-  isLoadingWater: false,
-  errorWater: null,
+  waterDay: [],
+  isLoadingWaterDay: false,
+  errorWaterWaterDay: null,
   // some logic
   entries: [],
   loading: false,
@@ -107,16 +107,16 @@ const waterSlice = createSlice({
       .addCase(updateWaterAmount.rejected, handleRejected)
 
       .addCase(apiGetWaterDay.pending, (state) => {
-        state.isLoadingWater = true;
-        state.errorWater = null;
+        state.isLoadingWaterDay = true;
+        state.errorWaterDay = null;
       })
       .addCase(apiGetWaterDay.fulfilled, (state, action) => {
-        state.isLoadingWater = false;
-        state.water = [...action.payload];
+        state.isLoadingWaterDay = false;
+        state.waterDay = [...action.payload.records];
       })
       .addCase(apiGetWaterDay.rejected, (state, action) => {
-        state.isLoadingWater = false;
-        state.errorWater = action.payload;
+        state.isLoadingWaterDay = false;
+        state.errorWaterDay = action.payload;
       }),
 });
 

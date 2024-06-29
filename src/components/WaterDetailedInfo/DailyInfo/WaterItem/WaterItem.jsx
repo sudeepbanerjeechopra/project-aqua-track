@@ -4,17 +4,24 @@ import WaterModal from '../../../WaterModal/WaterModal.jsx';
 
 import css from './WaterItem.module.css';
 
-function WaterItem() {
+function WaterItem({ data }) {
   const { openModal } = useModalContext();
 
+  const { id, amount, time } = data;
+
+  const formatAmount = (amount) => {
+    const mlAmount = amount * 1000; // Преобразуем в миллилитры
+    return `${mlAmount} ml`;
+  };
+
   return (
-    <div className={css.item}>
+    <div className={css.item} id={id}>
       <svg className={css.svg_glass}>
         <use xlinkHref={`${sprite}#water-glass`} />
       </svg>
       <div className={css.info}>
-        <p className={css.info_ml}>250 ml</p>
-        <p className={css.info_time}>7:00 AM</p>
+        <p className={css.info_ml}>{formatAmount(amount)}</p>
+        <p className={css.info_time}>{`${time} AM`}</p>
       </div>
       <div className={css.btns}>
         <button
