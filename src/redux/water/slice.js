@@ -23,6 +23,10 @@ const initialState = {
   errorMonth: null,
   isLoadingMonth: false,
   toggleInfo: true,
+  //DailyInfo
+  waterDay: [],
+  isLoadingWaterDay: false,
+  errorWaterWaterDay: null,
   // some logic
   entries: [],
   loading: false,
@@ -85,7 +89,7 @@ const waterSlice = createSlice({
       .addCase(addWater.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.entries.push(action.payload);
+        state.waterDay = [...state.waterDay, action.payload.newWaterRecord];
       })
       .addCase(addWater.rejected, handleRejected)
       .addCase(updateWaterAmount.pending, handlePending)
@@ -100,7 +104,20 @@ const waterSlice = createSlice({
           state.entries[index] = updatedEntry;
         }
       })
-      .addCase(updateWaterAmount.rejected, handleRejected),
+      .addCase(updateWaterAmount.rejected, handleRejected)
+
+      .addCase(apiGetWaterDay.pending, (state) => {
+        state.isLoadingWaterDay = true;
+        state.errorWaterDay = null;
+      })
+      .addCase(apiGetWaterDay.fulfilled, (state, action) => {
+        state.isLoadingWaterDay = false;
+        state.waterDay = [...action.payload.records];
+      })
+      .addCase(apiGetWaterDay.rejected, (state, action) => {
+        state.isLoadingWaterDay = false;
+        state.errorWaterDay = action.payload;
+      }),
 });
 
 export const {

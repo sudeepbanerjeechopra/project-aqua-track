@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   AreaChart,
   Area,
@@ -11,48 +12,55 @@ import CustomTooltip from './CustomTooltip/CustomTooltip';
 
 import css from './Schedule.module.css';
 
-const data = [
-  { date: 16, value: 2400 },
-  { date: 17, value: 2100 },
-  { date: 18, value: 2400 },
-  { date: 19, value: 1750 },
-  { date: 20, value: 2000 },
-  { date: 21, value: 1800 },
-  { date: 22, value: 2300 },
-];
-const renderCustomDot = ({ cx, cy, index }) => {
-  if (index === 0 || index === data.length - 1) return null;
-  return (
-    <g key={`custom-dot-${index}`}>
-      <circle
-        cx={cx}
-        cy={cy}
-        r={9}
-        fill="white"
-        stroke="#82ca9d"
-        strokeWidth={2}
-      />
-      <circle cx={cx} cy={cy} r={3} fill="white" />
-    </g>
-  );
-};
-const formatYAxis = (value) => {
-  return value === 0
-    ? `${value}%`
-    : value % 1 === 0
-      ? `${value / 1000} L`
-      : `${(value / 1000).toFixed(1)} L`;
-};
-const yAxisStyle = {
-  color: 'rgb(50, 63, 71)',
-  fontSize: '14px',
-  fontWeight: '400',
-  lineHeight: '18px',
-  textWrap: 'nowrap',
-  textAnchor: 'start',
-  dx: -30,
-};
-const Schedule = () => {
+const Schedule = ({ data }) => {
+  const renderCustomDot = ({ cx, cy, index }) => {
+    if (index === 0 || index === data.length - 1) return null;
+    return (
+      <g key={`custom-dot-${index}`}>
+        <circle
+          cx={cx}
+          cy={cy}
+          r={3}
+          fill="white"
+          stroke="#82ca9d"
+          strokeWidth={2}
+        />
+        <circle cx={cx} cy={cy} r={2} fill="white" />
+      </g>
+    );
+  };
+  const formatYAxis = (value) => {
+    return value === 0
+      ? `${value}%`
+      : value % 1 === 0
+        ? `${value / 1000} L`
+        : `${(value / 1000).toFixed(1)} L`;
+  };
+  const yAxisStyle = {
+    color: 'rgb(50, 63, 71)',
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '18px',
+    textWrap: 'nowrap',
+    textAnchor: 'start',
+    dx: -30,
+  };
+  useEffect(() => {
+    const originalConsoleError = console.error;
+
+    console.error = (...args) => {
+      if (typeof args[0] === 'string' && /defaultProps/.test(args[0])) {
+        return;
+      }
+
+      originalConsoleError(...args);
+    };
+
+    return () => {
+      console.error = originalConsoleError;
+    };
+  }, []);
+
   return (
     <div className={css.wrapper}>
       <ResponsiveContainer width="100%" height="100%">
@@ -75,8 +83,11 @@ const Schedule = () => {
             axisLine={false}
             tickLine={false}
             padding={{ left: 10 }}
+            tickCount={11}
+            interval={3}
           />
           <YAxis
+            domain={[0, 2500]}
             axisLine={false}
             tickLine={false}
             width={40}
@@ -87,7 +98,7 @@ const Schedule = () => {
           />
           <Tooltip
             content={<CustomTooltip />}
-            cursor={false}
+            cursor={true}
             isAnimationActive={true}
           />
           <Area
