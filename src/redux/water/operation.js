@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
-import axios from 'axios';
 import {
   requestAddWater,
   requestUpdateWater,
@@ -60,7 +59,7 @@ export const addWater = createAsyncThunk(
   'water/addWater',
   async (newEntry, thunkAPI) => {
     try {
-      const response = await axios.post('/water', newEntry);
+      const response = await requestAddWater(newEntry);
       toast.success(response.data.message);
       return response.data;
     } catch (error) {
@@ -74,9 +73,7 @@ export const updateWaterAmount = createAsyncThunk(
   'water/updateWaterAmount',
   async ({ waterId, updatedAmount }, thunkAPI) => {
     try {
-      const response = await axios.patch(`/water/${waterId}/amount`, {
-        amount: updatedAmount,
-      });
+      const response = await requestUpdateWater(waterId, updatedAmount);
       toast.success(response.data.message);
       return response.data;
     } catch (error) {

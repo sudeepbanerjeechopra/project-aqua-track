@@ -27,7 +27,7 @@ function WaterItem({ data }) {
         <button
           className={css.btn}
           onClick={() => {
-            openModal(<WaterModal />);
+            openModal(<WaterModal operationType={'edit'} recordId={id} />);
           }}
         >
           <svg className={css.svg_edit}>

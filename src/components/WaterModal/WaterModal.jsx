@@ -13,8 +13,8 @@ const WaterModal = ({ operationType, recordId }) => {
           <div className={style.modalWater}>
             <h2 className={style.titleWaterModal}>{title}</h2>
             <p className={style.subTitleWaterModal}>{subTitle}</p>
-      <WaterForm operationType={operationType} recordId={recordId} />
-        </div>
+            <WaterForm operationType={operationType} recordId={recordId} />
+          </div>
     )
 }
 
