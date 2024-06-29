@@ -14,6 +14,7 @@ export const apiDeleteWater = createAsyncThunk(
   'water/deleteWater',
   async (_, thunkAPI) => {
     try {
+      console.log(111);
       const response = await requestDeleteWater(recordId);
       return response;
     } catch (error) {

@@ -1,7 +1,8 @@
 import { useModalContext } from '../../../context/useModalContext';
 import css from './DeleteWaterModal.module.css';
 import { useDispatch } from 'react-redux';
-import { apiDeleteWater, updateWaterAmount} from '../../../redux/water/operation';
+import toast from 'react-hot-toast';
+import { apiDeleteWater} from '../../../redux/water/operation';
 
 const DeleteWaterModal = () => {
   const { closeModal } = useModalContext();
@@ -10,10 +11,10 @@ const DeleteWaterModal = () => {
   const handleDelete = async () => {
     try {
       await dispatch(apiDeleteWater(recordId)).unwrap();
-      await dispatch(updateWaterAmount()).unwrap();
       closeModal();
+      toast.success('Entry deleted successfully');
     } catch (error) {
-      alert('Failed to delete the entry.');
+      toast.error('Failed to delete the entry.');
     }
   };
 
