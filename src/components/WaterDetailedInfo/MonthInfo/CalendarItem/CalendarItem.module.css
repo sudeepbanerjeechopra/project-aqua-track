@@ -33,6 +33,12 @@
 .number.notFull {
   background-color: #323f4733;
 }
+
+.number.current {
+  background: var(--accent);
+  color: var(--white);
+}
+
 .number.active,
 .number:hover {
   background: var(--dark-blue);

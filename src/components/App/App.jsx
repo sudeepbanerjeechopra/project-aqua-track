@@ -66,6 +66,7 @@ const App = () => {
               <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
             }
           />
+
           <Route path="/verify-email" element={<VerifyEmailPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
