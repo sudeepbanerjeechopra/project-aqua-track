@@ -7,7 +7,6 @@ import { apiDeleteWater } from '../../../redux/water/operation';
 const DeleteWaterModal = ({ onDelete }) => {
   const { closeModal } = useModalContext();
   const dispatch = useDispatch();
-  console.log(onDelete);
 
   const handleDelete = async () => {
     try {

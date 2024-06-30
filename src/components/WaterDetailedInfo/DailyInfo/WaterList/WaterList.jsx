@@ -3,18 +3,17 @@ import WaterItem from '../WaterItem/WaterItem';
 import css from './WaterList.module.css';
 import { apiGetWaterDay } from '../../../../redux/water/operation';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectDate } from '../../../../redux/water/selectors';
+import { selectDate, selectWaterDay } from '../../../../redux/water/selectors';
 
-function WaterList({ waterDay }) {
+function WaterList() {
   const currentDay = useSelector(selectDate);
+  const waterDay = useSelector(selectWaterDay);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(apiGetWaterDay(currentDay));
-  }, [currentDay, dispatch]);
-
-  console.log(waterDay);
+  }, [currentDay, dispatch, waterDay]);
 
   return (
     <ul className={css.list}>

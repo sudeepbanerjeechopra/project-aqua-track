@@ -8,7 +8,7 @@ import css from './WaterItem.module.css';
 function WaterItem({ data }) {
   const { openModal } = useModalContext();
 
-  const { id, amount, date } = data;
+  const { _id: id, amount, date } = data;
 
   const formatAmount = (amount) => {
     const mlAmount = amount * 1000;

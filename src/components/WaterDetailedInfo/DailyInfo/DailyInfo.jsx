@@ -25,7 +25,7 @@ function DailyInfo() {
       </div>
       {waterDay.length > 0 ? (
         <CustomScrollBar>
-          <WaterList waterDay={waterDay} />
+          <WaterList />
         </CustomScrollBar>
       ) : (
         <div className={css.text}>

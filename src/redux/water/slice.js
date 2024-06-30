@@ -1,20 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  apiDeleteWater,
-  apiGetWaterDay,
-  apiGetWaterMonth,
-  apiGetWaterStats,
-  addWater,
-  updateWaterAmount,
-} from './operation';
+import { apiDeleteWater, apiGetWaterDay, apiGetWaterMonth, addWater, updateWaterAmount } from './operation';
 
 const initialState = {
-  // для дати
   selectedDate: new Date().toISOString().split('T')[0],
   selectedDateData: [],
   errorDay: null,
   isLoadingDay: false,
-  // для вибраного місяця
   selectedMonth: {
     year: new Date().getFullYear(),
     month: new Date().getMonth() + 1,
@@ -23,15 +14,14 @@ const initialState = {
   errorMonth: null,
   isLoadingMonth: false,
   toggleInfo: true,
-  //DailyInfo
   waterDay: [],
   isLoadingWaterDay: false,
-  errorWaterWaterDay: null,
-  // some logic
+  errorWaterDay: null,
   entries: [],
   loading: false,
   error: null,
 };
+
 const handlePending = (state) => {
   state.loading = true;
   state.error = null;
@@ -105,7 +95,6 @@ const waterSlice = createSlice({
         }
       })
       .addCase(updateWaterAmount.rejected, handleRejected)
-
       .addCase(apiGetWaterDay.pending, (state) => {
         state.isLoadingWaterDay = true;
         state.errorWaterDay = null;
@@ -117,17 +106,15 @@ const waterSlice = createSlice({
       .addCase(apiGetWaterDay.rejected, (state, action) => {
         state.isLoadingWaterDay = false;
         state.errorWaterDay = action.payload;
-      }),
+      })
+      .addCase(apiDeleteWater.pending, handlePending)
+      .addCase(apiDeleteWater.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.waterDay = state.waterDay.filter((entry) => entry._id !== action.payload.id);
+      })
+      .addCase(apiDeleteWater.rejected, handleRejected),
 });
 
-export const {
-  increaseMonth,
-  decreaseMonth,
-  setToggleInfo,
-  setDate,
-  loading,
-  error,
-  entries,
-} = waterSlice.actions;
-
+export const { increaseMonth, decreaseMonth, setToggleInfo, setDate } = waterSlice.actions;
 export const waterReducer = waterSlice.reducer;
