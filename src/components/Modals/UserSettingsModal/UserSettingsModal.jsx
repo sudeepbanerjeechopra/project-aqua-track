@@ -1,9 +1,9 @@
 import { useModalContext } from '../../../context/useModalContext';
 import css from './UserSettingsModal.module.css';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { icons as sprite } from '../../../shared/icons/index';
-import axios from 'axios';
 import Loader from '../../Loader/Loader';
+import axios from 'axios';
 
 const UserSettingsModal = ({ isOpen }) => {
   const { closeModal } = useModalContext();
@@ -16,13 +16,13 @@ const UserSettingsModal = ({ isOpen }) => {
   const [name, setName] = useState(' ');
   const [email, setEmail] = useState(' ');
   const [loading, setLoading] = useState(true);
+  const [newData, setNewData] = useState({});
+  const [willDrink, setWillDrink] = useState();
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(
-          'https://aqua-track-api.onrender.com/users/profile'
-        );
+        const response = await axios.get('/users/profile');
         const result = response;
         setUserData(result.data);
       } catch (error) {
@@ -75,6 +75,55 @@ const UserSettingsModal = ({ isOpen }) => {
     }
   };
 
+  const handleSubmit = async (event) => {
+    console.log(newData);
+    event.preventDefault();
+    await axios.patch('/users/update', newData);
+    try {
+      const response = await axios.patch('/users/update', newData);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+    closeModal();
+  };
+
+  useMemo(() => {
+    if (userData) {
+      setNewData({
+        avatar: avatarFile ? avatarFile : userData.avatar,
+        dailyActivityTime: time,
+        dailyWaterNorm: willDrink ? willDrink : amount,
+        email: email,
+        gender: gender,
+        name: name,
+        weight: weight,
+      });
+    }
+  }, [
+    userData,
+    avatarFile,
+    time,
+    amount,
+    email,
+    gender,
+    name,
+    weight,
+    willDrink,
+  ]);
+
+  useMemo(() => {
+    if (userData) {
+      setGender(userData.gender);
+      setAmount(userData.dailyWaterNorm);
+      setWillDrink(userData.dailyWaterNorm);
+      setTime(userData.dailyActivityTime ? userData.dailyActivityTime : '0');
+      setEmail(userData.email);
+      setName(userData.name);
+      setWeight(userData.weight);
+    }
+  }, [userData]);
+
   if (loading) {
     return (
       <div>
@@ -90,6 +139,7 @@ const UserSettingsModal = ({ isOpen }) => {
             <div className={css.picWrapper}>
               <div className={css.pic}>
                 <img
+                  className={css.avatar}
                   src={
                     avatarFile
                       ? URL.createObjectURL(avatarFile)
@@ -126,7 +176,7 @@ const UserSettingsModal = ({ isOpen }) => {
                     onChange={(e) => {
                       setGender(e.target.value);
                     }}
-                    checked={gender === 'woman'}
+                    checked={gender === 'woman' || userData.gender === 'woman'}
                   />
                   <label className={css.radioLabel} htmlFor="woman">
                     Woman
@@ -142,7 +192,7 @@ const UserSettingsModal = ({ isOpen }) => {
                     onChange={(e) => {
                       setGender(e.target.value);
                     }}
-                    checked={gender === 'man'}
+                    checked={gender === 'man' || userData.gender === 'man'}
                   />
                   <label className={css.radioLabel} htmlFor="man">
                     Man
@@ -161,7 +211,6 @@ const UserSettingsModal = ({ isOpen }) => {
                   value={name === ' ' ? userData.name : name}
                   onChange={(e) => {
                     setName(e.target.value);
-                    console.log(name);
                   }}
                 />
               </div>
@@ -173,10 +222,9 @@ const UserSettingsModal = ({ isOpen }) => {
                   name="email"
                   id="email"
                   required
-                  value={email === ' ' ? userData.email : email}
+                  value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
-                    console.log(email);
                   }}
                 />
               </div>
@@ -223,10 +271,11 @@ const UserSettingsModal = ({ isOpen }) => {
                   type="number"
                   name="weight"
                   id="weight"
+                  step=".1"
                   onChange={(e) => {
                     setWeight(e.target.value);
                   }}
-                  value={userData.weight || weight}
+                  value={weight}
                 />
               </div>
               <div className={css.userInfoInputContainer}>
@@ -238,6 +287,8 @@ const UserSettingsModal = ({ isOpen }) => {
                   type="number"
                   name="time"
                   id="time"
+                  step=".1"
+                  value={time}
                   onChange={(e) => {
                     setTime(e.target.value);
                   }}
@@ -261,12 +312,21 @@ const UserSettingsModal = ({ isOpen }) => {
                 type="number"
                 name="water"
                 id="water"
+                step=".1"
+                value={willDrink}
+                onChange={(e) => {
+                  setWillDrink(e.target.value);
+                }}
               />
             </div>
           </div>
 
           <div className={css.buttonContainer}>
-            <button className={css.saveButton} type="submit">
+            <button
+              className={css.saveButton}
+              type="submit"
+              onClick={handleSubmit}
+            >
               Save
             </button>
           </div>
