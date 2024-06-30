@@ -44,6 +44,12 @@ h3 {
   height: 75px;
 }
 
+.avatar {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
 .uploadWrapper {
   display: flex;
   gap: 8px;
@@ -201,8 +207,17 @@ span.textAccent {
   color: var(--secondary-text);
 }
 
-@media screen and (min-width: 768px) {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+@media screen and (min-width: 768px) {
   .wrapper {
     max-width: 648px;
     padding: 40px;
@@ -224,7 +239,7 @@ span.textAccent {
     width: 20px;
     height: 20px;
   }
-  
+
   .textRegular {
     font-size: 16px;
     line-height: 1.5;
