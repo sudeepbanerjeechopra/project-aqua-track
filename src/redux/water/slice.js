@@ -77,10 +77,10 @@ const waterSlice = createSlice({
         state.errorMonth = action.payload;
       })
       .addCase(addWater.pending, handlePending)
-      .addCase(addWater.fulfilled, (state, action) => {
+      .addCase(addWater.fulfilled, (state) => {
         state.loading = false;
         state.error = null;
-        state.waterDay = [...state.waterDay, action.payload.newWaterRecord];
+        state.waterDay = [...state.waterDay];
       })
       .addCase(addWater.rejected, handleRejected)
       .addCase(updateWaterAmount.pending, handlePending)

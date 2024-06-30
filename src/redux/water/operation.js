@@ -61,10 +61,10 @@ export const addWater = createAsyncThunk(
   async (newEntry, thunkAPI) => {
     try {
       const response = await requestAddWater(newEntry);
-      toast.success(response.data.message);
+      toast.success(response.message);
       return response.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

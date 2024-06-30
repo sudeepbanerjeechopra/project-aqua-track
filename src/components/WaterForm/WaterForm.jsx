@@ -35,6 +35,13 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
     return `${hours}:${minutes}`;
   };
 
+  const formatTime = (isoString) => {
+    const date = new Date(isoString);
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+  };
+
   const {
     handleSubmit,
     formState: { errors, isValid },
@@ -45,9 +52,10 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
     resolver: yupResolver(schemaWater),
     defaultValues: {
       waterAmount: initialData ? initialData.amount * 1000 : 50,
-      time: initialData
-        ? new Date(initialData.date).toISOString().slice(11, 16)
-        : defaultTime(),
+      time:
+        operationType === 'edit' && initialData
+          ? formatTime(initialData.date)
+          : defaultTime(),
       keyboardAmount: initialData ? initialData.amount * 1000 : 50,
     },
   });
@@ -61,6 +69,7 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
       await schemaWater.validate(data, { abortEarly: false });
 
       const [hours, minutes] = data.time.split(':');
+
       const newEntry = {
         amount: mlToDecimal(data.waterAmount),
         hours: parseInt(hours, 10),
@@ -75,6 +84,8 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
           updateWaterAmount({
             id: waterId,
             amount: mlToDecimal(data.waterAmount),
+            hours: parseInt(hours, 10),
+            minutes: parseInt(minutes, 10),
           })
         );
         closeModal();
