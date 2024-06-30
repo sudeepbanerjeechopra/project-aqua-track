@@ -26,7 +26,7 @@ const schemaWater = yup.object().shape({
 });
 
 const WaterForm = ({ operationType, recordId }) => {
-  //   console.log('Record ID:', recordId);
+    console.log('Record ID:', recordId);
   const dispatch = useDispatch();
   const { closeModal } = useModalContext();
   const loading = useSelector(selectLoading);
@@ -58,10 +58,10 @@ const WaterForm = ({ operationType, recordId }) => {
     return parseFloat((ml / 1000).toFixed(3));
   };
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data, recordId) => {
     try {
-      //   console.log('Received data:', data);
-      //   console.log('Record ID:', recordId);
+        console.log('Received data:', data);
+        console.log('Record ID:', recordId);
       await schemaWater.validate(data, { abortEarly: false });
 
       const [hours, minutes] = data.time.split(':');
@@ -71,18 +71,16 @@ const WaterForm = ({ operationType, recordId }) => {
         minutes: parseInt(minutes, 10),
       };
 
-      //   console.log(newEntry.amount);
+        console.log(newEntry.amount);
 
       if (operationType === 'add') {
         console.log(newEntry);
         dispatch(addWater(newEntry));
       } else if (operationType === 'edit' && recordId) {
-        dispatch(
-          updateWaterAmount({
-            waterId: recordId,
-            updatedAmount: data.waterAmount,
-          })
-        );
+      dispatch(updateWaterAmount({
+        id: recordId,
+        updatedAmount: data.waterAmount,
+      }));
         closeModal();
         toast.success('Data successfully updated!');
       }
@@ -92,6 +90,7 @@ const WaterForm = ({ operationType, recordId }) => {
   };
 
   useEffect(() => {
+    console.log('Record ID:', recordId);
     dispatch(updateWaterAmount());
   }, [dispatch, entries, recordId]);
 
