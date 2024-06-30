@@ -1,0 +1,12 @@
+.wrapperTracker {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+@media screen and (min-width: 1440px) {
+    .wrapperTracker {
+        flex-direction: row;
+        gap: 32px;
+    }
+}

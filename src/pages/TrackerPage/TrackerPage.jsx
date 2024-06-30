@@ -4,6 +4,8 @@ import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedI
 import Modals from '../../components/Modals/Modals';
 import Container from '../../shared/components/Container/Container';
 
+import style from './TrackerPage.module.css';
+
 const TrackerPage = () => {
   return (
     <>
@@ -12,8 +14,10 @@ const TrackerPage = () => {
       </Helmet>
 
       <Container>
-        <WaterMainInfo />
-        <WaterDetailedInfo />
+        <div className={style.wrapperTracker}>
+          <WaterMainInfo />
+          <WaterDetailedInfo />
+        </div>
       </Container>
       <Modals />
     </>

@@ -6,10 +6,12 @@ import css from './WaterMainInfo.module.css';
 
 import { default as bottel1x } from '../../shared/images/trackerPage/bottel@x1.webp';
 import { default as bottel2x } from '../../shared/images/trackerPage/bottel@x2.webp';
+import Logo from '../../shared/components/Logo/Logo';
 
 const WaterMainInfo = () => {
   return (
     <div className={css.container}>
+      <Logo className={css.logoTracker} />
       <WaterDailyNorma />
       <WaterProgressBar />
       <AddWaterBtn />

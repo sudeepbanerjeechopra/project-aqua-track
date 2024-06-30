@@ -10,7 +10,9 @@
   border-radius: 15px;
   padding: 12px;
   background-color: var(--white);
+  z-index: 2;
 }
+
 .title {
   pointer-events: none;
   font-weight: bold;
@@ -18,9 +20,11 @@
   line-height: 1;
   color: var(--color-darkblue);
 }
+
 .slider {
   width: 100%;
 }
+
 .percentBar {
   display: flex;
   justify-content: space-between;
@@ -30,6 +34,7 @@
   opacity: 0.6;
   margin-top: 4px;
 }
+
 .valueLabel {
   position: absolute;
   top: -30px;
@@ -43,26 +48,32 @@
   z-index: 1;
   display: none;
 }
+
 .slider:hover .valueLabel {
   display: block;
 }
+
 .fifty {
   text-align: center;
 }
+
 .slider:global {
   height: 6px !important;
   pointer-events: none;
   padding: 0 !important;
 }
+
 .customTooltip {
   background-color: #9be1a0 !important;
   color: #ffffff !important;
   font-size: 12px !important;
   border-radius: 8px !important;
 }
+
 .customArrow::before {
   background-color: #9be1a0 !important;
 }
+
 @media screen and (min-width: 768px) {
   .container {
     left: 204px;
@@ -72,19 +83,23 @@
     height: 106px;
     padding: 15px;
   }
+
   .title {
     font-size: 15px;
     line-height: 1.49;
     font-weight: 700;
   }
+
   .percentBar {
     font-size: 12px;
     line-height: 1.86;
   }
+
   .slider:global {
     height: 8px !important;
   }
 }
+
 @media screen and (min-width: 1440px) {
   .container {
     left: 188px;

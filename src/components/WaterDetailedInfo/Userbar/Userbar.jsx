@@ -47,7 +47,7 @@ const Userbar = () => {
         </button>
         {menuOpen && (
           <div className={css.userBarOpenMenu}>
-            <ul>
+            <ul className={css.wrapperLink}>
               <li>
                 <a
                   onClick={() => openModal(<UserSettingsModal isOpen={true} />)}
