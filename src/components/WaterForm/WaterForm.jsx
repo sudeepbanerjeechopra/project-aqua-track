@@ -27,7 +27,7 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModalContext();
   const loading = useSelector(selectLoading);
-  // const entries = useSelector(selectEntries);
+
   const defaultTime = () => {
     const currentTime = new Date();
     const hours = String(currentTime.getHours()).padStart(2, '0');
@@ -69,11 +69,8 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
 
       if (operationType === 'add') {
         dispatch(addWater(newEntry));
+        closeModal();
       } else if (operationType === 'edit' && waterId) {
-        console.log({
-          id: waterId,
-          amount: data.waterAmount,
-        });
         dispatch(
           updateWaterAmount({
             id: waterId,
