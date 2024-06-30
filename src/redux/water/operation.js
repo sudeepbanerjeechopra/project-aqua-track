@@ -72,10 +72,11 @@ export const addWater = createAsyncThunk(
 
 export const updateWaterAmount = createAsyncThunk(
   'water/updateWaterAmount',
-  async ({ waterId, updatedAmount }, thunkAPI) => {
+  async (newEntry, thunkAPI) => {
     try {
-      const response = await requestUpdateWater(waterId, updatedAmount);
-      toast.success(response.data.message);
+      const response = await requestUpdateWater(newEntry);
+      console.log(response);
+      toast.success(response.message);
       return response.data;
     } catch (error) {
       toast.error(error.response.data.message);

@@ -13,7 +13,7 @@ function WaterList() {
 
   useEffect(() => {
     dispatch(apiGetWaterDay(currentDay));
-  }, [currentDay, dispatch, waterDay]);
+  }, [currentDay, dispatch]);
 
   return (
     <ul className={css.list}>

@@ -4,10 +4,8 @@ import style from './WaterForm.module.css';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { addWater, updateWaterAmount } from '../../redux/water/operation';
-import { selectLoading, selectEntries } from '../../redux/water/selectors';
+import { selectLoading } from '../../redux/water/selectors';
 import { icons as sprite } from '../../shared/icons';
-import toast from 'react-hot-toast';
-import { useEffect } from 'react';
 import Loader from '../../components/Loader/Loader';
 import { useModalContext } from '../../context/useModalContext';
 
@@ -25,13 +23,11 @@ const schemaWater = yup.object().shape({
     .max(500, 'The maximum allowed amount of water is 500 ml.'),
 });
 
-const WaterForm = ({ operationType, recordId }) => {
-    console.log('Record ID:', recordId);
+const WaterForm = ({ operationType, waterId, initialData }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModalContext();
   const loading = useSelector(selectLoading);
-  const entries = useSelector(selectEntries);
-
+  // const entries = useSelector(selectEntries);
   const defaultTime = () => {
     const currentTime = new Date();
     const hours = String(currentTime.getHours()).padStart(2, '0');
@@ -48,9 +44,11 @@ const WaterForm = ({ operationType, recordId }) => {
   } = useForm({
     resolver: yupResolver(schemaWater),
     defaultValues: {
-      waterAmount: 50,
-      time: defaultTime(),
-      keyboardAmount: 50,
+      waterAmount: initialData ? initialData.amount * 1000 : 50,
+      time: initialData
+        ? new Date(initialData.date).toISOString().slice(11, 16)
+        : defaultTime(),
+      keyboardAmount: initialData ? initialData.amount * 1000 : 50,
     },
   });
 
@@ -58,10 +56,8 @@ const WaterForm = ({ operationType, recordId }) => {
     return parseFloat((ml / 1000).toFixed(3));
   };
 
-  const onSubmit = async (data, recordId) => {
+  const onSubmit = async (data) => {
     try {
-        console.log('Received data:', data);
-        console.log('Record ID:', recordId);
       await schemaWater.validate(data, { abortEarly: false });
 
       const [hours, minutes] = data.time.split(':');
@@ -71,28 +67,25 @@ const WaterForm = ({ operationType, recordId }) => {
         minutes: parseInt(minutes, 10),
       };
 
-        console.log(newEntry.amount);
-
       if (operationType === 'add') {
-        console.log(newEntry);
         dispatch(addWater(newEntry));
-      } else if (operationType === 'edit' && recordId) {
-      dispatch(updateWaterAmount({
-        id: recordId,
-        updatedAmount: data.waterAmount,
-      }));
+      } else if (operationType === 'edit' && waterId) {
+        console.log({
+          id: waterId,
+          amount: data.waterAmount,
+        });
+        dispatch(
+          updateWaterAmount({
+            id: waterId,
+            amount: mlToDecimal(data.waterAmount),
+          })
+        );
         closeModal();
-        toast.success('Data successfully updated!');
       }
     } catch (error) {
-      toast.error('Invalid value of water! Min: 0, Max: 500');
+      console.log(error);
     }
   };
-
-  useEffect(() => {
-    console.log('Record ID:', recordId);
-    dispatch(updateWaterAmount());
-  }, [dispatch, entries, recordId]);
 
   const handleWaterChange = (newValue) => {
     setValue('waterAmount', newValue);
