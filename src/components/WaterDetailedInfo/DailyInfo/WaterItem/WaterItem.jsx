@@ -17,9 +17,13 @@ function WaterItem({ data }) {
 
   const formatTime = (isoString) => {
     const date = new Date(isoString);
-    const hours = String(date.getHours()).padStart(2, '0');
+    let hours = date.getHours();
     const minutes = String(date.getMinutes()).padStart(2, '0');
-    return `${hours}:${minutes}`;
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    const strHours = String(hours).padStart(2, '0');
+    return `${strHours}:${minutes} ${ampm}`;
   };
 
   return (
@@ -29,7 +33,7 @@ function WaterItem({ data }) {
       </svg>
       <div className={css.info}>
         <p className={css.info_ml}>{formatAmount(amount)}</p>
-        <p className={css.info_time}>{formatTime(date)} AM</p>
+        <p className={css.info_time}>{formatTime(date)}</p>
       </div>
       <div className={css.btns}>
         <button

@@ -20,16 +20,19 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    gap: 6px;
+    align-items: center;
 }
 
 .info_ml {
     font-size: 14px;
+    line-height: 1.49;
     font-weight: 700;
 }
 
 .info_time {
     font-size: 11px;
+    line-height: 1.87;
+    color: var(--grey-text);
 }
 
 .btns {
