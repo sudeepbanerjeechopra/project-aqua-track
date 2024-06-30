@@ -1,6 +1,7 @@
 import { useModalContext } from '../../../../context/useModalContext.jsx';
 import { icons as sprite } from '../../../../shared/icons/index.js';
 import WaterModal from '../../../WaterModal/WaterModal.jsx';
+import DeleteWaterModal from '../../../Modals/DeleteWaterModal/DeleteWaterModal.jsx';
 
 import css from './WaterItem.module.css';
 
@@ -41,7 +42,12 @@ function WaterItem({ data }) {
             <use xlinkHref={`${sprite}#edit`} />
           </svg>
         </button>
-        <button className={css.btn}>
+        <button
+          className={css.btn}
+          onClick={() => {
+            openModal(<DeleteWaterModal onDelete={id} />);
+          }}
+        >
           <svg className={css.svg_trash}>
             <use xlinkHref={`${sprite}#trash`} />
           </svg>
