@@ -79,7 +79,15 @@ const UserSettingsModal = ({ isOpen }) => {
     console.log(newData);
     event.preventDefault();
     try {
-      const response = await axios.patch('/users/update', newData);
+      const formData = new FormData();
+      formData.append('name', newData.name);
+      formData.append('avatar', newData.avatar);
+      formData.append('dailyActivityTime', newData.dailyActivityTime);
+      formData.append('dailyWaterNorm', newData.dailyWaterNorm);
+      formData.append('email', newData.email);
+      formData.append('gender', newData.gender);
+      formData.append('weight', newData.weight);
+      const response = await axios.patch('/users/update', formData);
       console.log(response);
     } catch (error) {
       console.log(error);
