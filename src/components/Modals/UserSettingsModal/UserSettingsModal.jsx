@@ -78,7 +78,6 @@ const UserSettingsModal = ({ isOpen }) => {
   const handleSubmit = async (event) => {
     console.log(newData);
     event.preventDefault();
-    await axios.patch('/users/update', newData);
     try {
       const response = await axios.patch('/users/update', newData);
       console.log(response);
