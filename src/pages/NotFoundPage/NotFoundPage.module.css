@@ -167,8 +167,21 @@
     }
 }
 
+.goBack {
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.01em;
+    text-decoration: underline;
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 20px;
+}
+
 @media (max-width: 375.99px) {
     .message {
+        display: block;
         font-size: 25px;
         margin-bottom: 20px;
     }
@@ -199,6 +212,7 @@
     }
 
     .message {
+        width: 800px;
         font-size: 50px;
         margin-bottom: 30px;
     }
@@ -215,7 +229,7 @@
 
     .message {
         font-size: 40px;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 
     .cat {

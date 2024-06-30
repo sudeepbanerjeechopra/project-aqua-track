@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import style from './NotFoundPage.module.css';
 import Container from '../../shared/components/Container/Container';
+import { NavLink } from 'react-router-dom';
 
 const ErrorPage = () => {
   return (
@@ -12,7 +13,12 @@ const ErrorPage = () => {
         <Container>
           <div className={style.positionCat}>
             <h2 className={style.titlePage}>404</h2>
-            <p className={style.message}>You came to the wrong neighborhood</p>
+            <p className={style.message}>
+              {`Don't panic, take a sip of water and go back to main to try again.`}
+            </p>
+            <NavLink to="/" className={style.goBack}>
+              Return to the main page
+            </NavLink>
             <div className={style.cat}>
               <div className={style.ears}>
                 <div className={`${style.ear} ${style.rightSide}`}></div>
