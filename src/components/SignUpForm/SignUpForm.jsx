@@ -13,6 +13,7 @@ import { registerUser } from '../../redux/auth/operation';
 
 import { icons as sprite } from '../../shared/icons/index';
 import style from '../UserForm.module.css';
+import s from './SignUpPage.module.css';
 import toast from 'react-hot-toast';
 
 const SignUpForm = () => {
@@ -71,8 +72,8 @@ const SignUpForm = () => {
   return (
     <>
       <WrapperWelcome
-        classNameLogo={style.form}
-        classNameWelcom={style.welcomPadding}
+        classNameLogo={`${style.form} ${s.form}`}
+        classNameWelcom={`${style.welcomPadding} ${s.welcomPadding}`}
       >
         <div className={style.formBlock}>
           <h2 className={style.formTitle}>Sign Up</h2>
@@ -180,16 +181,17 @@ const SignUpForm = () => {
               </div>
             </div>
 
-            <button
-              type="submit"
-              className={style.btnform}
-              disabled={!isDirty || !isValid}
-            >
-              Sign Up
-            </button>
+            <div className={s.btnForm}>
+              <button
+                type="submit"
+                className={style.btnform}
+                disabled={!isDirty || !isValid}
+              >
+                Sign Up
+              </button>
+              <GoogleBtn type="Up" className={s.glg} />
+            </div>
           </form>
-
-          <GoogleBtn type="Up" />
 
           <div className={style.haveAccount}>
             <p className={style.haveAccountText}>Already have account?</p>{' '}
