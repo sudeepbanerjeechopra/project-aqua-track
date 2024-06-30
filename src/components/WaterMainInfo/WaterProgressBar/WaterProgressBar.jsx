@@ -60,7 +60,9 @@ const WaterProgressBar = () => {
     if (isToday(dateObj)) {
       return 'Today';
     } else {
-      return dateObj.toLocaleDateString();
+      const day = dateObj.getDate();
+      const month = dateObj.toLocaleString('en-US', { month: 'long' });
+      return `${day}, ${month}`;
     }
   };
 
