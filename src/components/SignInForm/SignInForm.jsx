@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useEffect, useId, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -12,8 +12,9 @@ import { signInSchema } from './signInSchema';
 import { icons as sprite } from '../../shared/icons/index';
 import style from '../UserForm.module.css';
 import s from './SignInForm.module.css';
-import { logIn } from '../../redux/auth/operation';
+import { logIn, refreshUser } from '../../redux/auth/operation';
 import toast from 'react-hot-toast';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
 const SignInForm = () => {
   const [openPassword, setOpenPassword] = useState(false);
@@ -22,6 +23,7 @@ const SignInForm = () => {
   const passwordId = useId();
 
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const {
     register,
@@ -38,9 +40,9 @@ const SignInForm = () => {
     setOpenPassword((prevState) => !prevState);
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     try {
-      dispatch(logIn(data));
+      await dispatch(logIn(data)).unwrap();
       reset();
     } catch (error) {
       console.error(error);
@@ -54,6 +56,13 @@ const SignInForm = () => {
       toast.error(errors.email.message);
     }
   }, [errors.password, errors.email]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(refreshUser());
+    }
+  }, [isLoggedIn, dispatch]);
+
   return (
     <>
       <WrapperWelcome

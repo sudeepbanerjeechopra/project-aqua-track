@@ -57,6 +57,9 @@ export const logIn = createAsyncThunk(
             const res = await axios.post('/users/signin', credentials);
             setAuthHeader(res.data.token);
             toast.success(res.data.message);
+
+            thunkAPI.dispatch(refreshUser());
+
             return res.data;
         } catch (error) {
             toast.error(error.response.data.message);
@@ -92,15 +95,16 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 export const refreshUser = createAsyncThunk(
     'auth/refresh',
     async (_, thunkAPI) => {
-        const state = thunkAPI.getState();
-        const persistedToken = state.auth.token;
+        // const state = thunkAPI.getState();
+        // const persistedToken = state.auth.token;
+        // console.log(persistedToken);
 
-        if (persistedToken === null) {
-            return thunkAPI.rejectWithValue('Unable to fetch user');
-        }
-
+        // if (persistedToken === null) {
+        //     console.log('object');
+        //     return thunkAPI.rejectWithValue('Unable to fetch user');
+        // }
         try {
-            setAuthHeader(persistedToken);
+            // setAuthHeader(persistedToken);
             const res = await axios.get('/users/profile');
             return res.data;
         } catch (error) {

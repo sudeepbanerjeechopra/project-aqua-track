@@ -4,8 +4,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { icons as sprite } from '../../../shared/icons/index';
 import Loader from '../../Loader/Loader';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
-const UserSettingsModal = ({ isOpen }) => {
+const UserSettingsModal = ({ isOpen, setIsUserUpdated }) => {
   const { closeModal } = useModalContext();
   const [userData, setUserData] = useState(null);
   const [avatarFile, setAvatarFile] = useState(null);
@@ -89,6 +90,8 @@ const UserSettingsModal = ({ isOpen }) => {
       formData.append('weight', newData.weight);
       const response = await axios.patch('/users/update', formData);
       console.log(response);
+      setIsUserUpdated(true);
+      toast.success('Your data has been updated successfully');
     } catch (error) {
       console.log(error);
     }
