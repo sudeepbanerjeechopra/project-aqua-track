@@ -15,6 +15,7 @@ const initialState = {
   isLoadingMonth: false,
   toggleInfo: true,
   waterDay: [],
+  percentDay: null,
   isLoadingWaterDay: false,
   errorWaterDay: null,
   entries: [],
@@ -102,6 +103,7 @@ const waterSlice = createSlice({
       .addCase(apiGetWaterDay.fulfilled, (state, action) => {
         state.isLoadingWaterDay = false;
         state.waterDay = [...action.payload.records];
+        state.percentDay = action.payload.percentComplete;
       })
       .addCase(apiGetWaterDay.rejected, (state, action) => {
         state.isLoadingWaterDay = false;

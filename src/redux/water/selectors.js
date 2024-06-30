@@ -8,6 +8,7 @@ export const selectDate = (state) => state.water.selectedDate;
 
 // logic for DailyInfo
 export const selectWaterDay = (state) => state.water.waterDay;
+export const selectPercentDay = (state) => state.water.percentDay;
 
 // other selectors
 export const selectEntries = (state) => state.water.entries;
