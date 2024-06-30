@@ -1,8 +1,8 @@
 import css from '../AdvantagesSection/AdvantagesSection.module.css';
-import { selectUsersCount, selectUsersAvatars  } from '../../../redux/users/selectors.js';
+import { selectUsersCount } from '../../../redux/users/selectors.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getUsers } from '../../../redux/users/operation.js'
+import { getUsers } from '../../../redux/users/operation.js';
 
 const AdvantagesSection = () => {
   const usersCount = useSelector(selectUsersCount);
@@ -10,7 +10,6 @@ const AdvantagesSection = () => {
   // {usersAvatars.map((avatar) => {
   //   return <div className={css.customer}><img src={avatar} alt="user avatar" /></div>
   // })}
-  
 
   const dispatch = useDispatch();
 
@@ -21,7 +20,6 @@ const AdvantagesSection = () => {
   return (
     <div className={css.main}>
       <div className={css.customers}>
-        
         <div className={css.customer}></div>
         <div className={css.customer}></div>
         <div className={css.customer}></div>

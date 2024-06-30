@@ -13,7 +13,7 @@ function AddWaterBtn() {
         onClick={() => openModal(<WaterModal operationType={'add'} />)}
       >
         <svg className={css.svg}>
-          <use xlinkHref={`${sprite}#add-water-green`} />
+          <use xlinkHref={`${sprite}#plus-add-water`} />
         </svg>
       </button>
       <p className={css.text}>Add water</p>

@@ -51,7 +51,17 @@
     height: 14px;
     fill: var(--white);
     stroke: var(--dark-blue);
+
+    transition: stroke var(--animation);
 }
+
+.svg_edit:hover,
+.svg_edit:active,
+.svg_trash:hover,
+.svg_trash:active {
+    stroke: var(--accent);
+}
+
 
 @media (min-width: 768px) {
 

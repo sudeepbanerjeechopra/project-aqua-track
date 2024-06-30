@@ -7,23 +7,34 @@
 }
 
 .btn {
-    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: none;
-    padding: 0;
+    background-color: var(--accent);
+
+    transition: background-color var(--animation);
 }
 
 .svg {
-    transition: all 0.3s ease-in-out;
+    stroke: var(--dark-blue);
     width: 30px;
     height: 30px;
+
+    transition: stroke var(--animation);
 }
 
-.btn:hover .svg {
-    --color1: var(--white);
-    --color2: var(--dark-blue);
+.btn:hover .svg,
+.btn:active .svg {
+    stroke: var(--white);
+}
+
+.btn:hover,
+.btn:active {
+    background-color: var(--dark-blue);
 }
 
 .text {
@@ -32,7 +43,3 @@
     line-height: 1.5em;
     letter-spacing: 0.01em;
 }
-
-@media (min-width: 768px) {}
-
-@media (min-width: 1440px) {}

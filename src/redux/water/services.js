@@ -6,9 +6,7 @@ export const requestAddWater = async (water) => {
 };
 
 export const requestUpdateWater = async (water) => {
-  const { data } = await axios.patch(`/water/${water.id}/amount`, {
-    amount: water.amount,
-  });
+  const { data } = await axios.put(`/water/${water.id}`, { amount: water.amount });
   return data;
 };
 

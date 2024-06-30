@@ -15,7 +15,6 @@ const TrackerPage = () => {
         <WaterMainInfo />
         <WaterDetailedInfo />
       </Container>
-
       <Modals />
     </>
   );
