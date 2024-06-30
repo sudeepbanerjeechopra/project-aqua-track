@@ -58,9 +58,9 @@ export const logIn = createAsyncThunk(
             setAuthHeader(res.data.token);
             toast.success(res.data.message);
 
-            thunkAPI.dispatch(refreshUser());
+            const profileRes = await axios.get('/users/profile');
 
-            return res.data;
+            return { ...res.data, user: profileRes.data };
         } catch (error) {
             toast.error(error.response.data.message);
             return thunkAPI.rejectWithValue(error.message);
@@ -75,7 +75,10 @@ export const logInWithGoogle = createAsyncThunk(
             const res = await axios.get('/users/google', credentials);
             setAuthHeader(res.data.token);
             toast.success(res.data.message);
-            return res.data;
+
+            const profileRes = await axios.get('/users/profile');
+
+            return { ...res.data, user: profileRes.data };
         } catch (error) {
             toast.error(error.response.data.message);
             return thunkAPI.rejectWithValue(error.message);
@@ -95,16 +98,14 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 export const refreshUser = createAsyncThunk(
     'auth/refresh',
     async (_, thunkAPI) => {
-        // const state = thunkAPI.getState();
-        // const persistedToken = state.auth.token;
-        // console.log(persistedToken);
+        const state = thunkAPI.getState();
+        const persistedToken = state.auth.token;
 
-        // if (persistedToken === null) {
-        //     console.log('object');
-        //     return thunkAPI.rejectWithValue('Unable to fetch user');
-        // }
+        if (persistedToken === null) {
+            return thunkAPI.rejectWithValue('Unable to fetch user');
+        }
         try {
-            // setAuthHeader(persistedToken);
+            setAuthHeader(persistedToken);
             const res = await axios.get('/users/profile');
             return res.data;
         } catch (error) {
@@ -138,6 +139,7 @@ export const forgetPassword = createAsyncThunk(
         }
     }
 );
+
 export const resetPassword = createAsyncThunk(
     'auth/reset',
     async (credentials, thunkAPI) => {

@@ -26,7 +26,7 @@ const Userbar = () => {
   useEffect(() => {
     if (isUserUpdated) {
       dispatch(refreshUser());
-      setIsUserUpdated(false); // Встановлюємо прапорець у false після оновлення
+      setIsUserUpdated(false);
     }
   }, [dispatch, isUserUpdated]);
 

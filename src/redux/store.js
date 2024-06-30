@@ -31,7 +31,7 @@ const waterPersistConfig = {
     'selectedDateData',
     'selectedMonth',
     'monthData',
-    'toggleInfo',
+    'toggleInfo'
   ],
 };
 
