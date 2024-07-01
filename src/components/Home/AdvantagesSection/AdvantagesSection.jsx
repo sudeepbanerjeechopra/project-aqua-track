@@ -50,13 +50,7 @@ const AdvantagesSection = () => {
       data-aos-duration="500"
       className={css.main}
     >
-      <div
-        data-aos="zoom-in"
-        data-aos-easing="ease-in-back"
-        data-aos-delay="300"
-        data-aos-offset="0"
-        className={css.customers}
-      >
+      <div className={css.customers}>
         {usersLoading ? (
           <div className={css.wrapperHappy}>
             {currentAvatars.map((avatar, idx) => (
@@ -89,38 +83,16 @@ const AdvantagesSection = () => {
         </p>
       </div>
       <div className={css.benefits}>
-        <div
-          data-aos="zoom-in"
-          data-aos-easing="ease-in-back"
-          data-aos-delay="300"
-          data-aos-offset="0"
-          className={css.commonCont}
-        >
+        <div className={css.commonCont}>
           <div className={css.firstBen}>
             <svg className={css.iconOEllips}>
               <use xlinkHref={`${sprite}#ellips`} />
             </svg>
-            <p
-              data-aos="zoom-in"
-              data-aos-easing="ease-in-back"
-              data-aos-delay="300"
-              data-aos-offset="0"
-              className={css.benText}
-            >
-              Habit drive
-            </p>
+            <p className={css.benText}>Habit drive</p>
           </div>
           <p className={css.secBen}>View statistics</p>
         </div>
-        <p
-          data-aos="zoom-in"
-          data-aos-easing="ease-in-back"
-          data-aos-delay="300"
-          data-aos-offset="0"
-          className={css.thirdBen}
-        >
-          Personal rate setting
-        </p>
+        <p className={css.thirdBen}>Personal rate setting</p>
       </div>
     </div>
   );
