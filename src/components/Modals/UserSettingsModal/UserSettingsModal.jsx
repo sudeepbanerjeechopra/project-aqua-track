@@ -5,8 +5,9 @@ import { icons as sprite } from '../../../shared/icons/index';
 import Loader from '../../Loader/Loader';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { formatRegex, isValidLatinInput } from '../../../helpers/constants';
 
-const UserSettingsModal = ({ isOpen, setIsUserUpdated }) => {
+const UserSettingsModal = ({ setIsUserUpdated }) => {
   const { closeModal } = useModalContext();
   const [userData, setUserData] = useState(null);
   const [avatarFile, setAvatarFile] = useState(null);
@@ -19,6 +20,7 @@ const UserSettingsModal = ({ isOpen, setIsUserUpdated }) => {
   const [loading, setLoading] = useState(true);
   const [newData, setNewData] = useState({});
   const [willDrink, setWillDrink] = useState();
+  const [newErrors, setNewErrors] = useState({});
 
   useEffect(() => {
     async function fetchData() {
@@ -49,17 +51,6 @@ const UserSettingsModal = ({ isOpen, setIsUserUpdated }) => {
     }
   }, [setAmount, gender, time, weight]);
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
-
   const hiddenFileInput = useRef(null);
 
   const handleClick = (event) => {
@@ -77,8 +68,41 @@ const UserSettingsModal = ({ isOpen, setIsUserUpdated }) => {
   };
 
   const handleSubmit = async (event) => {
-    console.log(newData);
     event.preventDefault();
+
+    const errorsObject = {};
+
+    if (!email || !formatRegex.test(email)) {
+      errorsObject.email = true;
+      toast.error('Please enter a valid email address');
+    }
+
+    if (!name || !isValidLatinInput.test(name)) {
+      errorsObject.name = true;
+      toast.error('Please enter a valid name using Latin characters');
+    }
+
+    if (!weight && weight !== 0) {
+      errorsObject.weight = true;
+      toast.error('Weight is required');
+    }
+
+    if (!time && time !== 0) {
+      errorsObject.time = true;
+      toast.error('Active time is required');
+    }
+
+    if (!willDrink && willDrink !== 0) {
+      errorsObject.water = true;
+      toast.error('Amount of water to drink is required');
+    }
+
+    setNewErrors(errorsObject);
+
+    if (Object.keys(errorsObject).length > 0) {
+      return;
+    }
+
     try {
       const formData = new FormData();
       formData.append('name', newData.name);
@@ -88,8 +112,9 @@ const UserSettingsModal = ({ isOpen, setIsUserUpdated }) => {
       formData.append('email', newData.email);
       formData.append('gender', newData.gender);
       formData.append('weight', newData.weight);
-      const response = await axios.patch('/users/update', formData);
-      console.log(response);
+
+      await axios.patch('/users/update', formData);
+
       setIsUserUpdated(true);
       toast.success('Your data has been updated successfully');
     } catch (error) {
@@ -214,7 +239,7 @@ const UserSettingsModal = ({ isOpen, setIsUserUpdated }) => {
               <div className={css.userInfoInputContainer}>
                 <h3>Your name</h3>
                 <input
-                  className={css.userInfoInput}
+                  className={`${css.userInfoInput} ${newErrors.name ? css.error : ''}`}
                   type="text"
                   name="name"
                   id="name"
@@ -227,7 +252,7 @@ const UserSettingsModal = ({ isOpen, setIsUserUpdated }) => {
               <div className={css.userInfoInputContainer}>
                 <h3>Email</h3>
                 <input
-                  className={css.userInfoInput}
+                  className={`${css.userInfoInput} ${newErrors.email ? css.error : ''}`}
                   type="email"
                   name="email"
                   id="email"
@@ -277,7 +302,7 @@ const UserSettingsModal = ({ isOpen, setIsUserUpdated }) => {
               <div className={`${css.userInfoInputContainer} ${css.down}`}>
                 <p className={css.textRegular}>Your weight in kilograms:</p>
                 <input
-                  className={css.userInfoInput}
+                  className={`${css.userInfoInput} ${newErrors.weight ? css.error : ''}`}
                   type="number"
                   name="weight"
                   id="weight"
@@ -293,7 +318,7 @@ const UserSettingsModal = ({ isOpen, setIsUserUpdated }) => {
                   The time of active participation in sports:
                 </p>
                 <input
-                  className={css.userInfoInput}
+                  className={`${css.userInfoInput} ${newErrors.time ? css.error : ''}`}
                   type="number"
                   name="time"
                   id="time"
@@ -318,7 +343,7 @@ const UserSettingsModal = ({ isOpen, setIsUserUpdated }) => {
             <div className={css.userInfoInputContainer}>
               <h3>Write down how much water you will drink:</h3>
               <input
-                className={css.userInfoInput}
+                className={`${css.userInfoInput} ${newErrors.water ? css.error : ''}`}
                 type="number"
                 name="water"
                 id="water"

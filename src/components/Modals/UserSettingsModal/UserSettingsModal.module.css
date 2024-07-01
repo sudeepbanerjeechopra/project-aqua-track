@@ -10,6 +10,7 @@
   flex-direction: column;
   gap: 40px;
 }
+
 h2 {
   font-size: 20px;
   font-weight: 700;
@@ -134,7 +135,7 @@ h3 {
 
 .userInfoInput:hover,
 .userInfoInput:focus {
-  border: 1px solid var(--active-border-color);
+  border: 1px solid var(--accent-secondary);
   outline: none;
 }
 
@@ -299,7 +300,21 @@ input[type='number'] {
   .textarea {
     width: 400px;
   }
+
   .down {
     margin-top: 82px;
   }
+}
+
+.userInfoInput:-webkit-autofill,
+.userInfoInput:-webkit-autofill:hover,
+.userInfoInput:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--dark);
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+  background-color: transparent;
+}
+
+.error {
+  border: 1px solid var(--error);
 }
