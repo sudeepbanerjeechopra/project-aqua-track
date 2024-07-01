@@ -12,13 +12,13 @@ const CustomTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))({
   [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: '#9be1a0',
+    backgroundColor: '#323f47',
     color: '#ffffff',
     fontSize: '12px',
     borderRadius: '8px',
   },
   [`& .${tooltipClasses.arrow}`]: {
-    color: '#9be1a0',
+    color: '#323f47',
   },
 });
 function ValueLabelComponent(props) {

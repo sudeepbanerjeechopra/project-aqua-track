@@ -1,6 +1,6 @@
 .main {
   height: 353px;
-  background-image: url('../../../shared/images/advantagesSection/adv-bg-mob.png');
+  background-image: url('../../../shared/images/advantagesSection/adv-bg-mob.webp');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -101,11 +101,9 @@
   width: max-content;
 }
 
-.point {
+.iconOEllips {
   width: 8px;
   height: 8px;
-  border-radius: 50%;
-  background-color: var(--accent);
 }
 
 .benText {
@@ -132,7 +130,7 @@
 screen and (min-resolution: 2dppx) and (min-width: 375px),
 screen and (min-device-pixel-ratio: 2) and (min-width: 375px) {
   .main {
-    background-image: url('../../../shared/images/advantagesSection/adv-bg-mob-2x.png');
+    background-image: url('../../../shared/images/advantagesSection/adv-bg-mob-2x.webp');
   }
 }
 
@@ -140,7 +138,7 @@ screen and (min-device-pixel-ratio: 2) and (min-width: 375px) {
   .main {
     width: 704px;
     height: 446px;
-    background-image: url('../../../shared/images/advantagesSection/adv-bg-tab.png');
+    background-image: url('../../../shared/images/advantagesSection/adv-bg-tab.webp');
   }
 
   .customers {
@@ -204,7 +202,7 @@ screen and (min-device-pixel-ratio: 2) and (min-width: 375px) {
 screen and (min-resolution: 2dppx) and (min-width: 768px),
 screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
   .main {
-    background-image: url('../../../shared/images/advantagesSection/adv-bg-tab-2x.png');
+    background-image: url('../../../shared/images/advantagesSection/adv-bg-tab-2x.webp');
   }
 }
 
@@ -212,7 +210,7 @@ screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
   .main {
     width: 672px;
     height: 736px;
-    background-image: url('../../../shared/images/advantagesSection/adv-bg-desk.png');
+    background-image: url('../../../shared/images/advantagesSection/adv-bg-desk.webp');
   }
 
   .customers {
@@ -228,6 +226,6 @@ screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
 screen and (min-resolution: 2dppx) and (min-width: 1440px),
 screen and (min-device-pixel-ratio: 2) and (min-width: 1440px) {
   .main {
-    background-image: url('../../../shared/images/advantagesSection/adv-bg-desk-2x.png');
+    background-image: url('../../../shared/images/advantagesSection/adv-bg-desk-2x.webp');
   }
 }

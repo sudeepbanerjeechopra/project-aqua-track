@@ -4,7 +4,13 @@ import style from './WrapperWelcome.module.css';
 const WrapperWelcome = ({ children, classNameLogo, classNameWelcom }) => {
   return (
     <>
-      <div className={`${style.welcome} ${classNameWelcom}`}>
+      <div
+        data-aos="fade-right"
+        data-aos-anchor="#example-anchor"
+        data-aos-offset="500"
+        data-aos-duration="500"
+        className={`${style.welcome} ${classNameWelcom}`}
+      >
         <Logo className={`${style.welcomeLogo} ${classNameLogo}`} />
         {children}
       </div>
