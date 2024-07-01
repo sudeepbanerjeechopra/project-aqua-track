@@ -3,7 +3,7 @@ import css from './CalendarItem.module.css';
 
 const CalendarItem = ({ date, isActive, onClick }) => {
   const percentages = Math.floor(Number(date.percentComplete));
-  const currentDate = new Date().toISOString().split('T')[0];
+  const currentDate = new Date().toLocaleDateString('sv-SE');
   return (
     <li className={css.element} onClick={() => onClick(date.day)}>
       <div

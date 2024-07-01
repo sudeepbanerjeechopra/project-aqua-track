@@ -18,9 +18,9 @@ import {
 import {
   selectWaterMonth,
   selectisLoadingMonth,
-  selectMonth,
   selectMonthError,
   selectToggleInfo,
+  selectMonth,
   selectDate,
 } from '../../../redux/water/selectors';
 

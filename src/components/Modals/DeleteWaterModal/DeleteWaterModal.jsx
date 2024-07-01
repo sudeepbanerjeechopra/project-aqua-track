@@ -1,18 +1,34 @@
 import { useModalContext } from '../../../context/useModalContext';
 import css from './DeleteWaterModal.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
-import { apiDeleteWater } from '../../../redux/water/operation';
+import { selectMonth, selectDate } from '../../../redux/water/selectors';
+import {
+  apiDeleteWater,
+  apiGetWaterMonth,
+  apiGetWaterDay,
+} from '../../../redux/water/operation';
 
 const DeleteWaterModal = ({ onDelete }) => {
   const { closeModal } = useModalContext();
   const dispatch = useDispatch();
+  const selectedDate = useSelector(selectDate);
+  const currentMonth = useSelector(selectMonth);
 
   const handleDelete = async () => {
     try {
       await dispatch(apiDeleteWater(onDelete));
       closeModal();
       toast.success('Entry deleted successfully');
+
+      dispatch(apiGetWaterDay(selectedDate));
+
+      if (
+        Number(selectedDate.split('-')[0]) === currentMonth.year &&
+        Number(selectedDate.split('-')[1]) === currentMonth.month
+      ) {
+        dispatch(apiGetWaterMonth(currentMonth));
+      }
     } catch (error) {
       toast.error('Failed to delete the entry.');
     }
