@@ -9,6 +9,7 @@ import { forgotSchema } from './forgotSchema';
 import { forgetPassword } from '../../redux/auth/operation';
 import s from './ForgotPageForm.module.css';
 import toast from 'react-hot-toast';
+import { NavLink } from 'react-router-dom';
 
 const ForgotPageForm = () => {
   const emailId = useId();
@@ -48,7 +49,6 @@ const ForgotPageForm = () => {
       >
         <div className={`${style.formBlock} ${s.formPosition}`}>
           <h2 className={style.formTitle}>Reset your password</h2>
-
           <form className={style.mainForm} onSubmit={handleSubmit(onSubmit)}>
             <div className={style.fieldThumb}>
               <label className={style.formLabel} htmlFor={emailId}>
@@ -68,6 +68,12 @@ const ForgotPageForm = () => {
               Send
             </button>
           </form>
+          <div className={style.haveAccount}>
+            <p className={style.haveAccountText}>Remember your password?</p>{' '}
+            <NavLink to="/signin" className={style.haveAccountForm}>
+              Sign In
+            </NavLink>
+          </div>
         </div>
       </WrapperWelcome>
     </>
