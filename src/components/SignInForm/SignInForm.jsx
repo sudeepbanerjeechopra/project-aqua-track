@@ -85,6 +85,9 @@ const SignInForm = () => {
                 placeholder="Enter your email"
                 {...register('email')}
               />
+              {errors.email && (
+                <span className={style.errorSpan}>{errors.email.message}</span>
+              )}
             </div>
 
             <div className={style.fieldThumb}>
@@ -120,6 +123,12 @@ const SignInForm = () => {
                   </button>
                 )}
               </div>
+
+              {errors.password && (
+                <span className={style.errorSpan}>
+                  {errors.password.message}
+                </span>
+              )}
             </div>
 
             <button

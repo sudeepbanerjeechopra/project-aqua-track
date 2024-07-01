@@ -41,7 +41,6 @@ const ModalWindow = ({
         afterOpen: style.modalContentOpen,
         beforeClose: style.beforeClose,
       }}
-      closeTimeoutMS={300}
     >
       <button onClick={onRequestClose} className={style.closeButton}>
         <svg className={`${style.iconClose}`}>

@@ -6,7 +6,13 @@ import css from './WaterDetailedInfo.module.css';
 
 const WaterDetailedInfo = () => {
   return (
-    <div className={css.wrapper}>
+    <div
+      data-aos="fade-left"
+      data-aos-anchor="#example-anchor"
+      data-aos-offset="500"
+      data-aos-duration="500"
+      className={css.wrapper}
+    >
       <Userbar />
       <DailyInfo />
       <MonthInfo />

@@ -49,6 +49,6 @@
     opacity: 1;
 }
 
-.modalContent.beforeClose {
+.beforeClose {
     opacity: 0;
 }

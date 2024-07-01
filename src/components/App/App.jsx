@@ -1,6 +1,9 @@
 import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 import SharedLayout from '../../shared/components/SharedLayout/SharedLayout .jsx';
 import ForgotPage from '../../pages/ForgotPage/ForgotPage.jsx';
 import ResetPage from '../../pages/ResetPage/ResetPage.jsx';
@@ -21,6 +24,8 @@ const TrackerPage = lazy(
 const NotFoundPage = lazy(
   () => import('../../pages/NotFoundPage/NotFoundPage.jsx')
 );
+
+AOS.init();
 
 const App = () => {
   const dispatch = useDispatch();

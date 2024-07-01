@@ -1,6 +1,6 @@
 .main {
   height: 353px;
-  background-image: url('../../../shared/images/advantagesSection/adv-bg-mob.png');
+  background-image: url('../../../shared/images/advantagesSection/adv-bg-mob.webp');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -17,7 +17,20 @@
   background-color: var(--white);
   display: flex;
   align-items: center;
+  gap: 17px;
   box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
+}
+
+.widthLoader {
+  width: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapperHappy {
+  display: flex;
+  align-items: center;
 }
 
 .customer {
@@ -69,7 +82,6 @@
   font-size: 12px;
   width: 66.94px;
   line-height: 1.17;
-  margin-left: 16px;
 }
 
 .coloredText {
@@ -101,11 +113,9 @@
   width: max-content;
 }
 
-.point {
+.iconOEllips {
   width: 8px;
   height: 8px;
-  border-radius: 50%;
-  background-color: var(--accent);
 }
 
 .benText {
@@ -132,7 +142,7 @@
 screen and (min-resolution: 2dppx) and (min-width: 375px),
 screen and (min-device-pixel-ratio: 2) and (min-width: 375px) {
   .main {
-    background-image: url('../../../shared/images/advantagesSection/adv-bg-mob-2x.png');
+    background-image: url('../../../shared/images/advantagesSection/adv-bg-mob-2x.webp');
   }
 }
 
@@ -140,13 +150,14 @@ screen and (min-device-pixel-ratio: 2) and (min-width: 375px) {
   .main {
     width: 704px;
     height: 446px;
-    background-image: url('../../../shared/images/advantagesSection/adv-bg-tab.png');
+    background-image: url('../../../shared/images/advantagesSection/adv-bg-tab.webp');
   }
 
   .customers {
     left: 32px;
     bottom: 96px;
     padding: 10px 20px;
+    gap: 24px;
   }
 
   .customer {
@@ -166,7 +177,6 @@ screen and (min-device-pixel-ratio: 2) and (min-width: 375px) {
     font-size: 15px;
     line-height: 1.49;
     width: 90px;
-    margin-left: 24px;
   }
 
   .benefits {
@@ -204,7 +214,7 @@ screen and (min-device-pixel-ratio: 2) and (min-width: 375px) {
 screen and (min-resolution: 2dppx) and (min-width: 768px),
 screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
   .main {
-    background-image: url('../../../shared/images/advantagesSection/adv-bg-tab-2x.png');
+    background-image: url('../../../shared/images/advantagesSection/adv-bg-tab-2x.webp');
   }
 }
 
@@ -212,7 +222,7 @@ screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
   .main {
     width: 672px;
     height: 736px;
-    background-image: url('../../../shared/images/advantagesSection/adv-bg-desk.png');
+    background-image: url('../../../shared/images/advantagesSection/adv-bg-desk.webp');
   }
 
   .customers {
@@ -228,6 +238,6 @@ screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
 screen and (min-resolution: 2dppx) and (min-width: 1440px),
 screen and (min-device-pixel-ratio: 2) and (min-width: 1440px) {
   .main {
-    background-image: url('../../../shared/images/advantagesSection/adv-bg-desk-2x.png');
+    background-image: url('../../../shared/images/advantagesSection/adv-bg-desk-2x.webp');
   }
 }

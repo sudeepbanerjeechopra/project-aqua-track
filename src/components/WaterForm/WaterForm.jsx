@@ -154,12 +154,11 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
           <label className={style.itemWaterForm}>
             <span className={style.spanFormWater}>Amount of water:</span>
             <div className={style.waterAmountInputContainer}>
-              <svg className={style.iconOperator} onClick={decrementWater}>
-                <use
-                  className={style.icon}
-                  xlinkHref={`${sprite}#minus-modal`}
-                />
-              </svg>
+              <div className={style.btnWater}>
+                <svg className={style.iconOperator} onClick={decrementWater}>
+                  <use className={style.icon} xlinkHref={`${sprite}#minus`} />
+                </svg>
+              </div>
               <div className={style.wrapperInput}>
                 <input
                   className={style.inputAddWater}
@@ -168,14 +167,12 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
                   value={getValues('waterAmount')}
                   readOnly
                 />
-                <span className={style.mlLabel}>ml</span>
               </div>
-              <svg className={style.iconOperator} onClick={incrementWater}>
-                <use
-                  className={style.icon}
-                  xlinkHref={`${sprite}#plus-modal`}
-                />
-              </svg>
+              <div className={style.btnWater}>
+                <svg className={style.iconOperator} onClick={incrementWater}>
+                  <use className={style.icon} xlinkHref={`${sprite}#plus`} />
+                </svg>
+              </div>
             </div>
           </label>
           <p>{errors.waterAmount?.message}</p>
