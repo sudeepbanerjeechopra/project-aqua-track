@@ -1,28 +1,45 @@
 import css from '../AdvantagesSection/AdvantagesSection.module.css';
-import { selectUsersCount } from '../../../redux/users/selectors.js';
+import {
+  selectUsersAvatars,
+  selectUsersCount,
+} from '../../../redux/users/selectors.js';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getUsers } from '../../../redux/users/operation.js';
 
 const AdvantagesSection = () => {
   const usersCount = useSelector(selectUsersCount);
-  //const usersAvatars = useSelector(selectUsersAvatars);
-  // {usersAvatars.map((avatar) => {
-  //   return <div className={css.customer}><img src={avatar} alt="user avatar" /></div>
-  // })}
-
+  const usersAvatars = useSelector(selectUsersAvatars);
   const dispatch = useDispatch();
+
+  const [currentAvatars, setCurrentAvatars] = useState([]);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (usersAvatars.length > 0) {
+      const interval = setInterval(() => {
+        setIndex((prevIndex) => (prevIndex + 3) % usersAvatars.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [usersAvatars]);
+
+  useEffect(() => {
+    setCurrentAvatars(usersAvatars.slice(index, index + 3));
+  }, [index, usersAvatars]);
+
   return (
     <div className={css.main}>
       <div className={css.customers}>
-        <div className={css.customer}></div>
-        <div className={css.customer}></div>
-        <div className={css.customer}></div>
+        {currentAvatars.map((avatar, idx) => (
+          <div key={idx} className={css.customer}>
+            <img className={css.userAvater} src={avatar} alt="user avatar" />
+          </div>
+        ))}
         <div className={css.numberCustomers}>+{usersCount}</div>
         <p className={css.text}>
           Our <span className={css.coloredText}>happy</span> customers
