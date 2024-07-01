@@ -41,3 +41,9 @@
     transform: rotate(360deg);
   }
 }
+
+@media (min-width: 1440px) {
+  .wrapper {
+    width: 608px;
+  }
+}

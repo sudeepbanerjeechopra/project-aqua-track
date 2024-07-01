@@ -3,8 +3,17 @@ import * as yup from 'yup';
 import style from './WaterForm.module.css';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { addWater, updateWaterAmount } from '../../redux/water/operation';
-import { selectLoading } from '../../redux/water/selectors';
+import {
+  addWater,
+  updateWaterAmount,
+  apiGetWaterMonth,
+  apiGetWaterDay,
+} from '../../redux/water/operation';
+import {
+  selectLoading,
+  selectMonth,
+  selectDate,
+} from '../../redux/water/selectors';
 import { icons as sprite } from '../../shared/icons';
 import Loader from '../../components/Loader/Loader';
 import { useModalContext } from '../../context/useModalContext';
@@ -27,6 +36,8 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModalContext();
   const loading = useSelector(selectLoading);
+  const selectedDate = useSelector(selectDate);
+  const currentMonth = useSelector(selectMonth);
 
   const defaultTime = () => {
     const currentTime = new Date();
@@ -89,6 +100,15 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
           })
         );
         closeModal();
+      }
+
+      dispatch(apiGetWaterDay(selectedDate));
+
+      if (
+        Number(selectedDate.split('-')[0]) === currentMonth.year &&
+        Number(selectedDate.split('-')[1]) === currentMonth.month
+      ) {
+        dispatch(apiGetWaterMonth(currentMonth));
       }
     } catch (error) {
       console.log(error);

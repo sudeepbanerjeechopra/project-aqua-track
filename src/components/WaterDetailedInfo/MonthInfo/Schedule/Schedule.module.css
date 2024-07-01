@@ -12,6 +12,7 @@
 }
 @media (min-width: 1440px) {
   .wrapper {
+    width: 608px;
     height: 260px;
     margin-top: 62px;
     padding: 0 11px 0 10px;
