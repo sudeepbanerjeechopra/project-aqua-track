@@ -91,6 +91,9 @@ const SignUpForm = () => {
                 placeholder="Enter your name"
                 {...register('name')}
               />
+              {errors.name && (
+                <span className={style.errorSpan}>{errors.name.message}</span>
+              )}
             </div>
 
             <div className={style.fieldThumb}>
@@ -105,6 +108,9 @@ const SignUpForm = () => {
                 placeholder="Enter your email"
                 {...register('email')}
               />
+              {errors.email && (
+                <span className={style.errorSpan}>{errors.email.message}</span>
+              )}
             </div>
 
             <div className={style.fieldThumb}>
@@ -142,6 +148,12 @@ const SignUpForm = () => {
                   </button>
                 )}
               </div>
+
+              {errors.password && (
+                <span className={style.errorSpan}>
+                  {errors.password.message}
+                </span>
+              )}
             </div>
 
             <div className={style.fieldThumb}>
@@ -179,6 +191,12 @@ const SignUpForm = () => {
                   </button>
                 )}
               </div>
+
+              {errors.repeatPassword && (
+                <span className={style.errorSpan}>
+                  {errors.repeatPassword.message}
+                </span>
+              )}
             </div>
 
             <div className={s.btnForm}>

@@ -109,6 +109,12 @@ const ResetPageForm = () => {
                   </button>
                 )}
               </div>
+
+              {errors.password && (
+                <span className={style.errorSpan}>
+                  {errors.password.message}
+                </span>
+              )}
             </div>
 
             <div className={style.fieldThumb}>

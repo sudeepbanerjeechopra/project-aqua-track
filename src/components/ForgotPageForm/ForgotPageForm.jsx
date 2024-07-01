@@ -62,6 +62,10 @@ const ForgotPageForm = () => {
                 placeholder="Enter your email"
                 {...register('email')}
               />
+
+              {errors.email && (
+                <span className={style.errorSpan}>{errors.email.message}</span>
+              )}
             </div>
 
             <button type="submit" className={style.btnform} disabled={!isValid}>
