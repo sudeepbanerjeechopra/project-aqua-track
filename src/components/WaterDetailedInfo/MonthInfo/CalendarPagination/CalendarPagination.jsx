@@ -1,19 +1,24 @@
 import css from './CalendarPagination.module.css';
-const months = {
-  1: 'January',
-  2: 'February',
-  3: 'March',
-  4: 'April',
-  5: 'May',
-  6: 'June',
-  7: 'July',
-  8: 'August',
-  9: 'September',
-  10: 'October',
-  11: 'November',
-  12: 'December',
-};
+import { useTranslation } from 'react-i18next';
+
 const CalendarPagination = ({ onNextMonth, onPrevMonth, currentDate }) => {
+  const { t } = useTranslation();
+
+  const months = {
+    1: t('ChooseDate.january'),
+    2: t('ChooseDate.february'),
+    3: t('ChooseDate.march'),
+    4: t('ChooseDate.april'),
+    5: t('ChooseDate.may'),
+    6: t('ChooseDate.june'),
+    7: t('ChooseDate.july'),
+    8: t('ChooseDate.august'),
+    9: t('ChooseDate.september'),
+    10: t('ChooseDate.october'),
+    11: t('ChooseDate.november'),
+    12: t('ChooseDate.december'),
+  };
+
   return (
     <div className={css.wrapper}>
       <button className={css.button} onClick={onPrevMonth}>

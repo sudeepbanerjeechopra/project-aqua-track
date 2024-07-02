@@ -75,5 +75,42 @@
         "repeatPasswordpanError": "Required",
         "repeatPasswordpanErrorTwo": "Passwords must match",
         "button": "Send"
+    },
+    "waterMainInfo": {
+        "l": "L",
+        "norma": "My daily norma",
+        "today": "Today",
+        "btn": "Add water"
+    },
+    "ChooseDate": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December",
+        "today": "Today",
+        "en": "uk-UA"
+    },
+    "dailyInfo": {
+        "text": "You havent drunk water yet, maybe its time to drink?",
+        "ml": "ml"
+    },
+    "monthInfo": {
+        "error": "Oops, something is wrong...",
+        "mouth": "Month",
+        "statistics": "Statistics"
+    },
+    "Userbar": {
+        "user": "User",
+        "hello": "Hello",
+        "setting": "Settings",
+        "logOut": "Log out"
     }
 }

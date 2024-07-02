@@ -25,8 +25,10 @@ import {
 } from '../../../redux/water/selectors';
 
 import css from './MonthInfo.module.css';
+import { useTranslation } from 'react-i18next';
 
 const MonthInfo = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const monthArray = useSelector(selectWaterMonth);
@@ -68,7 +70,9 @@ const MonthInfo = () => {
     <div>
       <div className={css.wrapper} data-tour="step-8">
         <div className={css.thead}>
-          <h3 className={css.title}>{ToggleInfo ? 'Month' : 'Statistics'}</h3>
+          <h3 className={css.title}>
+            {ToggleInfo ? t('monthInfo.mouth') : t('monthInfo.statistics')}
+          </h3>
           <div className={css.pagination}>
             <CalendarPagination
               onNextMonth={onNextMonth}
@@ -91,7 +95,7 @@ const MonthInfo = () => {
         </div>
         {isError && (
           <div className={css.errorMessage}>
-            <p>Oops, something is wrong... </p>
+            <p>{t('monthInfo.error')}</p>
           </div>
         )}
 

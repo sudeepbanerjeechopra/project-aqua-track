@@ -3,17 +3,19 @@ import { icons as sprite } from '../../../../shared/icons/index.js';
 import WaterModal from '../../../WaterModal/WaterModal.jsx';
 import DeleteWaterModal from '../../../Modals/DeleteWaterModal/DeleteWaterModal.jsx';
 import { format, parseISO, subHours } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 
 import css from './WaterItem.module.css';
 
 function WaterItem({ data }) {
+  const { t } = useTranslation();
   const { openModal } = useModalContext();
 
   const { _id: id, amount, date } = data;
 
   const formatAmount = (amount) => {
     const mlAmount = amount * 1000;
-    return `${mlAmount} ml`;
+    return `${mlAmount} ${t('dailyInfo.ml')}`;
   };
 
   const formatTime = (isoString) => {

@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { selectDate } from '../../../../redux/water/selectors';
 import css from './ChooseDate.module.css';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 function ChooseDate() {
+  const { t } = useTranslation();
   const currentDate = useSelector(selectDate);
   const [formattedDate, setFormattedDate] = useState('');
 
@@ -16,18 +18,35 @@ function ChooseDate() {
     return `${year}-${month}-${day}`;
   };
 
+  const months = {
+    january: t('ChooseDate.january'),
+    february: t('ChooseDate.february'),
+    march: t('ChooseDate.march'),
+    april: t('ChooseDate.april'),
+    may: t('ChooseDate.may'),
+    june: t('ChooseDate.june'),
+    july: t('ChooseDate.july'),
+    august: t('ChooseDate.august'),
+    september: t('ChooseDate.september'),
+    october: t('ChooseDate.october'),
+    november: t('ChooseDate.november'),
+    december: t('ChooseDate.december'),
+  };
+
   const formatDisplayDate = (dateString) => {
     const dateObj = new Date(dateString);
     const day = String(dateObj.getDate());
-    const month = dateObj.toLocaleString('en-US', { month: 'long' });
-    return `${day}, ${month}`;
+    const month = dateObj
+      .toLocaleString('en-US', { month: 'long' })
+      .toLowerCase();
+    return `${day}, ${months[month]}`;
   };
 
   const today = todayDate();
 
   useEffect(() => {
     if (currentDate === today) {
-      return setFormattedDate('Today');
+      return setFormattedDate(t('waterMainInfo.today'));
     } else {
       setFormattedDate(formatDisplayDate(currentDate));
     }
