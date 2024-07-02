@@ -2,8 +2,10 @@ import { useModalContext } from '../../../../context/useModalContext.jsx';
 import { icons as sprite } from '../../../../shared/icons/index.js';
 import WaterModal from '../../../WaterModal/WaterModal';
 import css from './AddWaterBtn.module.css';
+import { useTranslation } from 'react-i18next';
 
 function AddWaterBtn() {
+  const { t } = useTranslation();
   const { openModal } = useModalContext();
 
   return (
@@ -16,7 +18,7 @@ function AddWaterBtn() {
           <use xlinkHref={`${sprite}#plus-add-water`} />
         </svg>
       </button>
-      <p className={css.text}>Add water</p>
+      <p className={css.text}>{t('waterMainInfo.btn')}</p>
     </div>
   );
 }

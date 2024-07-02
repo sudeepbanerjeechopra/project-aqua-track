@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
-// import toast from 'react-hot-toast';
+import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 import WrapperWelcome from '../../shared/components/WrapperWelcome/WrapperWelcome';
 import { signUpSchema } from './signUpSchema';
@@ -14,9 +15,9 @@ import { registerUser } from '../../redux/auth/operation';
 import { icons as sprite } from '../../shared/icons/index';
 import style from '../UserForm.module.css';
 import s from './SignUpPage.module.css';
-import toast from 'react-hot-toast';
 
 const SignUpForm = () => {
+  const { t } = useTranslation();
   const [openPassword, setOpenPassword] = useState(false);
   const [openRepeatPassword, setOpenRepeatPassword] = useState(false);
 
@@ -59,15 +60,15 @@ const SignUpForm = () => {
 
   useEffect(() => {
     if (errors.password) {
-      toast.error(errors.password.message);
+      toast.error(t('signUpPage.passwordSpanError'));
     } else if (errors.email) {
-      toast.error(errors.email.message);
+      toast.error(t('signUpPage.emailSpanError'));
     } else if (errors.name) {
-      toast.error(errors.name.message);
+      toast.error(t('signUpPage.nameSpanError'));
     } else if (errors.repeatPassword) {
-      toast.error(errors.repeatPassword.message);
+      toast.error(t('signUpPage.repeatPasswordpanErrorTwo'));
     }
-  }, [errors.password, errors.email, errors.name, errors.repeatPassword]);
+  });
 
   return (
     <>
@@ -76,46 +77,50 @@ const SignUpForm = () => {
         classNameWelcom={`${style.welcomPadding} ${s.welcomPadding}`}
       >
         <div className={style.formBlock}>
-          <h2 className={style.formTitle}>Sign Up</h2>
+          <h2 className={style.formTitle}>{t('signUpPage.signUp')}</h2>
 
           <form className={style.mainForm} onSubmit={handleSubmit(onSubmit)}>
             <div className={style.fieldThumb}>
               <label className={style.formLabel} htmlFor={nameId}>
-                Name
+                {t('signUpPage.name')}
               </label>
               <input
                 className={`${style.formInput} ${errors.name && style.errorName}`}
                 type="text"
                 name="name"
                 id={nameId}
-                placeholder="Enter your name"
+                placeholder={t('signUpPage.namePlaceholder')}
                 {...register('name')}
               />
               {errors.name && (
-                <span className={style.errorSpan}>{errors.name.message}</span>
+                <span className={style.errorSpan}>
+                  {t('signUpPage.nameSpanError')}
+                </span>
               )}
             </div>
 
             <div className={style.fieldThumb}>
               <label className={style.formLabel} htmlFor={emailId}>
-                Enter your email
+                {t('signUpPage.email')}
               </label>
               <input
                 className={`${style.formInput} ${errors.email && style.errorName}`}
                 type="text"
                 name="email"
                 id={emailId}
-                placeholder="Enter your email"
+                placeholder={t('signUpPage.emailPlaceholder')}
                 {...register('email')}
               />
               {errors.email && (
-                <span className={style.errorSpan}>{errors.email.message}</span>
+                <span className={style.errorSpan}>
+                  {t('signUpPage.emailSpanError')}
+                </span>
               )}
             </div>
 
             <div className={style.fieldThumb}>
               <label className={style.formLabel} htmlFor={passwordId}>
-                Password
+                {t('signUpPage.password')}
               </label>
               <div className={style.passwordWrapper}>
                 <input
@@ -123,7 +128,7 @@ const SignUpForm = () => {
                   type={openPassword ? 'text' : 'password'}
                   name="password"
                   id={passwordId}
-                  placeholder="Enter your password"
+                  placeholder={t('signUpPage.passwordPlaceholder')}
                   {...register('password')}
                 />
                 {openPassword ? (
@@ -151,14 +156,14 @@ const SignUpForm = () => {
 
               {errors.password && (
                 <span className={style.errorSpan}>
-                  {errors.password.message}
+                  {t('signUpPage.passwordSpanError')}
                 </span>
               )}
             </div>
 
             <div className={style.fieldThumb}>
               <label className={style.formLabel} htmlFor={repeatPasswordId}>
-                Repeat password
+                {t('signUpPage.repeatPassword')}
               </label>
               <div className={style.passwordWrapper}>
                 <input
@@ -166,7 +171,7 @@ const SignUpForm = () => {
                   type={openRepeatPassword ? 'text' : 'password'}
                   name="repeatPassword"
                   id={repeatPasswordId}
-                  placeholder="Repeat password"
+                  placeholder={t('signUpPage.repeatPassword')}
                   {...register('repeatPassword')}
                 />
                 {openRepeatPassword ? (
@@ -194,7 +199,7 @@ const SignUpForm = () => {
 
               {errors.repeatPassword && (
                 <span className={style.errorSpan}>
-                  {errors.repeatPassword.message}
+                  {t('signUpPage.repeatPasswordpanError')}
                 </span>
               )}
             </div>
@@ -205,16 +210,18 @@ const SignUpForm = () => {
                 className={style.btnform}
                 disabled={!isDirty || !isValid}
               >
-                Sign Up
+                {t('signUpPage.signUp')}
               </button>
               <GoogleBtn type="Up" className={s.glg} />
             </div>
           </form>
 
           <div className={style.haveAccount}>
-            <p className={style.haveAccountText}>Already have account?</p>{' '}
+            <p className={style.haveAccountText}>
+              {t('signUpPage.textAlready')}
+            </p>{' '}
             <NavLink to="/signin" className={style.haveAccountForm}>
-              Sign In
+              {t('signUpPage.signIn')}
             </NavLink>
           </div>
         </div>

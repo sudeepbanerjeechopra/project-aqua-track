@@ -9,8 +9,10 @@ import { useEffect, useState } from 'react';
 import { getUsers } from '../../../redux/users/operation.js';
 import { icons as sprite } from '../../../shared/icons';
 import { Hearts } from 'react-loader-spinner';
+import { useTranslation } from 'react-i18next';
 
 const AdvantagesSection = () => {
+  const { t } = useTranslation();
   const usersCount = useSelector(selectUsersCount);
   const usersAvatars = useSelector(selectUsersAvatars);
   const usersLoading = useSelector(selectLoading);
@@ -85,7 +87,11 @@ const AdvantagesSection = () => {
         )}
 
         <p className={css.text}>
-          Our <span className={css.coloredText}>happy</span> customers
+          {t('advantagesSection.our')}{' '}
+          <span className={css.coloredText}>
+            {t('advantagesSection.happy')}
+          </span>{' '}
+          {t('advantagesSection.customers')}
         </p>
       </div>
       <div className={css.benefits}>
@@ -107,10 +113,10 @@ const AdvantagesSection = () => {
               data-aos-offset="0"
               className={css.benText}
             >
-              Habit drive
+              {t('advantagesSection.habit')}
             </p>
           </div>
-          <p className={css.secBen}>View statistics</p>
+          <p className={css.secBen}>{t('advantagesSection.statistics')}</p>
         </div>
         <p
           data-aos="zoom-in"
@@ -119,7 +125,7 @@ const AdvantagesSection = () => {
           data-aos-offset="0"
           className={css.thirdBen}
         >
-          Personal rate setting
+          {t('advantagesSection.setting')}
         </p>
       </div>
     </div>

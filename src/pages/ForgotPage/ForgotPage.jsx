@@ -4,19 +4,25 @@ import AdvantagesSection from '../../components/Home/AdvantagesSection/Advantage
 import ForgotPageForm from '../../components/ForgotPageForm/ForgotPageForm';
 import style from './ForgotPage.module.css';
 import { useMedia } from '../../hooks/useMedia';
+import Languages from '../../shared/components/Languages/Languages';
+import { useTranslation } from 'react-i18next';
 
 const ForgotPage = () => {
   const { isDesktop } = useMedia();
+  const { t } = useTranslation();
   return (
     <>
       <Helmet>
-        <title>Forgot page</title>
+        <title>{t('page.forgot')}</title>
       </Helmet>
 
       <Container>
-        <div className={style.wrapperHome}>
-          <ForgotPageForm />
-          {isDesktop && <AdvantagesSection />}
+        <div className={style.wrapperStyle}>
+          <Languages />
+          <div className={style.wrapperHome}>
+            <ForgotPageForm />
+            {isDesktop && <AdvantagesSection />}
+          </div>
         </div>
       </Container>
     </>

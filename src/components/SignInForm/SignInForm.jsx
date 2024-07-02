@@ -3,6 +3,7 @@ import { useEffect, useId, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useTranslation } from 'react-i18next';
 
 import WrapperWelcome from '../../shared/components/WrapperWelcome/WrapperWelcome';
 import GoogleBtn from '../../shared/components/GoogleBtn/GoogleBtn';
@@ -17,6 +18,7 @@ import toast from 'react-hot-toast';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
 const SignInForm = () => {
+  const { t } = useTranslation();
   const [openPassword, setOpenPassword] = useState(false);
 
   const emailId = useId();
@@ -51,11 +53,11 @@ const SignInForm = () => {
 
   useEffect(() => {
     if (errors.password) {
-      toast.error(errors.password.message);
+      toast.error(t('signInPage.passwordSpanError'));
     } else if (errors.email) {
-      toast.error(errors.email.message);
+      toast.error(t('signInPage.emailSpanError'));
     }
-  }, [errors.password, errors.email]);
+  });
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -70,29 +72,31 @@ const SignInForm = () => {
         classNameWelcom={style.welcomPadding}
       >
         <div className={`${style.formBlock} ${s.formPosition}`}>
-          <h2 className={style.formTitle}>Sign In</h2>
+          <h2 className={style.formTitle}>{t('signInPage.signIn')}</h2>
 
           <form className={style.mainForm} onSubmit={handleSubmit(onSubmit)}>
             <div className={style.fieldThumb}>
               <label className={style.formLabel} htmlFor={emailId}>
-                Enter your email
+                {t('signInPage.email')}
               </label>
               <input
                 className={`${style.formInput} ${errors.email && style.errorName}`}
                 type="text"
                 name="email"
                 id={emailId}
-                placeholder="Enter your email"
+                placeholder={t('signInPage.emailPlaceholder')}
                 {...register('email')}
               />
               {errors.email && (
-                <span className={style.errorSpan}>{errors.email.message}</span>
+                <span className={style.errorSpan}>
+                  {t('signInPage.emailSpanError')}
+                </span>
               )}
             </div>
 
             <div className={style.fieldThumb}>
               <label className={style.formLabel} htmlFor={passwordId}>
-                Password
+                {t('signInPage.password')}
               </label>
               <div className={style.passwordWrapper}>
                 <input
@@ -100,7 +104,7 @@ const SignInForm = () => {
                   type={openPassword ? 'text' : 'password'}
                   name="password"
                   id={passwordId}
-                  placeholder="Enter your password"
+                  placeholder={t('signInPage.passwordPlaceholder')}
                   {...register('password')}
                 />
                 {openPassword ? (
@@ -126,7 +130,7 @@ const SignInForm = () => {
 
               {errors.password && (
                 <span className={style.errorSpan}>
-                  {errors.password.message}
+                  {t('signInPage.passwordSpanError')}
                 </span>
               )}
             </div>
@@ -136,7 +140,7 @@ const SignInForm = () => {
               className={style.btnform}
               disabled={!isDirty || !isValid}
             >
-              Sign In
+              {t('signInPage.signIn')}
             </button>
           </form>
 
@@ -144,15 +148,19 @@ const SignInForm = () => {
 
           <div className={s.haveAccountSignIn}>
             <div className={s.question}>
-              <p className={style.haveAccountText}>Don’t have an account?</p>{' '}
+              <p className={style.haveAccountText}>
+                {t('signInPage.dontAccount')}
+              </p>{' '}
               <NavLink to="/signup" className={style.haveAccountForm}>
-                Sign Up
+                {t('signInPage.signUp')}
               </NavLink>
             </div>
             <div className={s.question}>
-              <p className={style.haveAccountText}>Forgot your password?</p>{' '}
+              <p className={style.haveAccountText}>
+                {t('signInPage.forgotPassword')}
+              </p>{' '}
               <NavLink to="/forgot" className={style.haveAccountForm}>
-                Renew
+                {t('signInPage.renew')}
               </NavLink>
             </div>
           </div>

@@ -7,8 +7,10 @@ import ChooseData from './ChooseDate/ChooseDate';
 import AddWaterBtn from './AddWaterBtn/AddWaterBtn';
 import CustomScrollBar from '../../../shared/components/CustomScrollWrapper/CustomScrollWrapper';
 import css from './DailyInfo.module.css';
+import { useTranslation } from 'react-i18next';
 
 function DailyInfo() {
+  const { t } = useTranslation();
   const waterDay = useSelector(selectWaterDay);
   const currentDate = useSelector(selectDate);
   const dispatch = useDispatch();
@@ -29,7 +31,7 @@ function DailyInfo() {
         </CustomScrollBar>
       ) : (
         <div className={css.text} data-tour="step-6">
-          <p>You havent drunk water yet, maybe its time to drink?</p>
+          <p className={css.waterEmpty}>{t('dailyInfo.text')}</p>
         </div>
       )}
     </div>

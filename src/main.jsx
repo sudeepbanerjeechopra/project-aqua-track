@@ -9,6 +9,7 @@ import { persistor, store } from './redux/store.js';
 import './shared/style/index.css';
 import 'modern-normalize';
 import { ModalProvider } from './context/ModalContext.jsx';
+import './i18n/config.js';
 import { TourProvider } from '@reactour/tour';
 import steps from './helpers/steps.js';
 import { tourStyles } from './shared/style/tour/tourStyles';

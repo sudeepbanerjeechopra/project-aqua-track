@@ -10,8 +10,10 @@ import { forgetPassword } from '../../redux/auth/operation';
 import s from './ForgotPageForm.module.css';
 import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const ForgotPageForm = () => {
+  const { t } = useTranslation();
   const emailId = useId();
   const dispatch = useDispatch();
 
@@ -37,9 +39,9 @@ const ForgotPageForm = () => {
 
   useEffect(() => {
     if (errors.email) {
-      toast.error(errors.email.message);
+      toast.error(t('forgotPage.emailSpanError'));
     }
-  }, [errors.email]);
+  });
 
   return (
     <>
@@ -48,34 +50,36 @@ const ForgotPageForm = () => {
         classNameWelcom={style.welcomPadding}
       >
         <div className={`${style.formBlock} ${s.formPosition}`}>
-          <h2 className={style.formTitle}>Reset your password</h2>
+          <h2 className={style.formTitle}>{t('forgotPage.title')}</h2>
           <form className={style.mainForm} onSubmit={handleSubmit(onSubmit)}>
             <div className={style.fieldThumb}>
               <label className={style.formLabel} htmlFor={emailId}>
-                Enter your email
+                {t('forgotPage.email')}
               </label>
               <input
                 className={`${style.formInput} ${errors.email && style.errorName}`}
                 type="text"
                 name="email"
                 id={emailId}
-                placeholder="Enter your email"
+                placeholder={t('forgotPage.emailPlaceholder')}
                 {...register('email')}
               />
 
               {errors.email && (
-                <span className={style.errorSpan}>{errors.email.message}</span>
+                <span className={style.errorSpan}>
+                  {t('forgotPage.emailSpanError')}
+                </span>
               )}
             </div>
 
             <button type="submit" className={style.btnform} disabled={!isValid}>
-              Send
+              {t('forgotPage.button')}
             </button>
           </form>
           <div className={style.haveAccount}>
-            <p className={style.haveAccountText}>Remember your password?</p>{' '}
+            <p className={style.haveAccountText}>{t('forgotPage.remember')}</p>{' '}
             <NavLink to="/signin" className={style.haveAccountForm}>
-              Sign In
+              {t('forgotPage.signIn')}
             </NavLink>
           </div>
         </div>

@@ -1,16 +1,10 @@
-.wrapperStyle {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 5px;
-}
-
-.wrapperElement {
+.languages {
     display: flex;
     gap: 5px;
+    margin-right: 10px;
 }
 
-.btnInfo {
+.languageBtn {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -22,32 +16,37 @@
     transition: transform var(--animation);
 }
 
-.btnInfo:hover,
-.btnInfo:active {
+.languageBtn:hover,
+.languageBtn:active {
     transform: scale(1.2);
 }
 
-.wrapperTracker {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
 @media (min-width: 768px) {
-    .iconInfo {
+    .languages {
+        margin-right: 15px;
+    }
+
+    .iconFlag {
         width: 24px;
         height: 24px;
     }
+
+    .line {
+        font-size: 25px;
+    }
 }
 
-@media screen and (min-width: 1440px) {
-    .wrapperTracker {
-        flex-direction: row;
-        gap: 32px;
+@media (min-width: 1440px) {
+    .languages {
+        margin-right: 25px;
     }
 
-    .iconInfo {
+    .iconFlag {
         width: 30px;
         height: 30px;
+    }
+
+    .line {
+        font-size: 30px;
     }
 }

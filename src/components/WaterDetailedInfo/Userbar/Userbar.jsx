@@ -8,8 +8,10 @@ import UserSettingsModal from '../../Modals/UserSettingsModal/UserSettingsModal'
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from '../../../redux/auth/operation';
 import { selectUser } from '../../../redux/auth/selectors';
+import { useTranslation } from 'react-i18next';
 
 const Userbar = () => {
+  const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
   const { user } = useAuth();
   const { openModal } = useModalContext();
@@ -35,13 +37,14 @@ const Userbar = () => {
   };
 
   const getFirstName = (fullName) => {
-    return fullName ? fullName.split(' ')[0] : 'User';
+    return fullName ? fullName.split(' ')[0] : t('Userbar.user');
   };
 
   return (
     <div className={css.userBarWrapper}>
       <h2 className={css.welcome}>
-        Hello<span className={css.name}>, {getFirstName(userInfo?.name)}!</span>
+        {t('Userbar.hello')}
+        <span className={css.name}>, {getFirstName(userInfo?.name)}!</span>
       </h2>
       <div className={css.userBarMenu} data-tour="step-7">
         <button className={css.userBarBtn} onClick={toggleMenu}>
@@ -75,7 +78,7 @@ const Userbar = () => {
                   <svg width="16" height="16">
                     <use xlinkHref={`${sprite}#settings`} />
                   </svg>
-                  Settings
+                  {t('Userbar.setting')}
                 </a>
               </li>
               <li>
@@ -86,7 +89,7 @@ const Userbar = () => {
                   <svg width="16" height="16">
                     <use xlinkHref={`${sprite}#log-out`} />
                   </svg>
-                  Log out
+                  {t('Userbar.logOut')}
                 </a>
               </li>
             </ul>

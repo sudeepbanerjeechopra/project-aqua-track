@@ -8,8 +8,10 @@ import {
   apiGetWaterMonth,
   apiGetWaterDay,
 } from '../../../redux/water/operation';
+import { useTranslation } from 'react-i18next';
 
 const DeleteWaterModal = ({ onDelete }) => {
+  const { t } = useTranslation();
   const { closeModal } = useModalContext();
   const dispatch = useDispatch();
   const selectedDate = useSelector(selectDate);
@@ -19,7 +21,7 @@ const DeleteWaterModal = ({ onDelete }) => {
     try {
       await dispatch(apiDeleteWater(onDelete));
       closeModal();
-      toast.success('Entry deleted successfully');
+      toast.success(t('modals.delete.success'));
 
       dispatch(apiGetWaterDay(selectedDate));
 
@@ -30,24 +32,24 @@ const DeleteWaterModal = ({ onDelete }) => {
         dispatch(apiGetWaterMonth(currentMonth));
       }
     } catch (error) {
-      toast.error('Failed to delete the entry.');
+      toast.error(t('modals.delete.error'));
     }
   };
 
   return (
     <div className={css.deleteModalBackground}>
-      <h2 className={css.title}>Delete entry</h2>
-      <p className={css.paragraf}>Are you sure you want to delete the entry?</p>
+      <h2 className={css.title}>{t('modals.delete.title')}</h2>
+      <p className={css.paragraf}>{t('modals.delete.text')}</p>
       <div className={css.buttons}>
         <button
           className={css.buttondelete}
           onClick={handleDelete}
           type="button"
         >
-          Delete
+          {t('modals.delete.delete')}
         </button>
         <button className={css.buttoncancel} onClick={closeModal} type="button">
-          Cancel
+          {t('modals.delete.cancel')}
         </button>
       </div>
     </div>
