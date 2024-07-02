@@ -3,11 +3,20 @@ import WaterMainInfo from '../../components/WaterMainInfo/WaterMainInfo';
 import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
 import Modals from '../../components/Modals/Modals';
 import Container from '../../shared/components/Container/Container';
-
-import style from './TrackerPage.module.css';
+import { useTour } from '@reactour/tour';
 import Languages from '../../shared/components/Languages/Languages';
 
+import style from './TrackerPage.module.css';
+
 const TrackerPage = () => {
+  const { setIsOpen } = useTour();
+  useEffect(() => {
+    const isFirstVisit = localStorage.getItem('firstVisit') === null;
+    if (isFirstVisit) {
+      localStorage.setItem('firstVisit', 'false');
+      setIsOpen(true);
+    }
+  }, []);
   return (
     <>
       <Helmet>
@@ -15,9 +24,9 @@ const TrackerPage = () => {
       </Helmet>
 
       <Container>
-        <div className={style.wrapperStyle}>
-          <Languages />
-          <div className={style.wrapperTracker}>
+        <div className={style.wrapperTracker} data-tour="step-1">
+          <div className={style.wrapperStyle}>
+            <Languages />
             <WaterMainInfo />
             <WaterDetailedInfo />
           </div>

@@ -18,7 +18,7 @@ function DailyInfo() {
   }, [currentDate, dispatch]);
 
   return (
-    <div className={css.wrapper}>
+    <div className={css.wrapper} data-tour="step-4">
       <div className={css.dataEntryContainer}>
         <ChooseData />
         <AddWaterBtn />
@@ -28,7 +28,7 @@ function DailyInfo() {
           <WaterList />
         </CustomScrollBar>
       ) : (
-        <div className={css.text}>
+        <div className={css.text} data-tour="step-6">
           <p>You havent drunk water yet, maybe its time to drink?</p>
         </div>
       )}

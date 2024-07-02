@@ -10,6 +10,9 @@ import './shared/style/index.css';
 import 'modern-normalize';
 import { ModalProvider } from './context/ModalContext.jsx';
 import './i18n/config.js';
+import { TourProvider } from '@reactour/tour';
+import steps from './helpers/steps.js';
+import { tourStyles } from './shared/style/tour/tourStyles';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -18,7 +21,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <BrowserRouter>
           <HelmetProvider>
             <ModalProvider>
-              <App />
+              <TourProvider steps={steps} styles={tourStyles}>
+                <App />
+              </TourProvider>
             </ModalProvider>
           </HelmetProvider>
         </BrowserRouter>

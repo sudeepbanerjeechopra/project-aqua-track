@@ -22,7 +22,7 @@ function WaterItem({ data }) {
   };
 
   return (
-    <div className={css.item} id={id}>
+    <div data-tour="step-6" className={css.item} id={id}>
       <svg className={css.svg_glass}>
         <use xlinkHref={`${sprite}#water-glass`} />
       </svg>
