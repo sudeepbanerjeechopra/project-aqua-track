@@ -8,7 +8,7 @@ const WaterDailyNorma = () => {
   const dailyUserGoal = user.dailyWaterNorm;
 
   return (
-    <div className={css.dailyNorma}>
+    <div className={css.dailyNorma} data-tour="step-2">
       <a className={css.title}>{dailyUserGoal} L</a>
       <a className={css.subtitle}>My daily norma</a>
     </div>

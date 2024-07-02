@@ -6,7 +6,7 @@ import css from './WaterDetailedInfo.module.css';
 
 const WaterDetailedInfo = () => {
   return (
-    <div className={css.wrapper}>
+    <div className={css.wrapper} data-tour="step-2">
       <Userbar />
       <DailyInfo />
       <MonthInfo />

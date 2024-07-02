@@ -7,7 +7,7 @@ function AddWaterBtn() {
   const { openModal } = useModalContext();
 
   return (
-    <div className={css.wrapper}>
+    <div className={css.wrapper} data-tour="step-5">
       <button
         className={css.btn}
         onClick={() => openModal(<WaterModal operationType={'add'} />)}

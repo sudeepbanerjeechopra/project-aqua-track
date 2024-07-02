@@ -67,7 +67,7 @@ const WaterProgressBar = () => {
   };
 
   return (
-    <div className={css.container}>
+    <div className={css.container} data-tour="step-3">
       <div className={css.title}>{formatDate(selectedDate)}</div>
 
       <Box sx={{ width: '100%', m: 0, p: 0 }}>
