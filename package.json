@@ -19,6 +19,7 @@
     "aos": "^2.3.4",
     "axios": "^1.7.2",
     "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
     "formik": "^2.4.6",
     "helmet": "^7.1.0",
     "modern-normalize": "^2.0.0",
