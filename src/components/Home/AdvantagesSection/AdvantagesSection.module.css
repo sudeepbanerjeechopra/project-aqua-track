@@ -77,10 +77,10 @@
 }
 
 .text {
+  width: 80px;
   color: var(--dark-blue);
   font-weight: 700;
   font-size: 12px;
-  width: 66.94px;
   line-height: 1.17;
 }
 
@@ -176,7 +176,7 @@ screen and (min-device-pixel-ratio: 2) and (min-width: 375px) {
   .text {
     font-size: 15px;
     line-height: 1.49;
-    width: 90px;
+    width: 100px;
   }
 
   .benefits {

@@ -10,7 +10,13 @@ const Languages = () => {
   };
   return (
     <>
-      <header className={style.languages}>
+      <header
+        data-aos="zoom-in"
+        data-aos-easing="ease-in-back"
+        data-aos-delay="300"
+        data-aos-offset="0"
+        className={style.languages}
+      >
         <button
           className={style.languageBtn}
           onClick={() => changeLanguage('en')}
