@@ -3,6 +3,7 @@ import * as yup from 'yup';
 import style from './WaterForm.module.css';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
+import { parseISO, subHours } from 'date-fns';
 import {
   addWater,
   updateWaterAmount,
@@ -47,7 +48,7 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
   };
 
   const formatTime = (isoString) => {
-    const date = new Date(isoString);
+    const date = subHours(parseISO(isoString), 3);
     const hours = String(date.getHours()).padStart(2, '0');
     const minutes = String(date.getMinutes()).padStart(2, '0');
     return `${hours}:${minutes}`;
@@ -80,23 +81,25 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
       await schemaWater.validate(data, { abortEarly: false });
 
       const [hours, minutes] = data.time.split(':');
+      const fullDateTime = `${selectedDate}T${hours}:${minutes}:00.000Z`;
+
+      console.log(data.time.split(':'));
 
       const newEntry = {
         amount: mlToDecimal(data.waterAmount),
-        hours: parseInt(hours, 10),
-        minutes: parseInt(minutes, 10),
+        date: new Date(fullDateTime).toISOString(),
       };
 
       if (operationType === 'add') {
         dispatch(addWater(newEntry));
         closeModal();
       } else if (operationType === 'edit' && waterId) {
+        console.log(new Date(fullDateTime).toISOString());
         dispatch(
           updateWaterAmount({
             id: waterId,
             amount: mlToDecimal(data.waterAmount),
-            hours: parseInt(hours, 10),
-            minutes: parseInt(minutes, 10),
+            date: new Date(fullDateTime).toISOString(),
           })
         );
         closeModal();

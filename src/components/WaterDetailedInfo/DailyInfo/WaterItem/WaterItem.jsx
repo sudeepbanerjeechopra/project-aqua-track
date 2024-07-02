@@ -2,6 +2,7 @@ import { useModalContext } from '../../../../context/useModalContext.jsx';
 import { icons as sprite } from '../../../../shared/icons/index.js';
 import WaterModal from '../../../WaterModal/WaterModal.jsx';
 import DeleteWaterModal from '../../../Modals/DeleteWaterModal/DeleteWaterModal.jsx';
+import { format, parseISO, subHours } from 'date-fns';
 
 import css from './WaterItem.module.css';
 
@@ -16,14 +17,8 @@ function WaterItem({ data }) {
   };
 
   const formatTime = (isoString) => {
-    const date = new Date(isoString);
-    let hours = date.getHours();
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    const strHours = String(hours).padStart(2, '0');
-    return `${strHours}:${minutes} ${ampm}`;
+    const date = subHours(parseISO(isoString), 3);
+    return format(date, 'hh:mm a');
   };
 
   return (
