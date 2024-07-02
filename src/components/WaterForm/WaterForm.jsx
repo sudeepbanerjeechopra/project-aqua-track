@@ -18,6 +18,8 @@ import {
 import { icons as sprite } from '../../shared/icons';
 import Loader from '../../components/Loader/Loader';
 import { useModalContext } from '../../context/useModalContext';
+import { useTranslation } from 'react-i18next';
+import toast from 'react-hot-toast';
 
 const schemaWater = yup.object().shape({
   waterAmount: yup
@@ -34,6 +36,7 @@ const schemaWater = yup.object().shape({
 });
 
 const WaterForm = ({ operationType, waterId, initialData }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { closeModal } = useModalContext();
   const loading = useSelector(selectLoading);
@@ -83,8 +86,6 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
       const [hours, minutes] = data.time.split(':');
       const fullDateTime = `${selectedDate}T${hours}:${minutes}:00.000Z`;
 
-      console.log(data.time.split(':'));
-
       const newEntry = {
         amount: mlToDecimal(data.waterAmount),
         date: new Date(fullDateTime).toISOString(),
@@ -93,8 +94,8 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
       if (operationType === 'add') {
         dispatch(addWater(newEntry));
         closeModal();
+        toast.success(t('modals.addEdit.successAdd'));
       } else if (operationType === 'edit' && waterId) {
-        console.log(new Date(fullDateTime).toISOString());
         dispatch(
           updateWaterAmount({
             id: waterId,
@@ -103,6 +104,7 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
           })
         );
         closeModal();
+        toast.success(t('modals.addEdit.successEdit'));
       }
 
       dispatch(apiGetWaterDay(selectedDate));
@@ -114,7 +116,7 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
         dispatch(apiGetWaterMonth(currentMonth));
       }
     } catch (error) {
-      console.log(error);
+      toast.error(t('modals.addEdit.error'));
     }
   };
 
@@ -155,7 +157,9 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={style.addWaterForm}>
           <label className={style.itemWaterForm}>
-            <span className={style.spanFormWater}>Amount of water:</span>
+            <span className={style.spanFormWater}>
+              {t('modals.addEdit.amount')}
+            </span>
             <div className={style.waterAmountInputContainer}>
               <div className={style.btnWater}>
                 <svg className={style.iconOperator} onClick={decrementWater}>
@@ -183,7 +187,9 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
 
         <div className={style.timeWaterForm}>
           <label>
-            <span className={style.spanFormWater}>Recording time:</span>
+            <span className={style.spanFormWater}>
+              {t('modals.addEdit.time')}
+            </span>
             <input
               className={style.inputWaterForm}
               type="time"
@@ -198,7 +204,7 @@ const WaterForm = ({ operationType, waterId, initialData }) => {
         <div className={style.enterWaterForm}>
           <label>
             <span className={style.spanFormWater}>
-              Enter the value of the water used:
+              {t('modals.addEdit.value')}
             </span>
             <input
               className={style.inputWaterForm}

@@ -6,8 +6,10 @@ import Loader from '../../Loader/Loader';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { formatRegex, isValidLatinInput } from '../../../helpers/constants';
+import { useTranslation } from 'react-i18next';
 
 const UserSettingsModal = ({ setIsUserUpdated }) => {
+  const { t } = useTranslation();
   const { closeModal } = useModalContext();
   const [userData, setUserData] = useState(null);
   const [avatarFile, setAvatarFile] = useState(null);
@@ -74,27 +76,27 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
 
     if (!email || !formatRegex.test(email)) {
       errorsObject.email = true;
-      toast.error('Please enter a valid email address');
+      toast.error(t('modals.UserSettingsForm.errors.email'));
     }
 
     if (!name || !isValidLatinInput.test(name)) {
       errorsObject.name = true;
-      toast.error('Please enter a valid name using Latin characters');
+      toast.error(t('modals.UserSettingsForm.errors.name'));
     }
 
     if (!weight && weight !== 0) {
       errorsObject.weight = true;
-      toast.error('Weight is required');
+      toast.error(t('modals.UserSettingsForm.errors.weight'));
     }
 
     if (!time && time !== 0) {
       errorsObject.time = true;
-      toast.error('Active time is required');
+      toast.error(t('modals.UserSettingsForm.errors.time'));
     }
 
     if (!willDrink && willDrink !== 0) {
       errorsObject.water = true;
-      toast.error('Amount of water to drink is required');
+      toast.error(t('modals.UserSettingsForm.errors.water'));
     }
 
     setNewErrors(errorsObject);
@@ -116,7 +118,7 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
       await axios.patch('/users/update', formData);
 
       setIsUserUpdated(true);
-      toast.success('Your data has been updated successfully');
+      toast.success(t('modals.UserSettingsForm.success'));
     } catch (error) {
       console.log(error);
     }
@@ -170,7 +172,7 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
       <div className={css.wrapper}>
         <form onSubmit={undefined} className={css.form}>
           <div className={css.userPic}>
-            <h2>Setting</h2>
+            <h2>{t('modals.UserSettingsForm.setting')}</h2>
             <div className={css.picWrapper}>
               <div className={css.pic}>
                 <img
@@ -187,7 +189,9 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
                 <svg className={css.iconUpload}>
                   <use xlinkHref={`${sprite}#upload`} />
                 </svg>
-                <p className={css.textRegular}>Upload a photo</p>
+                <p className={css.textRegular}>
+                  {t('modals.UserSettingsForm.uploadPhotoBtn')}
+                </p>
               </div>
               <input
                 type="file"
@@ -200,7 +204,7 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
           <div className={css.inputs}>
             <div className={css.wrapperInputsForm}>
               <div className={css.midContainer}>
-                <h3>Your gender identity</h3>
+                <h3>{t('modals.UserSettingsForm.yourGenderLabel')}</h3>
                 <div className={css.radioContainer}>
                   <div className={css.radioButton}>
                     <input
@@ -217,7 +221,7 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
                       }
                     />
                     <label className={css.radioLabel} htmlFor="woman">
-                      Woman
+                      {t('modals.UserSettingsForm.femaleGenderLabel')}
                     </label>
                   </div>
                   <div className={css.radioButton}>
@@ -233,14 +237,14 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
                       checked={gender === 'man' || userData.gender === 'man'}
                     />
                     <label className={css.radioLabel} htmlFor="man">
-                      Man
+                      {t('modals.UserSettingsForm.femaleGenderMale')}
                     </label>
                   </div>
                 </div>
               </div>
               <div className={css.midContainer}>
                 <div className={css.userInfoInputContainer}>
-                  <h3>Your name</h3>
+                  {t('modals.UserSettingsForm.yourNameLabel')}
                   <input
                     className={`${css.userInfoInput} ${newErrors.name ? css.error : ''}`}
                     type="text"
@@ -253,12 +257,12 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
                   />
                   {newErrors.name && (
                     <span className={css.errorSpan}>
-                      Please enter a valid name using Latin characters
+                      {t('modals.UserSettingsForm.errors.name')}
                     </span>
                   )}
                 </div>
                 <div className={css.userInfoInputContainer}>
-                  <h3>Email</h3>
+                  <h3>{t('modals.UserSettingsForm.labelEmail')}</h3>
                   <input
                     className={`${css.userInfoInput} ${newErrors.email ? css.error : ''}`}
                     type="email"
@@ -272,29 +276,30 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
                   />
                   {newErrors.email && (
                     <span className={css.errorSpan}>
-                      Please enter a valid email address
+                      {t('modals.UserSettingsForm.errors.email')}
                     </span>
                   )}
                 </div>
               </div>
               <div className={css.midContainer}>
-                <h3>My daily norma</h3>
+                <h3>{t('modals.UserSettingsForm.dailyNormah')}</h3>
                 <div className={css.formulaContainer}>
                   <div className={css.formula}>
-                    <p className={css.textRegular}>For woman:</p>
+                    <p className={css.textRegular}>
+                      {t('modals.UserSettingsForm.forWomanP')}
+                    </p>
                     <p className={css.textAccent}>V=(M*0,03) + (T*0,4)</p>
                   </div>
                   <div className={css.formula}>
-                    <p className={css.textRegular}>For man:</p>
+                    <p className={css.textRegular}>
+                      {t('modals.UserSettingsForm.forManP')}
+                    </p>
                     <p className={css.textAccent}>V=(M*0,04) + (T*0,6)</p>
                   </div>
                 </div>
                 <div className={css.textarea} readOnly>
-                  <span className={css.textAccent}>*</span> V is the volume of
-                  the water norm in liters per day, M is your body weight, T is
-                  the time of active sports, or another type of activity
-                  commensurate in terms of loads (in the absence of these, you
-                  must set 0)
+                  <span className={css.textAccent}>*</span>{' '}
+                  {t('modals.UserSettingsForm.starText')}
                 </div>
                 <div className={css.note}>
                   <svg
@@ -309,7 +314,9 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
                       fill="#9BE1A0"
                     />
                   </svg>
-                  <p className={css.textRegular}>Active time in hours</p>
+                  <p className={css.textRegular}>
+                    {t('modals.UserSettingsForm.activeText')}
+                  </p>
                 </div>
               </div>
             </div>
@@ -317,7 +324,9 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
             <div className={css.wrapperInputsForm}>
               <div className={css.midContainer}>
                 <div className={`${css.userInfoInputContainer} ${css.down}`}>
-                  <p className={css.textRegular}>Your weight in kilograms:</p>
+                  <p className={css.textRegular}>
+                    {t('modals.UserSettingsForm.infoUser')}
+                  </p>
                   <input
                     className={`${css.userInfoInput} ${newErrors.weight ? css.error : ''}`}
                     type="number"
@@ -330,12 +339,14 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
                     value={weight}
                   />
                   {newErrors.weight && (
-                    <span className={css.errorSpan}>Weight is required</span>
+                    <span className={css.errorSpan}>
+                      {t('modals.UserSettingsForm.errors.weight')}
+                    </span>
                   )}
                 </div>
                 <div className={css.userInfoInputContainer}>
                   <p className={css.textRegular}>
-                    The time of active participation in sports:
+                    {t('modals.UserSettingsForm.TheTimeSportsLabel')}
                   </p>
                   <input
                     className={`${css.userInfoInput} ${newErrors.time ? css.error : ''}`}
@@ -350,7 +361,7 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
                   />
                   {newErrors.time && (
                     <span className={css.errorSpan}>
-                      Active time is required
+                      {t('modals.UserSettingsForm.errors.time')}
                     </span>
                   )}
                 </div>
@@ -358,15 +369,15 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
               <div className={css.midContainer}>
                 <div className={`${css.userInfoInputContainer} ${css.amount}`}>
                   <p className={css.textRegular}>
-                    The required amount of water in liters per day:
+                    {t('modals.UserSettingsForm.requiredWater')}
                   </p>
                   <p
                     className={css.textAccent}
-                  >{`${amount ? amount : userData.dailyWaterNorm} L`}</p>
+                  >{`${amount ? amount : userData.dailyWaterNorm} ${t('modals.UserSettingsForm.l')}`}</p>
                 </div>
               </div>
               <div className={css.userInfoInputContainer}>
-                <h3>Write down how much water you will drink:</h3>
+                <h3>{t('modals.UserSettingsForm.writeDownLabel')}</h3>
                 <input
                   className={`${css.userInfoInput} ${newErrors.water ? css.error : ''}`}
                   type="number"
@@ -380,7 +391,7 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
                 />
                 {newErrors.water && (
                   <span className={css.errorSpan}>
-                    Amount of water to drink is required
+                    {t('modals.UserSettingsForm.errors.water')}
                   </span>
                 )}
               </div>
@@ -393,7 +404,7 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
               type="submit"
               onClick={handleSubmit}
             >
-              Save
+              {t('modals.UserSettingsForm.saveBtn')}
             </button>
           </div>
         </form>
