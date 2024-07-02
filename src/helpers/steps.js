@@ -24,7 +24,7 @@ const steps = [
   {
     selector: '[data-tour="step-6"]',
     content:
-      'In this component, you will be able to edit the amount of water consumed or delete it (currently empty).',
+      'In this component, you will be able to edit the amount of water consumed or delete it.',
   },
   {
     selector: '[data-tour="step-7"]',
