@@ -4,6 +4,7 @@ import AdvantagesSection from '../../components/Home/AdvantagesSection/Advantage
 import ResetPageForm from '../../components/ResetPageForm/ResetPageForm';
 import style from './ResetPage.module.css';
 import { useMedia } from '../../hooks/useMedia';
+import Languages from '../../shared/components/Languages/Languages';
 const ResetPage = () => {
   const { isDesktop } = useMedia();
   return (
@@ -13,9 +14,12 @@ const ResetPage = () => {
       </Helmet>
 
       <Container>
-        <div className={style.wrapperHome}>
-          <ResetPageForm />
-          {isDesktop && <AdvantagesSection />}
+        <div className={style.wrapperStyle}>
+          <Languages />
+          <div className={style.wrapperHome}>
+            <ResetPageForm />
+            {isDesktop && <AdvantagesSection />}
+          </div>
         </div>
       </Container>
     </>

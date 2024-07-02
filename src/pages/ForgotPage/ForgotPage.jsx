@@ -4,6 +4,7 @@ import AdvantagesSection from '../../components/Home/AdvantagesSection/Advantage
 import ForgotPageForm from '../../components/ForgotPageForm/ForgotPageForm';
 import style from './ForgotPage.module.css';
 import { useMedia } from '../../hooks/useMedia';
+import Languages from '../../shared/components/Languages/Languages';
 
 const ForgotPage = () => {
   const { isDesktop } = useMedia();
@@ -14,9 +15,12 @@ const ForgotPage = () => {
       </Helmet>
 
       <Container>
-        <div className={style.wrapperHome}>
-          <ForgotPageForm />
-          {isDesktop && <AdvantagesSection />}
+        <div className={style.wrapperStyle}>
+          <Languages />
+          <div className={style.wrapperHome}>
+            <ForgotPageForm />
+            {isDesktop && <AdvantagesSection />}
+          </div>
         </div>
       </Container>
     </>

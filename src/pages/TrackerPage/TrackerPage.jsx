@@ -5,6 +5,7 @@ import Modals from '../../components/Modals/Modals';
 import Container from '../../shared/components/Container/Container';
 
 import style from './TrackerPage.module.css';
+import Languages from '../../shared/components/Languages/Languages';
 
 const TrackerPage = () => {
   return (
@@ -14,9 +15,12 @@ const TrackerPage = () => {
       </Helmet>
 
       <Container>
-        <div className={style.wrapperTracker}>
-          <WaterMainInfo />
-          <WaterDetailedInfo />
+        <div className={style.wrapperStyle}>
+          <Languages />
+          <div className={style.wrapperTracker}>
+            <WaterMainInfo />
+            <WaterDetailedInfo />
+          </div>
         </div>
       </Container>
       <Modals />

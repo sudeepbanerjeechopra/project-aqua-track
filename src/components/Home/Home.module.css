@@ -1,3 +1,10 @@
+.wrapperStyle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
 .wrapperHome {
     display: flex;
     flex-direction: column;

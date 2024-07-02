@@ -7,7 +7,9 @@ const SharedLayout = () => {
   return (
     <>
       <Suspense fallback={<Loader />}>
-        <Outlet />
+        <main>
+          <Outlet />
+        </main>
       </Suspense>
       <Toaster position="top-right" reverseOrder={true} />
     </>

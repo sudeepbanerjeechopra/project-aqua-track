@@ -9,6 +9,7 @@ import { persistor, store } from './redux/store.js';
 import './shared/style/index.css';
 import 'modern-normalize';
 import { ModalProvider } from './context/ModalContext.jsx';
+import './i18n/config.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

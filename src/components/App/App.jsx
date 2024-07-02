@@ -38,6 +38,7 @@ const App = () => {
   if (isRefreshing) {
     return <Loader />;
   }
+
   return (
     <>
       <Routes>
