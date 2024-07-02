@@ -1,4 +1,6 @@
 import { Helmet } from 'react-helmet-async';
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import WaterMainInfo from '../../components/WaterMainInfo/WaterMainInfo';
 import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
 import Modals from '../../components/Modals/Modals';
@@ -7,8 +9,7 @@ import { useTour } from '@reactour/tour';
 import Languages from '../../shared/components/Languages/Languages';
 
 import style from './TrackerPage.module.css';
-import { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { icons as sprite } from '../../shared/icons';
 
 const TrackerPage = () => {
   const { t } = useTranslation();
@@ -30,7 +31,14 @@ const TrackerPage = () => {
 
       <Container>
         <div className={style.wrapperStyle}>
-          <Languages />
+          <div className={style.wrapperElement}>
+            <button className={style.btnInfo} onClick={() => setIsOpen(true)}>
+              <svg width="18" height="18" className={style.iconInfo}>
+                <use xlinkHref={`${sprite}#icon-info`}></use>
+              </svg>
+            </button>
+            <Languages />
+          </div>
           <div className={style.wrapperTracker} data-tour="step-1">
             <WaterMainInfo />
             <WaterDetailedInfo />
