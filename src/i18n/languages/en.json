@@ -1,4 +1,12 @@
 {
+    "page": {
+        "reset": "Reset your password",
+        "forgot": "Forgot page",
+        "notFound": "Wrong place",
+        "signIn": "Sign In",
+        "signUp": "Sign Up",
+        "tracker": "Tracker Page"
+    },
     "welcomeSection": {
         "mainText": "Record daily water intake and track",
         "title": "Water consumption tracker",
@@ -47,5 +55,25 @@
         "repeatPasswordpanErrorTwo": "Passwords must match",
         "textAlready": "Already have account?",
         "signIn": "Sign In"
+    },
+    "forgotPage": {
+        "title": "Reset your password",
+        "email": "Enter your email",
+        "emailPlaceholder": "Enter your email",
+        "emailSpanError": "Invalid email format",
+        "button": "Send",
+        "remember": "Remember your password?",
+        "signIn": "Sign In"
+    },
+    "resetPage": {
+        "title": "Reset your password",
+        "password": "Password",
+        "passwordPlaceholder": "Enter your password",
+        "passwordSpanError": "Password must be at least 6 characters long, include one uppercase letter, one number, and one special character",
+        "repeatPassword": "Repeat Password",
+        "repeatPasswordPlaceholder": "Repeat password",
+        "repeatPasswordpanError": "Required",
+        "repeatPasswordpanErrorTwo": "Passwords must match",
+        "button": "Send"
     }
 }

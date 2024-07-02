@@ -1,4 +1,12 @@
 {
+    "page": {
+        "reset": "Скинути пароль",
+        "forgot": "Забули пароль",
+        "notFound": "Сторінку не знайдено",
+        "signIn": "Увійти",
+        "signUp": "Зареєструватися",
+        "tracker": "Ваш трекер"
+    },
     "welcomeSection": {
         "mainText": "Записуйте щоденне споживання води",
         "title": "Трекер споживання води",
@@ -46,5 +54,24 @@
         "repeatPasswordpanErrorTwo": "Паролі мають збігатися",
         "textAlready": "Вже маєте аккаунт?",
         "signIn": "Увійти"
+    },
+    "forgotPage": {
+        "title": "Скинути пароль",
+        "email": "Електронна пошта",
+        "emailPlaceholder": "Введіть свою електронну адресу",
+        "emailSpanError": "Невалідна електронна пошта",
+        "button": "Відправити",
+        "remember": "Згадали свій пароль?",
+        "signIn": "Увійти"
+    },
+    "resetPage": {
+        "title": "Скинути пароль",
+        "password": "Пароль",
+        "passwordPlaceholder": "Введіть свій пароль",
+        "passwordSpanError": "Пароль має містити принаймні 6 символів, містити одну велику літеру, одну цифру та один спеціальний символ",
+        "repeatPassword": "Повторити пароль",
+        "repeatPasswordpanError": "Обов'язкове",
+        "repeatPasswordpanErrorTwo": "Паролі мають збігатися",
+        "button": "Увійти"
     }
 }

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 import WrapperWelcome from '../../shared/components/WrapperWelcome/WrapperWelcome';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -15,6 +16,7 @@ import s from './ResetPageForm.module.css';
 import { icons as sprite } from '../../shared/icons/index';
 
 const ResetPageForm = () => {
+  const { t } = useTranslation();
   const [openPasswordEye, setOpenPasswordEye] = useState(false);
   const [openRepeatPasswordEye, setOpenRepeatPasswordEye] = useState(false);
 
@@ -58,11 +60,11 @@ const ResetPageForm = () => {
 
   useEffect(() => {
     if (errors.password) {
-      toast.error(errors.password.message);
+      toast.error(t('resetPage.passwordSpanError'));
     } else if (errors.repeatPassword) {
-      toast.error(errors.repeatPassword.message);
+      toast.error(t('resetPage.repeatPasswordpanErrorTwo'));
     }
-  }, [errors.password, errors.repeatPassword]);
+  });
 
   return (
     <>
@@ -71,12 +73,12 @@ const ResetPageForm = () => {
         classNameWelcom={style.welcomPadding}
       >
         <div className={`${style.formBlock} ${s.formPosition}`}>
-          <h2 className={style.formTitle}>Reset your password</h2>
+          <h2 className={style.formTitle}>{t('resetPage.title')}</h2>
 
           <form className={style.mainForm} onSubmit={handleSubmit(onSubmit)}>
             <div className={style.fieldThumb}>
               <label className={style.formLabel} htmlFor={passwordId}>
-                Password
+                {t('resetPage.password')}
               </label>
               <div className={style.passwordWrapper}>
                 <input
@@ -84,7 +86,7 @@ const ResetPageForm = () => {
                   type={openPasswordEye ? 'text' : 'password'}
                   name="password"
                   id={passwordId}
-                  placeholder="Enter your password"
+                  placeholder={t('resetPage.passwordPlaceholder')}
                   {...register('password')}
                 />
                 {openPasswordEye ? (
@@ -112,14 +114,14 @@ const ResetPageForm = () => {
 
               {errors.password && (
                 <span className={style.errorSpan}>
-                  {errors.password.message}
+                  {t('resetPage.passwordSpanError')}
                 </span>
               )}
             </div>
 
             <div className={style.fieldThumb}>
               <label className={style.formLabel} htmlFor={repeatPasswordId}>
-                Repeat password
+                {t('resetPage.repeatPassword')}
               </label>
               <div className={style.passwordWrapper}>
                 <input
@@ -127,7 +129,7 @@ const ResetPageForm = () => {
                   type={openRepeatPasswordEye ? 'text' : 'password'}
                   name="repeatPassword"
                   id={repeatPasswordId}
-                  placeholder="Repeat password"
+                  placeholder={t('resetPage.repeatPassword')}
                   {...register('repeatPassword')}
                 />
                 {openRepeatPasswordEye ? (
@@ -151,11 +153,16 @@ const ResetPageForm = () => {
                     </svg>
                   </button>
                 )}
+                {errors.repeatPassword && (
+                  <span className={style.errorSpan}>
+                    {t('resetPage.repeatPasswordpanErrorTwo')}
+                  </span>
+                )}
               </div>
             </div>
 
             <button type="submit" className={style.btnform} disabled={!isValid}>
-              Send
+              {t('resetPage.button')}
             </button>
           </form>
         </div>

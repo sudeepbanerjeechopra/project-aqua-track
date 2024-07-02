@@ -8,8 +8,10 @@ import Languages from '../../shared/components/Languages/Languages';
 
 import style from './TrackerPage.module.css';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const TrackerPage = () => {
+  const { t } = useTranslation();
   const { setIsOpen } = useTour();
 
   useEffect(() => {
@@ -23,7 +25,7 @@ const TrackerPage = () => {
   return (
     <>
       <Helmet>
-        <title>Tracker Page</title>
+        <title>{t('page.tracker')}</title>
       </Helmet>
 
       <Container>

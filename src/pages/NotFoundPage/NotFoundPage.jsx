@@ -2,12 +2,14 @@ import { Helmet } from 'react-helmet-async';
 import style from './NotFoundPage.module.css';
 import Container from '../../shared/components/Container/Container';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const ErrorPage = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Helmet>
-        <title>Wrong place</title>
+        <title>{t('page.notFound')}</title>
       </Helmet>
       <div className={style.errorPage404}>
         <Container>

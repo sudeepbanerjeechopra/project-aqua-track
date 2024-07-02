@@ -5,12 +5,15 @@ import ResetPageForm from '../../components/ResetPageForm/ResetPageForm';
 import style from './ResetPage.module.css';
 import { useMedia } from '../../hooks/useMedia';
 import Languages from '../../shared/components/Languages/Languages';
+import { useTranslation } from 'react-i18next';
+
 const ResetPage = () => {
+  const { t } = useTranslation();
   const { isDesktop } = useMedia();
   return (
     <>
       <Helmet>
-        <title>Reset page</title>
+        <title>{t('page.reset')}</title>
       </Helmet>
 
       <Container>
