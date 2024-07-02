@@ -20,6 +20,10 @@
     padding: 45.8px;
 }
 
+.waterEmpty {
+    text-align: center;
+}
+
 @media (min-width: 768px) {
     .wrapper {
         max-width: 640px;

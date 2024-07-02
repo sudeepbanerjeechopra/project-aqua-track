@@ -61,6 +61,9 @@ const MonthInfo = () => {
   const onDayChange = (date) => {
     dispatch(setDate(date));
   };
+  const handleTodayClick = (date) => {
+    dispatch(setDate(date.toLocaleDateString('sv-SE')));
+  };
 
   useEffect(() => {
     dispatch(apiGetWaterMonth(currentMonth));
@@ -78,6 +81,7 @@ const MonthInfo = () => {
               onNextMonth={onNextMonth}
               onPrevMonth={onPrevMonth}
               currentDate={currentMonth}
+              onTodayClick={handleTodayClick}
             />
 
             <button

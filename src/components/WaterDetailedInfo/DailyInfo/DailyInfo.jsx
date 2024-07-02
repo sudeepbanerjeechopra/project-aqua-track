@@ -31,7 +31,7 @@ function DailyInfo() {
         </CustomScrollBar>
       ) : (
         <div className={css.text} data-tour="step-6">
-          <p>{t('dailyInfo.text')}</p>
+          <p className={css.waterEmpty}>{t('dailyInfo.text')}</p>
         </div>
       )}
     </div>
