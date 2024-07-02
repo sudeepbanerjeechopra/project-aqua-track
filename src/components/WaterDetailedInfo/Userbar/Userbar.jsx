@@ -43,7 +43,7 @@ const Userbar = () => {
       <h2 className={css.welcome}>
         Hello<span className={css.name}>, {getFirstName(userInfo?.name)}!</span>
       </h2>
-      <div className={css.userBarMenu}>
+      <div className={css.userBarMenu} data-tour="step-7">
         <button className={css.userBarBtn} onClick={toggleMenu}>
           {getFirstName(userInfo?.name)}
           {userInfo?.avatar ? (

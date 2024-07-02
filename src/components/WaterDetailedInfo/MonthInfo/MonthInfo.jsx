@@ -66,7 +66,7 @@ const MonthInfo = () => {
 
   return (
     <div>
-      <div className={css.wrapper}>
+      <div className={css.wrapper} data-tour="step-8">
         <div className={css.thead}>
           <h3 className={css.title}>{ToggleInfo ? 'Month' : 'Statistics'}</h3>
           <div className={css.pagination}>
@@ -81,6 +81,7 @@ const MonthInfo = () => {
                 [css.active]: !ToggleInfo,
               })}
               onClick={onToggleInfo}
+              data-tour="step-9"
             >
               <svg width="20" height="20">
                 <use xlinkHref={`${sprite}#pie-chart-02-1`} />
