@@ -33,7 +33,12 @@ const TrackerPage = () => {
         <div className={style.wrapperStyle}>
           <div className={style.wrapperElement}>
             <button className={style.btnInfo} onClick={() => setIsOpen(true)}>
-              <svg width="18" height="18" className={style.iconInfo}>
+              <svg
+                width="18"
+                height="18"
+                aria-label="Tour in web"
+                className={style.iconInfo}
+              >
                 <use xlinkHref={`${sprite}#icon-info`}></use>
               </svg>
             </button>

@@ -21,7 +21,12 @@ const Languages = () => {
           className={style.languageBtn}
           onClick={() => changeLanguage('en')}
         >
-          <svg width="18" height="18" className={style.iconFlag}>
+          <svg
+            width="18"
+            height="18"
+            aria-label="Flag en"
+            className={style.iconFlag}
+          >
             <use xlinkHref={`${sprite}#en-flag`}></use>
           </svg>
         </button>
@@ -30,7 +35,12 @@ const Languages = () => {
           className={style.languageBtn}
           onClick={() => changeLanguage('uk')}
         >
-          <svg width="18" height="18" className={style.iconFlag}>
+          <svg
+            width="18"
+            height="18"
+            aria-label="Flag ua"
+            className={style.iconFlag}
+          >
             <use xlinkHref={`${sprite}#ua-flag`}></use>
           </svg>
         </button>
