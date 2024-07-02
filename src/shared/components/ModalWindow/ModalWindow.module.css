@@ -42,14 +42,13 @@
     z-index: 15;
     transition: opacity var(--animation), transform var(--animation);
 
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto;
 }
 
 .modalContentOpen {
     opacity: 1;
 }
 
-.modalContent.beforeClose {
+.beforeClose {
     opacity: 0;
 }

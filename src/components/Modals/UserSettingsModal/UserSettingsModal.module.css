@@ -8,8 +8,9 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
 }
+
 h2 {
   font-size: 20px;
   font-weight: 700;
@@ -69,6 +70,12 @@ h3 {
 }
 
 .inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.wrapperInputsForm {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -134,7 +141,7 @@ h3 {
 
 .userInfoInput:hover,
 .userInfoInput:focus {
-  border: 1px solid var(--active-border-color);
+  border: 1px solid var(--accent-secondary);
   outline: none;
 }
 
@@ -289,17 +296,41 @@ input[type='number'] {
     max-width: 920px;
   }
 
+  .form {
+    gap: 50px;
+  }
+
   .inputs {
     flex-wrap: wrap;
     height: 594px;
-    column-gap: 40px;
   }
 
   .userInfoInput,
   .textarea {
     width: 400px;
   }
+
   .down {
     margin-top: 82px;
   }
+}
+
+.userInfoInput:-webkit-autofill,
+.userInfoInput:-webkit-autofill:hover,
+.userInfoInput:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--dark);
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+  background-color: transparent;
+}
+
+.error {
+  border: 1px solid var(--error);
+}
+
+.errorSpan {
+  font-size: 11px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: var(--error);
 }

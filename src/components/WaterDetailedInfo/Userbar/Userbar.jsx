@@ -66,10 +66,7 @@ const Userbar = () => {
                 <a
                   onClick={() =>
                     openModal(
-                      <UserSettingsModal
-                        isOpen={true}
-                        setIsUserUpdated={setIsUserUpdated}
-                      />
+                      <UserSettingsModal setIsUserUpdated={setIsUserUpdated} />
                     )
                   }
                   className={css.userBarLink}

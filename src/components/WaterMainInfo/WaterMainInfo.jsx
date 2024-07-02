@@ -10,7 +10,13 @@ import Logo from '../../shared/components/Logo/Logo';
 
 const WaterMainInfo = () => {
   return (
-    <div className={css.container}>
+    <div
+      data-aos="fade-right"
+      data-aos-anchor="#example-anchor"
+      data-aos-offset="500"
+      data-aos-duration="500"
+      className={css.container}
+    >
       <Logo className={css.logoTracker} />
       <WaterDailyNorma />
       <WaterProgressBar />

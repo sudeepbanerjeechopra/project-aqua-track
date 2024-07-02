@@ -1,15 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
     <defs>
-        <symbol id="plus-modal" viewBox="0 0 32 32"><path stroke-width="1.116" d="M16 .558C24.528.558 31.442 7.472 31.442 16S24.528 31.442 16 31.442.558 24.528.558 16 7.472.558 16 .558z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.339" d="M16 10.286v11.429M10.286 16h11.429"/>
+        <symbol id="minus" viewBox="0 0 32 32">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6.667 16h18.667"/>
+        </symbol>
+        
+        <symbol id="plus" viewBox="0 0 32 32">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6.667 16h18.667M16 6.667v18.667"/>
+        </symbol>
+        
+        <symbol id="ellips" viewBox="0 0 32 32">
+            <path fill="#9be1a0" d="M32 16c0 8.837-7.163 16-16 16S0 24.837 0 16 7.163 0 16 0s16 7.163 16 16z" style="fill:var(--color1, #9be1a0)"/>
         </symbol>
 
         <symbol id="plus-add-water" viewBox="0 0 32 32">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.667" d="M16 6.667v18.667M6.667 16h18.667"/>
-        </symbol>
-
-        <symbol id="minus-modal" viewBox="0 0 32 32"><path stroke-width="1.116" d="M16 .558C24.528.558 31.442 7.472 31.442 16S24.528 31.442 16 31.442.558 24.528.558 16 7.472.558 16 .558z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.339" d="M10.286 16h11.429"/>
         </symbol>
 
         <symbol id="pie-chart-02-1" viewBox="0 0 32 32">
