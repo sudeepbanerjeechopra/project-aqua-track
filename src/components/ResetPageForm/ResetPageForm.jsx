@@ -14,6 +14,7 @@ import { resetSchema } from './resetSchema';
 import style from '../UserForm.module.css';
 import s from './ResetPageForm.module.css';
 import { icons as sprite } from '../../shared/icons/index';
+import { NavLink } from 'react-router-dom';
 
 const ResetPageForm = () => {
   const { t } = useTranslation();
@@ -161,9 +162,12 @@ const ResetPageForm = () => {
               </div>
             </div>
 
-            <button type="submit" className={style.btnform} disabled={!isValid}>
+            {/* <button type="submit" className={style.btnform} disabled={!isValid}>
               {t('resetPage.button')}
-            </button>
+            </button> */}
+            <NavLink to="/signin" className={style.haveAccountForm}>
+              {t('signInPage.signIn')}
+            </NavLink>
           </form>
         </div>
       </WrapperWelcome>
