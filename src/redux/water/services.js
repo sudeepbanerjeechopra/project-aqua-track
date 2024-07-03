@@ -6,7 +6,6 @@ export const requestAddWater = async (water) => {
 };
 
 export const requestUpdateWater = async (water) => {
-  console.log(water);
   const { data } = await axios.put(`/water/${water.id}`, { amount: water.amount, date: water.date });
   return data;
 };
