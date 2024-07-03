@@ -16,7 +16,7 @@ const ErrorPage = () => {
           <div className={style.positionCat}>
             <h2 className={style.titlePage}>404</h2>
             <p className={style.message}>
-              {`Don't panic, take a sip of water and go back to main to try again.`}
+              {`Don't panic, take a sip of water and go back to main page to try again.`}
             </p>
             <NavLink to="/" className={style.goBack}>
               Return to the main page
