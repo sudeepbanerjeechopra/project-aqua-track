@@ -2,7 +2,6 @@ import axios from '../../helpers/axiosConfig';
 import toast from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setToken } from './slice';
-import { useTranslation } from 'react-i18next';
 
 export const setAuthHeader = (token) => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -131,9 +130,8 @@ export const forgetPassword = createAsyncThunk(
     'auth/forget',
     async (credentials, thunkAPI) => {
         try {
-            const { t } = useTranslation();
             const res = await axios.post('/users/forgot', credentials);
-            toast.success(t('toast.forgot'));
+            toast.success(res.data.message);
             return res.data;
         } catch (error) {
             toast.error(error.response.data.message);
@@ -146,9 +144,8 @@ export const resetPassword = createAsyncThunk(
     'auth/reset',
     async (credentials, thunkAPI) => {
         try {
-            const { t } = useTranslation();
             const res = await axios.patch('/users/reset', credentials);
-            toast.success(t('toast.reset'));
+            toast.success(res.data.message);
             return res.data;
         } catch (error) {
             toast.error(error.response.data.message);
