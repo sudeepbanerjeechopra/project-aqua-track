@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import { NavLink } from 'react-router-dom';
 
 import WrapperWelcome from '../../shared/components/WrapperWelcome/WrapperWelcome';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -14,7 +15,6 @@ import { resetSchema } from './resetSchema';
 import style from '../UserForm.module.css';
 import s from './ResetPageForm.module.css';
 import { icons as sprite } from '../../shared/icons/index';
-import { NavLink } from 'react-router-dom';
 
 const ResetPageForm = () => {
   const { t } = useTranslation();
@@ -162,13 +162,16 @@ const ResetPageForm = () => {
               </div>
             </div>
 
-            {/* <button type="submit" className={style.btnform} disabled={!isValid}>
-              {t('resetPage.button')}
-            </button> */}
-            <NavLink to="/signin" className={style.haveAccountForm}>
-              {t('signInPage.signIn')}
-            </NavLink>
+            <button type="submit" className={style.btnform} disabled={!isValid}>
+              {t('resetPage.title')}
+            </button>
           </form>
+          <div className={style.haveAccount}>
+            <p className={style.haveAccountText}>{t('forgotPage.remember')}</p>{' '}
+            <NavLink to="/signin" className={style.haveAccountForm}>
+              {t('resetPage.button')}
+            </NavLink>
+          </div>
         </div>
       </WrapperWelcome>
     </>

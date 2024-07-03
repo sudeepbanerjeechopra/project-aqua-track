@@ -172,5 +172,9 @@
                 "water": "Amount of water to drink is required"
             }
         }
+    },
+    "toast": {
+        "forgot": "Password recovery email has been sent",
+        "reset": "Password has been reset successfully"
     }
 }
