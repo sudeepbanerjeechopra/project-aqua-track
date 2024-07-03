@@ -3,6 +3,7 @@ import { useModalContext } from '../../../context/useModalContext.jsx';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../../redux/auth/operation.js';
 import { useTranslation } from 'react-i18next';
+import toast from 'react-hot-toast';
 
 const LogOutModal = () => {
   const { closeModal } = useModalContext();
@@ -21,6 +22,7 @@ const LogOutModal = () => {
           onClick={() => {
             dispatch(logOut());
             closeModal();
+            toast.success(t('toast.logOut'));
           }}
         >
           {t('modals.logOut.logOut')}

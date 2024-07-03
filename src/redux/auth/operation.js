@@ -131,7 +131,6 @@ export const forgetPassword = createAsyncThunk(
     async (credentials, thunkAPI) => {
         try {
             const res = await axios.post('/users/forgot', credentials);
-            toast.success(res.data.message);
             return res.data;
         } catch (error) {
             toast.error(error.response.data.message);
@@ -145,7 +144,6 @@ export const resetPassword = createAsyncThunk(
     async (credentials, thunkAPI) => {
         try {
             const res = await axios.patch('/users/reset', credentials);
-            toast.success(res.data.message);
             return res.data;
         } catch (error) {
             toast.error(error.response.data.message);

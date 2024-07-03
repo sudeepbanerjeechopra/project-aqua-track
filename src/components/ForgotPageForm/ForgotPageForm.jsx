@@ -32,6 +32,7 @@ const ForgotPageForm = () => {
     try {
       dispatch(forgetPassword(data));
       reset();
+      toast.success(t('toast.forgot'));
     } catch (error) {
       console.error(error);
     }

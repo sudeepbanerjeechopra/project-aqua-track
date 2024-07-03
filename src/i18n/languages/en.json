@@ -175,6 +175,7 @@
     },
     "toast": {
         "forgot": "Password recovery email has been sent",
-        "reset": "Password has been reset successfully"
+        "reset": "Password has been reset successfully! You can sign in with a new password",
+        "logOut": "See you soon ❤️"
     }
 }

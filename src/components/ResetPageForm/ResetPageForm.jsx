@@ -47,6 +47,7 @@ const ResetPageForm = () => {
 
       dispatch(resetPassword({ ...userData, resetToken }));
       reset();
+      toast.success(t('toast.reset'));
     } catch (error) {
       console.error(error);
     }
