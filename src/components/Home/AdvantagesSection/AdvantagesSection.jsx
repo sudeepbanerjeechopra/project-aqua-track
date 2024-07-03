@@ -43,7 +43,7 @@ const AdvantagesSection = () => {
       ]);
     }
   }, [index, usersAvatars]);
-
+  console.log(usersLoading);
   return (
     <div
       data-aos="fade-left"
@@ -60,6 +60,18 @@ const AdvantagesSection = () => {
         className={css.customers}
       >
         {usersLoading ? (
+          <div className={css.widthLoader}>
+            <Hearts
+              height="35"
+              width="35"
+              color="#87d28d"
+              ariaLabel="hearts-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+          </div>
+        ) : (
           <div className={css.wrapperHappy}>
             {currentAvatars.map((avatar, idx) => (
               <div key={idx} className={css.customer}>
@@ -71,18 +83,6 @@ const AdvantagesSection = () => {
               </div>
             ))}
             <div className={css.numberCustomers}>+{usersCount}</div>
-          </div>
-        ) : (
-          <div className={css.widthLoader}>
-            <Hearts
-              height="35"
-              width="35"
-              color="#87d28d"
-              ariaLabel="hearts-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
-            />
           </div>
         )}
 
