@@ -43,7 +43,6 @@ const AdvantagesSection = () => {
       ]);
     }
   }, [index, usersAvatars]);
-  console.log(usersLoading);
   return (
     <div
       data-aos="fade-left"
