@@ -62,7 +62,7 @@ const App = () => {
           <Route
             path="/reset"
             element={
-              <RestrictedRoute redirectTo="/signin" component={<ResetPage />} />
+              <RestrictedRoute redirectTo="/forgot" component={<ResetPage />} />
             }
           />
 
