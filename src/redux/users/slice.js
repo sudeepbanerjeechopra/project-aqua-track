@@ -16,10 +16,11 @@ const usersSlice = createSlice({
       .addCase(getUsers.fulfilled, (state, action) => {
         state.count = action.payload.count;
         state.avatars = action.payload.avatars;
+        state.loading = false;
       })
-
       .addCase(getUsers.rejected, (state, action) => {
         state.error = action.payload;
+        state.loading = false;
       });
   },
 });
