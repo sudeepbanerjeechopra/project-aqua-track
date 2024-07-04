@@ -198,6 +198,7 @@ const UserSettingsModal = ({ setIsUserUpdated }) => {
                 onChange={handleChange}
                 ref={hiddenFileInput}
                 style={{ display: 'none' }}
+                accept=".jpg,.jpeg,.png,.webp"
               />
             </div>
           </div>
